@@ -1,0 +1,19 @@
+{
+  "name": "vikings-log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ollita7:6d8231324d033d26d3e6577b54e46f55297e35d1@github.com/cavepotcode/vikings-log.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cavepotcode/vikings-log/issues"
+  },
+  "homepage": "https://github.com/cavepotcode/vikings-log#readme"
+}
