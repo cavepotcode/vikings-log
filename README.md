@@ -15,7 +15,4 @@ Bellow you can see the available services
 * POST `/log/error` (creates a log entry with error level) [message, stacktrace]
 
 Every services needs to send the apikey of the client on the http headers
-
-
-
-  
+ 
