@@ -8,6 +8,13 @@ Tool for managing centralized log.
 * [Installation](#installation)
 * [REST Services](#rest-services)
 
+## Instalations
+Install the folowing dependencies globaly
+```
+npm i -g typescript
+npm i -g kiwi-server-cli
+```
+
 ## REST Services
 Bellow you can see the available services
 * POST `/log/info` (creates a log entry with info level) [message, stacktrace]

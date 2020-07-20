@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd api && npm i",
+    "compile": "cd api && npx kiwi-server-cli build"
   },
   "repository": {
     "type": "git",
