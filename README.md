@@ -15,6 +15,13 @@ npm i -g typescript
 npm i -g kiwi-server-cli
 ```
 
+Comand to install all node_modules dependencies of ui and api.
+Also commando to trasnpile the api code.
+```
+npm run install
+npm run compile
+```
+
 ## REST Services
 Bellow you can see the available services
 * POST `/log/info` (creates a log entry with info level) [message, stacktrace]
