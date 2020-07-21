@@ -12,6 +12,7 @@
     "kiwi-server-cli": "^1.1.1"
   },
   "dependencies": {
-    "kiwi-server": "^1.3.13"
+    "kiwi-server": "^1.3.13",
+    "typeorm": "^0.2.25"
   }
 }

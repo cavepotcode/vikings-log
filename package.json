@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd api && npm i",
-    "compile": "cd api && npx kiwi-server-cli build"
+    "compile": "cd api && kc build",
+    "serve": "node ./api/dist/default/src/server.js"
   },
   "repository": {
     "type": "git",

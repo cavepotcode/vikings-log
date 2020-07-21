@@ -1,0 +1,37 @@
+{
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "paths": {
+        "/v1/log/info": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "log"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Object"
+                            }
+                        }
+                    },
+                    "description": "Object",
+                    "required": true
+                }
+            }
+        }
+    },
+    "openapi": "3.0.0",
+    "components": {
+        "schemas": {}
+    }
+}
