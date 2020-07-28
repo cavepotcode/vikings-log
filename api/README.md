@@ -12,6 +12,8 @@ npm i -g typeorm
 npm install -g ts-node
 ```
 
+Copy `.env.sample` and create `.env` file with right values.
+
 ## Migrations
 We are using typeorm for managing database. 
 For more information about it [https://typeorm.io/](https://typeorm.io/)
@@ -23,5 +25,5 @@ typeorm migration:create -n <migration_name>
 
 ### Run migrations
 ```
-typeorm migration:run
+typeorm migration:run --config .env
 ```

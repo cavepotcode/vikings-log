@@ -23,6 +23,11 @@ npm run install
 npm run compile
 ```
 
+### Run Migrations
+```
+npm run migrations_run
+```
+
 ## REST Services
 Bellow you can see the available services
 * POST `/log/info` (creates a log entry with info level) [message, stacktrace]
