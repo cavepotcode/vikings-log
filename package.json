@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd api && npm i",
     "compile": "cd api && kc build",
-    "serve": "node ./api/dist/default/src/server.js"
+    "serve": "node ./api/dist/default/src/server.js",
+    "migrate_run": "cd api && kc build && npx typeorm migration:run",
+    "migrate_revert": "cd api && kc build && npx typeorm migration:revert"
   },
   "repository": {
     "type": "git",
