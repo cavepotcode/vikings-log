@@ -8,8 +8,8 @@
     "install": "cd api && npm i",
     "compile": "cd api && kc build",
     "serve": "node ./api/dist/default/src/server.js",
-    "migrate_run": "cd api && kc build && npx typeorm migration:run",
-    "migrate_revert": "cd api && kc build && npx typeorm migration:revert"
+    "migrate_run": "cd api && kc build && npx typeorm migration:run --config .env",
+    "migrate_revert": "cd api && kc build && npx typeorm migration:revert  --config .env"
   },
   "repository": {
     "type": "git",
