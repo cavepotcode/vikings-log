@@ -1,0 +1,25 @@
+{
+   "type": "mongodb",
+   "host": "127.0.0.1",
+   "port": 27017,
+   "username": "admin",
+   "password": "n1rvanA!",
+   "database": "logs",
+   "authSource": "admin",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "dist/default/src/datastore/entities/**/*.js"
+   ],
+   "migrations": [
+      "dist/default/src/datastore/migrations/**/*.js"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/datastore/entities",
+      "migrationsDir": "src/datastore/migrations",
+      "subscribersDir": "src/subscriber"
+   }
+}

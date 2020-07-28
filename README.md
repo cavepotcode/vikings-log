@@ -13,6 +13,7 @@ Install the folowing dependencies globaly
 ```
 npm i -g typescript
 npm i -g kiwi-server-cli
+npm i -g typeorm
 ```
 
 Comand to install all node_modules dependencies of ui and api.

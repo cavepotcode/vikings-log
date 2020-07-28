@@ -22,4 +22,7 @@ export class Log {
 
   @Column()
   stackTrace: string;
+
+  @Column()
+  project: string;
 }
