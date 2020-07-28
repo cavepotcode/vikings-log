@@ -1,6 +1,7 @@
 import { createKiwiServer, IKiwiOptions, AuthorizeResponse } from 'kiwi-server';
 import * as http from 'http';
-import { LogController } from './/controllers/log.controller'
+import { LogController } from './controllers/log.controller'
+import { HeadersMiddleware } from './controllers/middlewares/headers/middleware.before';
 
 async function validateAuthentication(request: http.IncomingMessage, roles: Array<string>): Promise<AuthorizeResponse | boolean> {
   console.log(roles);
@@ -11,7 +12,7 @@ async function validateAuthentication(request: http.IncomingMessage, roles: Arra
 const options: IKiwiOptions = {
     controllers: [LogController],
     authorization: validateAuthentication,
-    middlewares: [],
+    middlewares: [ HeadersMiddleware ],
     cors: {
         enabled: true,
         domains: []
