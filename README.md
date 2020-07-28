@@ -25,7 +25,7 @@ npm run compile
 
 ### Run Migrations
 ```
-npm run migrations_run
+npm run migrate_run
 ```
 
 ## REST Services
