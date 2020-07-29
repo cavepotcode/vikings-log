@@ -4,7 +4,7 @@
         "http"
     ],
     "paths": {
-        "/v1/log/info": {
+        "/v1/log/:level": {
             "post": {
                 "consumes": [
                     "application/json"
@@ -12,7 +12,16 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "level",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
                 "tags": [
                     "log"
                 ],

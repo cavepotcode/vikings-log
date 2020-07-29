@@ -12,3 +12,5 @@ export class ResponseCode {
   static ERROR = 1;
   static WARNING = 2;
 }
+
+export const levels = ["info", "warning", "error"];

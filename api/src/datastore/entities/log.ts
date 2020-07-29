@@ -6,7 +6,7 @@ export enum Level{
   ERROR
 }
 
-@Entity()
+@Entity('logs')
 export class Log {
   @ObjectIdColumn()
   id: ObjectID;
@@ -15,7 +15,7 @@ export class Log {
   date: Date;
   
   @Column()
-  level: number;
+  level: string;
   
   @Column()
   message: string;

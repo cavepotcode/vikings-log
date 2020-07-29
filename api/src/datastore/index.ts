@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import {createConnection, Connection, ConnectionOptions} from "typeorm";
+import {createConnection, Connection, ConnectionOptions, getMongoRepository} from "typeorm";
 import { Log, User, Project } from './entities/';
 
 const connection_options: ConnectionOptions = {
@@ -12,6 +12,7 @@ const connection_options: ConnectionOptions = {
   database: process.env.TYPEORM_DATABASE,
   logging: true,
   authSource: 'admin',
+  useUnifiedTopology: true,
   entities: [
     Log, Project, User
   ],
@@ -23,5 +24,5 @@ export async function getRepository<T>(arg: {new(): T; }): Promise<any> {
   const conn = await connection;
   if (!conn) throw new Error('Connection to db not available');
 
-  return conn.getRepository(arg);
+  return conn.getMongoRepository(arg);
 }
