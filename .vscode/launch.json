@@ -15,13 +15,8 @@
             "preLaunchTask": "compile",
             "sourceMaps": true,
             "stopOnEntry": false,
-            "type": "node"
-        },
-        {
             "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/api/dist/default/src/server.js"
+            "envFile": "${workspaceRoot}/api/.env"
         }
     ]
 }

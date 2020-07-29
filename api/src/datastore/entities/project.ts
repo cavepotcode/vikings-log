@@ -1,15 +1,13 @@
 import {Entity, ObjectID, ObjectIdColumn, Column} from "typeorm";
 
-@Entity('users')
-export class User {
+@Entity('projects')
+export class Project {
   @ObjectIdColumn()
   id: ObjectID;
 
   @Column()
-  email: string;
+  name: string;
   
   @Column()
-  password: string;
-
-  //TODO: projects
+  apiKey: string;
 }

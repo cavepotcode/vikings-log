@@ -1,14 +1,15 @@
 import {MigrationInterface, QueryRunner, getMongoManager} from "typeorm";
-import { User } from "../entities/user";
 import { MongoQueryRunner } from "typeorm/driver/mongodb/MongoQueryRunner";
+import { Project } from "../entities/project";
+import { v4 as uuidv4 } from 'uuid';
 
 export class init1595883784580 implements MigrationInterface {
 
     public async up(queryRunner: MongoQueryRunner): Promise<void> {
-        const user = new User();
-        user.email = 'info@cavepot.com';
-        user.password = '12345678';
-        await queryRunner.insertOne('users', user);
+        const project = new Project();
+        project.name = 'test';
+        project.apiKey = uuidv4();
+        await queryRunner.insertOne('projects', project);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
