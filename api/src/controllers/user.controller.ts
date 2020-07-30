@@ -1,6 +1,7 @@
 import { JsonController, Get, Post, Body, Authorize, Put } from 'kiwi-server';
 import { UserIn, LoginIn, ForgotPasswordIn, ResetPasswordIn } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
+import { request } from 'http';
 
 @JsonController('/user')
 export class UserController {
@@ -21,11 +22,16 @@ export class UserController {
 	@Authorize()
 	@Get('/current')
 	public current(request: any) {
-		console.log(request.user);
 		return {
 			result: 0,
-			user: "kiwi"
+			user: request.user.email
 		}
+	}
+
+	@Authorize()
+	@Get('/logout')
+	public logout() {
+		// TODO: not sure if we need it
 	}
 
 	@Post('/forgot-password')
