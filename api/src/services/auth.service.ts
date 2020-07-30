@@ -35,9 +35,15 @@ export class AuthService {
   }
 
   async validate(authHeader: string) {
-    const token = authHeader.replace('Bearer ', '');
-    const jwtResult = await verify(token, environment.jwt.secret);
-    return !!jwtResult;
+    try{
+      const token = authHeader.replace('Bearer ', '');
+      const jwtResult = await verify(token, environment.jwt.secret);
+      return !!jwtResult;
+    } catch(ex){
+      //TODO: review if we can re generate token
+      return false;
+    }
+    
   }
 
   decode(authHeader: string) {
