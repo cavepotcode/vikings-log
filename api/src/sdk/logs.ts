@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 export class Log {
-  static logError(title: string, message: string) {
+  static error(title: string, message: string) {
     const dir = path.resolve('./log');
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);

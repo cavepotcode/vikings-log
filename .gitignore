@@ -1,5 +1,6 @@
 /.git
 /api/node_modules
+/ui/node_modules
 /api/dist
 /api/.env
 /log

@@ -37,10 +37,185 @@
                     "required": true
                 }
             }
+        },
+        "/v1/user/login": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "user"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginIn"
+                            }
+                        }
+                    },
+                    "description": "LoginIn",
+                    "required": true
+                }
+            }
+        },
+        "/v1/user": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "user"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserIn"
+                            }
+                        }
+                    },
+                    "description": "UserIn",
+                    "required": true
+                }
+            }
+        },
+        "/v1/user/current": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "user"
+                ]
+            }
+        },
+        "/v1/user/forgot-password": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "user"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ForgotPasswordIn"
+                            }
+                        }
+                    },
+                    "description": "ForgotPasswordIn",
+                    "required": true
+                }
+            }
+        },
+        "/v1/user/reset-password": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "user"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResetPasswordIn"
+                            }
+                        }
+                    },
+                    "description": "ResetPasswordIn",
+                    "required": true
+                }
+            }
         }
     },
     "openapi": "3.0.0",
     "components": {
-        "schemas": {}
+        "schemas": {
+            "UserIn": {
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "username",
+                    "email",
+                    "password"
+                ]
+            },
+            "LoginIn": {
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "username",
+                    "password"
+                ]
+            },
+            "ForgotPasswordIn": {
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "username"
+                ]
+            },
+            "ResetPasswordIn": {
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "token",
+                    "password"
+                ]
+            }
+        }
     }
 }

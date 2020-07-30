@@ -17,14 +17,14 @@ import { StateService } from '../services/state/state.service';
 export class RequestInterceptor implements HttpInterceptor {
   @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private toast: ToastrService, private router: Router, private stateServide: StateService) {
+  constructor(private toast: ToastrService, private router: Router, private stateService: StateService) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.blockUI.start();
-    if (this.stateServide.authorization) {
+    if (this.stateService.authorization) {
       request = request.clone({
-        headers: request.headers.set('authorization', this.stateServide.authorization)
+        headers: request.headers.set('authorization', this.stateService.authorization)
       });
     }
     return next.handle(request)

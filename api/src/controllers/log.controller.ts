@@ -24,7 +24,7 @@ export class LogController {
       const log = await this.logSvc.create(body, level, project.id.toString());
       return new Response(ResponseCode.OK, '');
     } catch (err) {
-      Log.logError('project/all', err);
+      Log.error(`log/${level}`, err);
       return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
     }
   }
