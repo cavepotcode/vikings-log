@@ -33,7 +33,7 @@ export class RequestInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           if (event.body.result !== 0) {
             this.toast.error(event.body.msg);
-          } else{
+          } else if (event.body.msg){
             this.toast.success(event.body.msg);
           }
         }
