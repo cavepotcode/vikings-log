@@ -13,13 +13,22 @@ export class UserService {
 
   login(data){
     const url = `${environment.apiUrl}user/login`;
-    this.router.navigate(['private']);
-    // this.httpClient.post(url, data).subscribe((response: any) => {
-    //   if (response.result === 0) {
-    //     this.stateService.authorization = response.token;
-    //     this.router.navigate(['private']);
-    //   }
-    // });
+    this.httpClient.post(url, data).subscribe((response: any) => {
+      if (response.result === 0) {
+        this.stateService.authorization = response.data.token;
+        this.router.navigate(['private']);
+      }
+    });
+  }
+
+  logout(){
+    const url = `${environment.apiUrl}user/logout`;
+    this.httpClient.get(url).subscribe((response: any) => {
+      if (response.result === 0) {
+        this.stateService.authorization = null;
+        this.router.navigate(['login']);
+      }
+    });
   }
 
   register(data){

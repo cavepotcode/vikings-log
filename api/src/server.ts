@@ -1,18 +1,24 @@
 import { createKiwiServer, IKiwiOptions, AuthorizeResponse } from 'kiwi-server';
 import * as http from 'http';
 import { LogController } from './controllers/log.controller'
-//import { HeadersMiddleware } from './middlewares/headers.middleware.before';
+import { UserController } from './controllers/user.controller'
+import { AuthService } from './services/auth.service';
+import { HeadersMiddleware } from './middlewares/headers.middleware.before';
 
 async function validateAuthentication(request: http.IncomingMessage, roles: Array<string>): Promise<AuthorizeResponse | boolean> {
-  console.log(roles);
-  return true;
-  // return new AuthorizeResponse(403, 'fasdfasdfdasgas dgs dsg');
+    const token = request.headers['authorization'];
+    if (!token) {
+      return new AuthorizeResponse(401, 'User is not atuhenticated')
+    }
+    const authService = new AuthService();
+    request['user'] = authService.decode(token);
+    return await authService.validate(token);
 }
 
 const options: IKiwiOptions = {
-    controllers: [LogController],
+    controllers: [ LogController, UserController ],
     authorization: validateAuthentication,
-    middlewares: [  ],
+    middlewares: [  HeadersMiddleware ],
     cors: {
         enabled: true,
         domains: []
