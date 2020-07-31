@@ -8,9 +8,7 @@ import { UserService } from '../../../../src/app/shared/services/user/user.servi
   styleUrls: ['./menu.component.less']
 })
 export class MenuComponent implements OnInit {
-  user: string;
-  @Input() title: string;
-
+  user: any;
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
