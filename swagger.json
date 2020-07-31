@@ -116,6 +116,20 @@
                 ]
             }
         },
+        "/v1/user/projects": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "user"
+                ]
+            }
+        },
         "/v1/user/forgot-password": {
             "post": {
                 "consumes": [
