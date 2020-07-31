@@ -31,10 +31,10 @@ export class RequestInterceptor implements HttpInterceptor {
       .pipe(map((event: HttpEvent<any>) => {
         this.blockUI.stop();
         if (event instanceof HttpResponse) {
-          if (event.body.result !== 0) {
-            this.toast.error(event.body.msg);
+          if (event.body.meta.code !== 0) {
+            this.toast.error(event.body.meta.message);
           } else if (event.body.msg){
-            this.toast.success(event.body.msg);
+            this.toast.success(event.body.meta.message);
           }
         }
         return event;

@@ -15,5 +15,5 @@ export class User {
   username: string;
 
   @Column()
-  projects: Array<string>
+  projects: Array<ObjectID>
 }

@@ -15,7 +15,11 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.current().subscribe((response: any) => {
-      this.user = response.user;
+      this.user = response.data;
+    });
+
+    this.userService.projects().subscribe((response: any) => {
+      console.log(response);
     });
   }
 

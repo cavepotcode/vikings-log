@@ -4,7 +4,8 @@ import { getRepository } from '../datastore';
 import { User } from '../datastore/entities/user';
 import { UserIn, LoginIn } from '../models/user.model';
 import { encrypt } from '../sdk/encrypt';
-import { ResponseCode, Response } from '../models/response.models';
+import { ResponseCode } from '../sdk/constants';
+import { Response } from '../sdk/response';
 
 export class AuthService {
   
