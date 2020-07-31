@@ -1,8 +1,12 @@
-<mat-toolbar class="menu">
-  <div class="logo">
-    <span class="title">Vikings Log</span>
-  </div>
+<mat-toolbar class="menu" color="primary">
+  <span class="title">Vikings Log</span>
   <div class="user">
-    <span>{{user}}</span>
+    <button mat-button [matMenuTriggerFor]="menu">
+      {{user}}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
   </div>
 </mat-toolbar>

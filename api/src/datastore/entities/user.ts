@@ -13,4 +13,7 @@ export class User {
 
   @Column()
   username: string;
+
+  @Column()
+  projects: Array<string>
 }

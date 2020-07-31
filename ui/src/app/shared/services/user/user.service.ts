@@ -23,12 +23,12 @@ export class UserService {
 
   logout(){
     const url = `${environment.apiUrl}user/logout`;
-    this.httpClient.get(url).subscribe((response: any) => {
-      if (response.result === 0) {
+    //this.httpClient.get(url).subscribe((response: any) => {
+    //  if (response.result === 0) {
         this.stateService.authorization = null;
         this.router.navigate(['login']);
-      }
-    });
+    //  }
+    //});
   }
 
   register(data){

@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -44,6 +45,7 @@ import { SharedModule } from './shared/shared.module';
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
+    MatMenuModule,
     BlockUIModule.forRoot(),
     ToastrModule.forRoot(
       {
