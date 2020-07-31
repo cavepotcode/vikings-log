@@ -3,3 +3,4 @@
 /api/dist
 /api/.env
 /log
+/ui/package-lock.json
