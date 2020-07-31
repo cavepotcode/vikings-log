@@ -1,14 +1,24 @@
-.private{
-  flex-direction: row;
-  display: flex;
-  .left{
+@import "../../../styles.less";
+
+.private{   
+  display: flex;  
+  height: 100vh;
+  margin-top: @chupame;
+
+  .left{    
+    flex: 300 0 auto;
     flex-direction: column;
-    width: 20%;
-    padding: 20px;
+    max-width: 300px;
+    display: flex;
     background-color: #d4d4d4;
+    text-align: center;
+    width: 100%;
+
   }
   .right{
-    width: 80%;
-    padding: 20px;
+    flex: 900 0 auto;
+    display: flex;    
+    width: 100%;
   }
+
 }

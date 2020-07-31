@@ -1,9 +1,16 @@
 <app-menu [title]="title"></app-menu>
-<div class="private" >
-  <mat-sidenav-container>
-    <mat-sidenav>Projects</mat-sidenav>
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
+  <mat-sidenav-container class="private">
+
+    <mat-sidenav mode="side" opened class="left">
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="right">         
+        <router-outlet></router-outlet>       
     </mat-sidenav-content>
+
   </mat-sidenav-container>
-</div>
