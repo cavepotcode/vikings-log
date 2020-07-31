@@ -1,14 +1,18 @@
 import { JsonController, Get, Post, Body, Authorize, Put } from 'kiwi-server';
 import { UserIn, LoginIn, ForgotPasswordIn, ResetPasswordIn } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
 import { ProjectService } from '../services/project.service';
+import { Log } from '../sdk/logs';
+import { Response } from '../sdk/response';
+import { environment } from '../../environments/environment';
+import { UserService } from '../services/user.service';
+import { ResponseCode } from '../sdk/constants';
 
 @JsonController('/user')
 export class UserController {
 
 
-	constructor(private authService: AuthService, private projectService: ProjectService) { }
+	constructor(private authService: AuthService, private projectService: ProjectService, private userService: UserService) { }
 
 	@Post('/login')
 	public post(@Body() body: LoginIn) {
@@ -23,10 +27,12 @@ export class UserController {
 	@Authorize()
 	@Get('/current')
 	public current(request: any) {
-		return {
-			result: 0,
-			user: request.user.email
-		}
+		try {
+			return new Response(ResponseCode.OK, '', request.user);
+		} catch (err) {
+      Log.error(`user/current`, err);
+      return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
+    }	
 	}
 
 	@Authorize()
@@ -37,8 +43,15 @@ export class UserController {
 
 	@Authorize()
 	@Get('/projects')
-	public projects(request: any){
-		this.projectService.list(request.projects);
+	public async projects(request: any){
+		try {
+			const user = await this.userService.get(request.user.email);
+      const projects = await this.projectService.list(user.projects);
+      return new Response(ResponseCode.OK, '', projects);
+    } catch (err) {
+      Log.error(`user/projects`, err);
+      return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
+    }
 	}
 
 	@Post('/forgot-password')

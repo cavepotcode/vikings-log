@@ -1,6 +1,7 @@
 
 import { getRepository } from '../datastore';
 import { Project, Log } from '../datastore/entities';
+import { ObjectID } from 'typeorm';
 
 export class ProjectService {
 
@@ -10,9 +11,9 @@ export class ProjectService {
     return await projRepository.findOne(condition);
   }
 
-  async list(project_ids: Array<string>){
+  async list(project_ids: Array<ObjectID>){
     const projRepository = await getRepository(Project);
     const condition = { where: { _id: { $in: project_ids} } }
-    return await projRepository.findOne(condition);
+    return await projRepository.find(condition);
   }
 }

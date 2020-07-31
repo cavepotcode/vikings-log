@@ -14,7 +14,7 @@ export class UserService {
   login(data){
     const url = `${environment.apiUrl}user/login`;
     this.httpClient.post(url, data).subscribe((response: any) => {
-      if (response.result === 0) {
+      if (response.meta.code === 0) {
         this.stateService.authorization = response.data.token;
         this.router.navigate(['private']);
       }
@@ -29,6 +29,11 @@ export class UserService {
         this.router.navigate(['login']);
     //  }
     //});
+  }
+
+  projects(){
+    const url = `${environment.apiUrl}user/projects`;
+    return this.httpClient.get(url);
   }
 
   register(data){
