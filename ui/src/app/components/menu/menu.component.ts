@@ -12,17 +12,14 @@ export class MenuComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.current().subscribe((response: any) => {
-      this.user = response.data;
-    });
 
-    this.userService.projects().subscribe((response: any) => {
-      console.log(response);
-    });
   }
 
-  logout(){
+  logout() {
     this.userService.logout();
   }
 
+  get username() {
+    return this.user ? this.user.email : "";
+  };
 }

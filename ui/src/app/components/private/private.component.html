@@ -2,11 +2,7 @@
   <mat-sidenav-container class="private">
 
     <mat-sidenav mode="side" opened class="left">
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
+      <div *ngFor="let p of projects">{{p.name}}</div>    
     </mat-sidenav>
 
     <mat-sidenav-content class="right">         

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../../src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-private',
@@ -6,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./private.component.less']
 })
 export class PrivateComponent implements OnInit {
-  title = 'WORKSHOP';
-  constructor() {
+  projects: any;
+  constructor(private userService: UserService) {
+
   }
 
   ngOnInit(): void {
+    this.userService.projects().subscribe((response: any) => {
+      this.projects = response.data;
+    });
+
   }
+
 
 }
