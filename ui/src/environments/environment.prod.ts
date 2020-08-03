@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://log.cavepotlab.com/api/v1/'
+  apiUrl: 'http://log.cavepotlab.com/api/v1/'
 };
