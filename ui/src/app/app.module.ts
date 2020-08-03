@@ -23,6 +23,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { SharedModule } from './shared/shared.module';
+import { PrivateSectionModule } from './modules/private-section/private-section.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SharedModule } from './shared/shared.module';
       }
     ),
     SharedModule,
+    PrivateSectionModule,
     FormsModule
   ],
   providers: [],

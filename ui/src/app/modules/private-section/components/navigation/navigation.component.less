@@ -1,0 +1,30 @@
+@import '../../../../../styles.less';
+
+.sidenav-container {
+  height: 100%;
+  .mat-sidenav-content {
+    margin-top: @fixed-menu;
+  }
+  .fixed-menu {
+    height: @fixed-menu;
+    position: fixed;
+    top:0;
+    z-index: 2;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .sidenav {
+    width: 200px;
+    .mat-toolbar {
+      background: inherit;
+      &.mat-primary {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        
+      }
+      
+    }
+  }
+}
