@@ -16,7 +16,12 @@ export class UserController {
 
 	@Post('/login')
 	public post(@Body() body: LoginIn) {
-		return this.authService.login(body);
+		try {
+			return this.authService.login(body);
+		} catch (err) {
+			Log.error(`user/login`, err);
+			return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
+		}	
 	}
 
 	@Post()
