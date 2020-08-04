@@ -13,4 +13,10 @@ export class ResponseCode {
   static WARNING = 2;
 }
 
-export const levels = ["info", "warning", "error"];
+export class LevelsCode {
+  static INFO = 'info';
+  static ERROR = 'error';
+  static WARNING = 'warning';
+}
+
+export const levels = [LevelsCode.INFO, LevelsCode.ERROR, LevelsCode.WARNING];
