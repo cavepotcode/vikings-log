@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../../../../src/app/shared/shared.module';
 import { LogComponent } from './components/log/log.component';
 import { HeaderComponent } from './components/components/header/header.component';
-
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -27,6 +27,7 @@ import { HeaderComponent } from './components/components/header/header.component
     MatIconModule,
     MatListModule,
     SharedModule,
+    MatTableModule
   ]
 })
 export class PrivateSectionModule { }
