@@ -9,14 +9,11 @@ import { ForgotPasswordComponent } from './components/user/forgot-password/forgo
 import { AuthorizationGuard } from './shared/guards/authorization.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'reset-password', component: ResetPasswordComponent},
-  { path: 'forgot-password/:token', component: ForgotPasswordComponent},
-  { path: 'private', component: PrivateComponent, canActivate: [AuthorizationGuard], children: [
-    { path: 'users', component: UsersComponent}
-  ]}
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password/:token', component: ForgotPasswordComponent } 
 ];
 
 @NgModule({

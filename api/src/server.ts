@@ -29,6 +29,6 @@ const options: IKiwiOptions = {
     },
     prefix: '/v1',
     log: true,
-    port: 8099
+    port: 8086
 }
 const server = createKiwiServer(options);

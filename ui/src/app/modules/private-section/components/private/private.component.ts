@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/shared/services/user/user.service';
-import { IProject } from 'src/app/shared/interfaces/IProject';
+import { UserService } from '../../../../../../src/app/shared/services/user/user.service';
+import { IProject } from '../../../../../../src/app/shared/interfaces/IProject';
 
 @Component({
   selector: 'app-private',
@@ -10,7 +10,7 @@ import { IProject } from 'src/app/shared/interfaces/IProject';
 export class PrivateComponent implements OnInit {
 
   projects: Array<IProject>;
-  user:any;
+  user: any;
 
   constructor(private userService: UserService) { }
 
