@@ -11,11 +11,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../../../../src/app/shared/shared.module';
 import { LogComponent } from './components/log/log.component';
+import { HeaderComponent } from './components/components/header/header.component';
 
 
 
 @NgModule({
-  declarations: [PrivateComponent, NavigationComponent, LogComponent],
+  declarations: [PrivateComponent, NavigationComponent, LogComponent, HeaderComponent],
   imports: [
     CommonModule,
     PrivateRouting,

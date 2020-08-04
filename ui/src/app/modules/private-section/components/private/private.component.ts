@@ -24,8 +24,6 @@ export class PrivateComponent implements OnInit {
     });
   }
 
-  logout() {
-    this.userService.logout();
-  }
+
 
 }

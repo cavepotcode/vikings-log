@@ -21,7 +21,7 @@ const options: IKiwiOptions = {
     middlewares: [  HeadersMiddleware ],
     cors: {
         enabled: true,
-        domains: ['http://log.cavepotlab.com']
+        domains: ['http://log.cavepotlab.com', 'http://localhost:4200']
     },
     documentation: {
         enabled: true,
