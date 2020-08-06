@@ -13,6 +13,7 @@ import { SharedModule } from '../../../../src/app/shared/shared.module';
 import { LogComponent } from './components/log/log.component';
 import { HeaderComponent } from './components/components/header/header.component';
 import { MatTableModule } from '@angular/material/table';
+// import { MatPaginator } from '@angular/material/paginator';
 
 
 @NgModule({
