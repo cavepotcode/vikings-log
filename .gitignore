@@ -5,3 +5,5 @@
 /api/.env
 /log
 /ui/package-lock.json
+/api/package-lock.json
+package-lock.json

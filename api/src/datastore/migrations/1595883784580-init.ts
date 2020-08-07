@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, getMongoManager} from "typeorm";
+import {MigrationInterface, QueryRunner} from "typeorm";
 import { MongoQueryRunner } from "typeorm/driver/mongodb/MongoQueryRunner";
 import { Project } from "../entities/project";
 import { v4 as uuidv4 } from 'uuid';

@@ -23,7 +23,7 @@ export class AuthService {
     const password = encrypt(plainPassword);
 
     const userRepository = await getRepository(User);
-    const user: User = await userRepository.findOne({ username, password });
+    const user: User = await userRepository.findOne({$or: [{ email: username, password },{ username, password }]});
     if (!user) {
       return new Response(ResponseCode.ERROR, 'Username or password is invalid. Please try again');
     }

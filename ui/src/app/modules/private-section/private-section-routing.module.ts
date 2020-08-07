@@ -1,11 +1,12 @@
 import { Routes, RouterModule } from '@angular/router';
-import { PrivateComponent } from './components/private/private.component'
+import { PrivateComponent } from './components/private/private.component';
+import { LogComponent } from './components/log/log.component';
 
 const routes: Routes = [
-  { 
-    path: 'privateLogs', 
+  {
+    path: 'private',
     component: PrivateComponent,
-    children:[]
+    children: [{ path: 'logs', component: LogComponent }]
   },
 ];
 

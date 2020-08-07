@@ -21,7 +21,7 @@ const options: IKiwiOptions = {
     middlewares: [  HeadersMiddleware ],
     cors: {
         enabled: true,
-        domains: []
+        domains: ['http://log.cavepotlab.com', 'http://localhost:4200']
     },
     documentation: {
         enabled: true,
@@ -29,6 +29,6 @@ const options: IKiwiOptions = {
     },
     prefix: '/v1',
     log: true,
-    port: 8086
+    port: 8099
 }
 const server = createKiwiServer(options);

@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import {createConnection, Connection, ConnectionOptions, getMongoRepository} from "typeorm";
 import { Log, User, Project } from './entities/';
+require('dotenv').config();
 
 const connection_options: ConnectionOptions = {
   type: "mongodb",

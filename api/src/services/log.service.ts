@@ -1,9 +1,10 @@
 
 import { getRepository } from '../datastore';
 import { Log } from '../datastore/entities';
+import { ObjectID } from 'typeorm';
 
 export class LogService {
-  async create(body: any, level: string, project_id: string){
+  async create(body: any, level: string, project_id: ObjectID){
     const log = new Log();
     log.date = new Date();
     log.level = level;

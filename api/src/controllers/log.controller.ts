@@ -21,7 +21,7 @@ export class LogController {
       if(!project){
         return new Response(ResponseCode.ERROR, `Project with ${apikey} apiKey doesnt exists`);
       }
-      const log = await this.logSvc.create(body, level, project.id.toString());
+      const log = await this.logSvc.create(body, level, project.id);
       return new Response(ResponseCode.OK, '');
     } catch (err) {
       Log.error(`log/${level}`, err);

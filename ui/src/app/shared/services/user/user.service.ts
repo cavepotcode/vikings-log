@@ -19,7 +19,7 @@ export class UserService {
     this.httpClient.post(url, data).subscribe((response: any) => {
       if (response.meta.code === 0) {
         this.stateService.authorization = response.data.token;
-        this.router.navigate(['private']);
+        this.router.navigate(['private', 'logs']);
       }
     });
   }

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "cd api && npm i",
+    "install-ui": "cd ui && npm i",
+    "install-api": "cd api && npm i",
+    "install": "npm run install-ui && npm run install-api",
     "compile": "cd api && kc build",
     "serve": "npm run compile && node ./api/dist/default/src/server.js",
     "serve-ui": "cd ui && ng serve",

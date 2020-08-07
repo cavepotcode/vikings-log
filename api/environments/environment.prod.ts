@@ -1,3 +1,4 @@
+require('dotenv').config();
 export const environment = {
   name: 'prod',
   common: {
