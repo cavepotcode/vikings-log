@@ -1,0 +1,109 @@
+.log-card {
+    .log-header-image {
+        background-color: red;
+        background-size: cover;
+    }
+    .mat-card-actions{
+        .mat-button{
+            &:first-child{
+                margin: 0 8px;
+            }
+        }
+        
+    }
+  }
+
+  .card-items{
+      
+      display: flex;
+      flex-direction: row;
+    min-height: 60px;
+    border: 1px solid #e1e4e8;
+  .item {
+    flex-grow:1;
+    flex-basis: 0;
+    text-align:center;
+    background:white;
+    color: black;
+    text-align:left;
+    padding:10px 5px 10px 0;    
+    cursor:pointer;
+    &.num-info {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        font-size: 16px;
+        color: #586069;
+        font-weight: 400;
+    }
+    &.actions{
+        flex-grow: 4;
+    }
+    &.info {
+        display: flex;
+        flex-direction: row;
+
+        .select-item {
+            flex-grow: 0;
+            display: flex;
+            flex-direction: row;
+            align-self: baseline;
+            .select-item-info + .select-item-info{
+                margin-left: 10px;
+            }
+            .level-indicator{
+                width: 10px;
+                height: 14px;
+                border-radius: 0 3px 3px 0;
+                background-color: red;
+                margin-top: 4px;
+            }
+        }
+        .item-info {
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: inherit;
+            .title{
+                display: flex;
+                flex-direction: row;
+                align-items: baseline;
+                
+                a{
+                    color: lightblue;
+                    font-size: 20px;
+                }
+                span{
+                    margin-left: 15px;
+                }
+            }
+            .error-location {
+                margin-top: 5px;
+                span{
+                    font-size: 14px;
+                    color: #586069;
+                }
+            }
+            .description{
+                margin-top: 5px;
+            }
+            .footer {
+                margin-top: 5px;
+                font-size: 12px;
+                color: #586069;
+                display: flex;
+                img{
+                    margin-right: 5px;
+                }
+                .mat-icon {
+                    font-size: 16px;
+                    height: 16px;
+                    width: 16px;
+                    margin: 0 10px 0 10px;
+                }
+            }
+        }
+    }
+}
+  }  
+

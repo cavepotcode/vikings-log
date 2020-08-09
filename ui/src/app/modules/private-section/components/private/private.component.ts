@@ -25,5 +25,4 @@ export class PrivateComponent implements OnInit {
   }
 
 
-
 }
