@@ -29,11 +29,45 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Object"
+                                "$ref": "#/components/schemas/LogIn"
                             }
                         }
                     },
-                    "description": "Object",
+                    "description": "LogIn",
+                    "required": true
+                }
+            }
+        },
+        "/v1/log/project/:project": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "project",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "tags": [
+                    "log"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LogListIn"
+                            }
+                        }
+                    },
+                    "description": "LogListIn",
                     "required": true
                 }
             }
@@ -184,6 +218,36 @@
     "openapi": "3.0.0",
     "components": {
         "schemas": {
+            "LogIn": {
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "stackTrace": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "message",
+                    "stackTrace"
+                ]
+            },
+            "LogListIn": {
+                "properties": {
+                    "page": {
+                        "type": "string"
+                    },
+                    "size": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "page",
+                    "size"
+                ]
+            },
             "UserIn": {
                 "properties": {
                     "username": {
