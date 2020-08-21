@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/components/header/header.component
 import { FilterComponent } from './components/filter/filter.component';
 import { LogTableComponent } from './components/log-table/log-table.component';
 import { LogItemComponent } from './components/log-item/log-item.component';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 // import { MatPaginator } from '@angular/material/paginator';
 
 
@@ -19,7 +20,8 @@ import { LogItemComponent } from './components/log-item/log-item.component';
     CommonModule,
     PrivateRouting,
     LayoutModule,
-    SharedModule
+    SharedModule,
+    NgxWebstorageModule.forRoot()
   ]
 })
 export class PrivateSectionModule { }

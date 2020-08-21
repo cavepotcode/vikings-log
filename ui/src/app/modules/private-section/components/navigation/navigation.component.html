@@ -3,7 +3,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Projects</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let p of projects">{{p.name}}</a>
+      <a mat-list-item *ngFor="let p of projects" (click)=projectClick(p.id) [ngClass]="{'active': p.id === currentProject}">{{p.name}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

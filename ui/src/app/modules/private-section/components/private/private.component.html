@@ -1,2 +1,2 @@
 <app-header [user]="user"></app-header>
-<app-navigation [projects]="projects" class="navigation"></app-navigation>
+<app-navigation [projects]="projects" (projectSelected)=projectChange($event) [currentProject]="defaultProject" class="navigation"></app-navigation>

@@ -4,8 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MenuComponent } from './components/menu/menu.component';
-import { PrivateComponent } from './components/private/private.component';
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -28,8 +26,6 @@ import { PrivateSectionModule } from './modules/private-section/private-section.
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    PrivateComponent,
     ForgotPasswordComponent,
     LoginComponent,
     RegisterComponent,

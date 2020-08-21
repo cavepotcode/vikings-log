@@ -18,7 +18,13 @@
   height: 100%; 
   .sidenav {
     width: 200px;
-   
+   .mat-nav-list{
+     .mat-list-item { 
+       &.active {
+         background: #fafafa;
+       }
+     }
+   }
     .mat-toolbar {
       margin-top: 60px;
       background: inherit;
