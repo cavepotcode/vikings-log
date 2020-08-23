@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IProject } from '../../interfaces/IProject'
 import { ILogs } from '../../interfaces/ILogs'
+import { IUser } from '../../interfaces/IUser'
 
 @Injectable({
   providedIn: 'root'
@@ -50,8 +51,8 @@ export class UserService {
   public logsByProject(id: string, page: number, size: number): Observable<Array<ILogs>> {
     const url = `${environment.apiUrl}logs/project/${id}`;
     return this.httpClient
-      .get<any>(url)
-      .pipe(map((res) => {
+      .post(url, { id, page, size })
+      .pipe(map((res: any) => {
         if (res.meta.code === 0) {
           return res.data;
         }
@@ -64,8 +65,15 @@ export class UserService {
     return this.httpClient.post(url, data);
   }
 
-  current() {
+  public current(): Observable<IUser> {
     const url = `${environment.apiUrl}user/current`;
-    return this.httpClient.get(url);
+    return this.httpClient
+      .get<any>(url)
+      .pipe(map((res) => {
+        if (res.meta.code === 0) {
+          return res.data;
+        }
+        throw (new Error());
+      }));
   }
 }

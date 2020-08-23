@@ -9,6 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { StateService } from 'src/app/shared/services/state/state.service';
 import { UserServiceMock } from './mock/user.serviceMock'
 import { LocalStorageServiceMock } from './mock/localStorageServiceMock'
+import { Observable } from 'rxjs';
 
 describe('LogComponent', () => {
   let component: LogComponent;
@@ -41,4 +42,26 @@ describe('LogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call log service', ()=>{
+    const userService = fixture.debugElement.injector.get(UserService);
+    const logsSpy = spyOn(userService, 'logsByProject').and.callThrough();    
+    component.ngOnInit()
+    expect(logsSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call log service on size change', ()=>{
+    const userService = fixture.debugElement.injector.get(UserService);
+    const logsSpy = spyOn(userService, 'logsByProject').and.callThrough();    
+    component.pageChange(2)
+    expect(logsSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call log service on page change', ()=>{
+    const userService = fixture.debugElement.injector.get(UserService);
+    const logsSpy = spyOn(userService, 'logsByProject').and.callThrough();    
+    component.pageChange(2)
+    expect(logsSpy).toHaveBeenCalledTimes(1);
+  });
+
 });

@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { SharedModule } from './shared/shared.module';
 import { PrivateSectionModule } from './modules/private-section/private-section.module';
+import { StateService } from './shared/services/state/state.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { PrivateSectionModule } from './modules/private-section/private-section.
     PrivateSectionModule,
     FormsModule
   ],
-  providers: [],
+  providers: [StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,12 +7,14 @@ import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NgxWebstorageModule, LocalStorageService } from 'ngx-webstorage';
 import { UserService } from 'src/app/shared/services/user/user.service';
-import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StateService } from 'src/app/shared/services/state/state.service';
 import { ToastrModule } from 'ngx-toastr';
+import { UserServiceMock } from './mocks/user.serviceMock';
+import { LocalStorageServiceMock } from './mocks/localStorageServiceMock';
+import { NotificationService } from '../../../../../../src/app/shared/services/appNotifications/notification-changes.service';
 
 describe('PrivateComponent', () => {
   let component: PrivateComponent;
@@ -33,7 +35,11 @@ describe('PrivateComponent', () => {
         HttpClientModule,
         ToastrModule.forRoot(),
       ],
-      providers: [UserService, LocalStorageService, StateService]
+      providers: [
+        { provide: UserService, useClass: UserServiceMock },
+        { provide: LocalStorageService, useClass: LocalStorageServiceMock },
+        NotificationService,
+        StateService]
     })
       .compileComponents();
   }));
@@ -46,5 +52,14 @@ describe('PrivateComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize calling services', () => {
+    const userService = fixture.debugElement.injector.get(UserService);
+    const currentSpy = spyOn(userService, 'current').and.callThrough();
+    const projectSpy = spyOn(userService, 'projects').and.callThrough();  
+    component.ngOnInit();
+    expect(currentSpy).toHaveBeenCalledTimes(1);
+    expect(projectSpy).toHaveBeenCalledTimes(1);
   });
 });

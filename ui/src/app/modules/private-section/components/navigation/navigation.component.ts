@@ -25,6 +25,7 @@ export class NavigationComponent {
   constructor(private breakpointObserver: BreakpointObserver) { }
 
   public projectClick(id:string) {
+    console.log('projectClick');
     this.projectSelected.emit(id);
   }
 }

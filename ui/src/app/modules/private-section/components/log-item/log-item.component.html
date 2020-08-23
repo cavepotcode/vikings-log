@@ -2,29 +2,29 @@
   <div class="item actions info">
     
     <div class="select-item">
-      <div class="select-item-info level-indicator">
+      <div class="select-item-info level-indicator" [ngClass]="{'error': log.level === 'error','info': log.level === 'info'}">
 
       </div>
       <mat-checkbox class="select-item-info"></mat-checkbox>
     </div>
     <div class="item-info">
       <div class="title">
-        <a>Error Title</a>
-        <span>subtitle</span>
+        <a>{{log.id}}</a>
+        <span>{{log.project}}</span>
       </div>
       <div class="error-location">
         <span>in ./sarasa/sarasa1.js</span>
       </div>
       <div class="description">
         <b>
-          Error Description
+          {{log.stackTrace}}
         </b>
       </div>
       <div class="footer">
         <img src="https://img.icons8.com/color/22/000000/nodejs.png"/>
         <span>NodeJs</span>
         <mat-icon aria-hidden="false" aria-label="watch">watch_later</mat-icon>
-        <span>9 hours ago - 3 month old</span>
+        <span>{{log.date}}</span>
       </div>
     </div>
   </div>
