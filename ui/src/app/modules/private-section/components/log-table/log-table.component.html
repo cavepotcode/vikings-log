@@ -1,57 +1,38 @@
-&nbsp;
-<div class="card-items">
-    <div class="item actions info">
-        <div class="select-item">
-            <div class="select-item-info level-indicator">
-
+<div class="log-table">
+    <div class="log-table-header">
+        <div class="log-table-column size-section action-region-section">
+            <div class="select-region">
+                <div class="select-item-info level-indicator"></div>
+                <mat-checkbox class="select-item-info"></mat-checkbox>
             </div>
-            <mat-checkbox class="select-item-info"></mat-checkbox>
+            <div class="action-region">
+                <button mat-raised-button [matMenuTriggerFor]="animals">
+                    Resolve
+                    <mat-icon aria-hidden="false" aria-label="watch">keyboard_arrow_down</mat-icon>
+                </button>
+                <button mat-raised-button [matMenuTriggerFor]="animals">Ignore
+                    <mat-icon aria-hidden="false" aria-label="watch">keyboard_arrow_down</mat-icon>
+                </button>
+                <button mat-raised-button [matMenuTriggerFor]="animals">
+                    <mat-icon aria-hidden="false" aria-label="watch">star_rate</mat-icon>
+                </button>
+                <button mat-raised-button [matMenuTriggerFor]="animals">
+                    <mat-icon aria-hidden="false" aria-label="watch">more_horiz</mat-icon>
+                </button>
+                <!-- #docregion sub-menu -->
+                <mat-menu #animals="matMenu">
+                    <button mat-menu-item>Vertebrates</button>
+                    <button mat-menu-item>Invertebrates</button>
+                </mat-menu>
+            </div>
         </div>
-        <div class="item-info">
-            
-            <button mat-raised-button [matMenuTriggerFor]="animals">
-                Resolve
-                <mat-icon aria-hidden="false" aria-label="watch">keyboard_arrow_down</mat-icon>
-            </button>
-            <!-- #docregion sub-menu -->
-            <mat-menu #animals="matMenu">
-                <button mat-menu-item >Vertebrates</button>
-                <button mat-menu-item >Invertebrates</button>
-            </mat-menu>
-
-            <button mat-raised-button [matMenuTriggerFor]="animals">Ignore
-                <mat-icon aria-hidden="false" aria-label="watch">keyboard_arrow_down</mat-icon>
-            </button>
-            <!-- #docregion sub-menu -->
-            <mat-menu #animals="matMenu">
-                <button mat-menu-item >Vertebrates</button>
-                <button mat-menu-item >Invertebrates</button>
-            </mat-menu>
-
-            <button mat-raised-button [matMenuTriggerFor]="animals">
-                <mat-icon aria-hidden="false" aria-label="watch">star_rate</mat-icon>
-            </button>
-            <!-- #docregion sub-menu -->
-            <mat-menu #animals="matMenu">
-                <button mat-menu-item >Vertebrates</button>
-                <button mat-menu-item >Invertebrates</button>
-            </mat-menu>
-            <button mat-raised-button [matMenuTriggerFor]="animals">
-                <mat-icon aria-hidden="false" aria-label="watch">more_horiz</mat-icon>
-            </button>
-            <!-- #docregion sub-menu -->
-            <mat-menu #animals="matMenu">
-                <button mat-menu-item >Vertebrates</button>
-                <button mat-menu-item >Invertebrates</button>
-            </mat-menu>
-        </div>
+        <div class="log-table-column num-info"></div>
+        <div class="log-table-column num-info"></div>
+        <div class="log-table-column num-info"></div>
     </div>
-    <div class="item num-info">
-        EVENTS
-    </div>
-    <div class="item num-info">USERS</div>
-    <div class="item num-info">ASSIGNEE</div>
+
 </div>
-<app-log-item></app-log-item>
+
+<app-log-item *ngFor="let log of logs" [log]=log></app-log-item>
 <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
 </mat-paginator>

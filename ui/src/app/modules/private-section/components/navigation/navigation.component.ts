@@ -11,8 +11,10 @@ import { IProject } from '../../../../../../src/app/shared/interfaces/IProject';
 })
 export class NavigationComponent {
 
-  @Input() public projects: Array<IProject>;  
+  @Input() public projects: Array<IProject>;
+  @Input() public currentProject: string;  
   @Output() onLogout: EventEmitter<any> = new EventEmitter();
+  @Output() projectSelected: EventEmitter<any> = new EventEmitter();
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -22,4 +24,8 @@ export class NavigationComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
+  public projectClick(id:string) {
+    console.log('projectClick');
+    this.projectSelected.emit(id);
+  }
 }

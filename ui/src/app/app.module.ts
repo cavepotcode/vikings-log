@@ -4,8 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MenuComponent } from './components/menu/menu.component';
-import { PrivateComponent } from './components/private/private.component';
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -24,12 +22,11 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { SharedModule } from './shared/shared.module';
 import { PrivateSectionModule } from './modules/private-section/private-section.module';
+import { StateService } from './shared/services/state/state.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    PrivateComponent,
     ForgotPasswordComponent,
     LoginComponent,
     RegisterComponent,
@@ -58,7 +55,7 @@ import { PrivateSectionModule } from './modules/private-section/private-section.
     PrivateSectionModule,
     FormsModule
   ],
-  providers: [],
+  providers: [StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
