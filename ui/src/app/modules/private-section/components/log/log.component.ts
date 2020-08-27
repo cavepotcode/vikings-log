@@ -3,7 +3,7 @@ import { LogService } from '../../services/log/log.service';
 import { NotificationService } from '../../../../../../src/app/shared/services/appNotifications/notification-changes.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Subscription } from 'rxjs';
-import { Dictionary } from '../../../../shared/consts/notification-const'
+import { Constants } from '../../../../shared/consts/app-constants'
 import { ILogs } from 'src/app/shared/interfaces/ILogs';
 
 @Component({
@@ -24,7 +24,6 @@ export class LogComponent implements OnInit {
     private notifications: NotificationService
   ) {
     this.subscription = this.notifications.onNotifications().subscribe(notifications => {
-      console.log('projectChange2');
       if(this.isNotificationForMe(notifications)){
         this.getLogs();
       }
@@ -36,7 +35,7 @@ export class LogComponent implements OnInit {
   }
 
   private isNotificationForMe(notification: any) {
-    return notification.from === Dictionary.Private && notification.to === Dictionary.LOGS
+    return notification.from === Constants.Private && notification.to === Constants.LOGS
   }
 
   public sizeChange(event: number): void {

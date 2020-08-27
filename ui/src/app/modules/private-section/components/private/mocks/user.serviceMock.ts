@@ -23,7 +23,9 @@ export class UserServiceMock {
             observer.next([{
                 apiKey: 'apikey',
                 id: 'id',
-                name: 'test'
+                title: 'test',
+                icon:'',
+                route:''
             }]);
             observer.complete();
         });

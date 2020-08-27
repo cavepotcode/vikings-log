@@ -42,7 +42,15 @@ export class UserService {
       .get<any>(url)
       .pipe(map((res) => {
         if (res.meta.code === 0) {
-          return res.data;
+          return res.data.map((p) => {
+            return {
+              route: 'logs',
+              icon: 'assignment',
+              title: p.name,
+              id: p.id,
+              apiKey: p.apiKey
+            }
+          });;
         }
         throw (new Error());
       }));

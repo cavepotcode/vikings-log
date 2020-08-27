@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { UserService } from '../../../../shared/services/user/user.service';
+import { LogService } from '../../services/log/log.service'
 
 import { LogComponent } from './log.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +26,7 @@ describe('LogComponent', () => {
         NgxWebstorageModule.forRoot()
       ],
       providers: [
-        { provide: UserService, useClass: UserServiceMock }, 
+        { provide: LogService, useClass: UserServiceMock }, 
         { provide: LocalStorageService, useClass: LocalStorageServiceMock }
         , StateService]
     })
@@ -44,21 +44,21 @@ describe('LogComponent', () => {
   });
 
   it('should call log service', ()=>{
-    const userService = fixture.debugElement.injector.get(UserService);
+    const userService = fixture.debugElement.injector.get(LogService);
     const logsSpy = spyOn(userService, 'logsByProject').and.callThrough();    
     component.ngOnInit()
     expect(logsSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should call log service on size change', ()=>{
-    const userService = fixture.debugElement.injector.get(UserService);
+    const userService = fixture.debugElement.injector.get(LogService);
     const logsSpy = spyOn(userService, 'logsByProject').and.callThrough();    
     component.pageChange(2)
     expect(logsSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should call log service on page change', ()=>{
-    const userService = fixture.debugElement.injector.get(UserService);
+    const userService = fixture.debugElement.injector.get(LogService);
     const logsSpy = spyOn(userService, 'logsByProject').and.callThrough();    
     component.pageChange(2)
     expect(logsSpy).toHaveBeenCalledTimes(1);

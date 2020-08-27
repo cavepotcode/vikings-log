@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from '../../../../../shared/services/user/user.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { UserService } from '../../../../shared/services/user/user.service';
+import { Constants } from 'src/app/shared/consts/app-constants';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,9 @@ import { UserService } from '../../../../../shared/services/user/user.service';
 export class HeaderComponent implements OnInit {
 
   @Input() public user: any;
+  @Output() toggleSidenav = new EventEmitter<void>();
 
+  public const = Constants;
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
@@ -21,6 +24,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logout();
+  }
+
+  public toggleSidenavEvent(): void {
+    this.toggleSidenav.emit();
   }
 
 }

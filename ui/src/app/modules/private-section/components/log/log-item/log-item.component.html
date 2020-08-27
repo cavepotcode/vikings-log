@@ -1,8 +1,9 @@
-<div class="card-items">
+<div class="card-items" *ngIf="log">
   <div class="item actions info">
-    
+
     <div class="select-item">
-      <div class="select-item-info level-indicator" [ngClass]="{'error': log.level === 'error','info': log.level === 'info'}">
+      <div class="select-item-info level-indicator"
+        [ngClass]="{'error': log.level === 'error','info': log.level === 'info'}">
 
       </div>
       <mat-checkbox class="select-item-info"></mat-checkbox>
@@ -21,7 +22,7 @@
         </b>
       </div>
       <div class="footer">
-        <img src="https://img.icons8.com/color/22/000000/nodejs.png"/>
+        <img src="https://img.icons8.com/color/22/000000/nodejs.png" />
         <span>NodeJs</span>
         <mat-icon aria-hidden="false" aria-label="watch">watch_later</mat-icon>
         <span>{{log.date}}</span>
@@ -29,6 +30,6 @@
     </div>
   </div>
   <div class="item num-info"> 500 </div>
-  <div class="item num-info"> 45  </div>
+  <div class="item num-info"> 45 </div>
   <div class="item num-info"> bssantiago</div>
 </div>

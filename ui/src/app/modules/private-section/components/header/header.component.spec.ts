@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StateService } from 'src/app/shared/services/state/state.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -19,6 +20,7 @@ describe('HeaderComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         HttpClientModule,
+        SharedModule
       ],
       providers: [UserService, StateService]
     })

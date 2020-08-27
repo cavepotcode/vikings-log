@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<!--<mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Projects</mat-toolbar>
@@ -14,9 +14,54 @@
   </mat-sidenav>
   <mat-sidenav-content>
 
-    <!-- Add Content Here -->
+     Add Content Here 
     <router-outlet></router-outlet>
 
 
   </mat-sidenav-content>
+</mat-sidenav-container>
+-->
+
+<mat-sidenav-container autosize>
+
+  <mat-sidenav #navigationSidenav mode="over" role="navigation">
+    <!-- <mat-nav-list dense> -->
+    <mat-nav-list>
+
+      <ng-container *ngIf="projects">
+
+        <h2 matSubheader> {{ consts.PROJECTS }} </h2>
+
+        <a mat-list-item routerLink="/" style="height: 0;"></a>
+
+        <a *ngFor="let item of projects" mat-list-item (click)="navigationSidenav.close()"
+          [routerLink]="[item.route,item.id]" routerLinkActive="list-item-active">
+          <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
+          {{item.title}}
+        </a>
+
+        <mat-divider></mat-divider>
+
+      </ng-container>
+
+      <ng-container *ngIf="projectActionRoutes">
+
+        <h2 matSubheader> {{ consts.NAVIGATION_MENU_PROJECT_ACTIONS }} </h2>
+
+        <a *ngFor="let item of projectActionRoutes" mat-list-item (click)="navigationSidenav.close()"
+          [routerLink]="[item.route]" routerLinkActive="list-item-active">
+          <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
+          {{item.title}}
+        </a>
+
+      </ng-container>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content role="main">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
 </mat-sidenav-container>
