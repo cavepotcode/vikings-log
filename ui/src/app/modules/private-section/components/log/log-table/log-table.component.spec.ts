@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LogTableComponent } from './log-table.component';
 import { CommonModule } from '@angular/common';
-import { PrivateRouting } from '../../private-section-routing.module';
+import { PrivateRouting } from '../../../private-section-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgxWebstorageModule } from 'ngx-webstorage';

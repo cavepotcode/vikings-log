@@ -1,5 +1,7 @@
 export interface IProject {
-    name: string;
+    route: string
+    icon: string
+    title: string;
     apiKey: string;
-    id:string
+    id: string
 }

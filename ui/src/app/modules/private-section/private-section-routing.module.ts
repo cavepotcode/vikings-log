@@ -6,7 +6,16 @@ const routes: Routes = [
   {
     path: 'private',
     component: PrivateComponent,
-    children: [{ path: 'logs', component: LogComponent }]
+    children: [
+      {
+        path: 'logs',
+        component: LogComponent,
+        children: [{
+          path: ':id',
+          component: LogComponent,
+        }]
+      },
+    ]
   },
 ];
 
