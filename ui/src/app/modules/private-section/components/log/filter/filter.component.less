@@ -2,7 +2,20 @@
     h2{
         line-height: 55px;
     }
-    .mat-form-field + .mat-form-field {
-        margin-left: 8px;
-      }
+  }
+
+  .mat-form-field {
+    border-radius: 0 !important;
+    margin: 0px;
+  }
+
+  
+
+  .mat-form-field::after{
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    top: 15%;
+    height: 50%;
+    border-left: 1px solid gainsboro;
   }
