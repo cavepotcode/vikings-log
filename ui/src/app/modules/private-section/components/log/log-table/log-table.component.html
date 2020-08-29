@@ -1,5 +1,5 @@
 <div style="flex-direction: column;">
-    <h2 class="log-count" fxFlex="none">Logs (620)</h2>
+    <h2 class="log-count" fxFlex="none" *ngIf="logs">Logs ({{logs.length}})</h2>
     <div class="log-table">
         <div class="log-table-header">
             <div class="log-table-column size-section action-region-section">

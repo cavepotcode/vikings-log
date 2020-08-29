@@ -9,7 +9,6 @@ const routes: Routes = [
     children: [
       {
         path: 'logs',
-        component: LogComponent,
         children: [{
           path: ':id',
           component: LogComponent,

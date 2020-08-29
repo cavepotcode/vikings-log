@@ -24,7 +24,7 @@
 
 <mat-sidenav-container autosize>
 
-  <mat-sidenav #navigationSidenav mode="over" role="navigation">
+  <mat-sidenav #navigationSidenav [opened]="true" mode="side" role="navigation">
     <!-- <mat-nav-list dense> -->
     <mat-nav-list>
 
@@ -34,8 +34,8 @@
 
         <a mat-list-item routerLink="/" style="height: 0;"></a>
 
-        <a *ngFor="let item of projects" mat-list-item (click)="navigationSidenav.close()"
-          [routerLink]="[item.route,item.id]" routerLinkActive="list-item-active">
+        <a *ngFor="let item of projects" mat-list-item [routerLink]="[item.route,item.id]"
+          routerLinkActive="list-item-active">
           <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
           {{item.title}}
         </a>

@@ -12,6 +12,7 @@ import { FilterComponent } from './components/log/filter/filter.component';
 import { LogTableComponent } from './components/log/log-table/log-table.component';
 import { LogItemComponent } from './components/log/log-item/log-item.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { RouterModule } from '@angular/router';
 // import { MatPaginator } from '@angular/material/paginator';
 
 
@@ -19,6 +20,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
   declarations: [PrivateComponent, NavigationComponent, LogComponent, HeaderComponent, FilterComponent, LogTableComponent, LogItemComponent],
   imports: [
     CommonModule,
+    RouterModule,
     PrivateRouting,
     LayoutModule,
     SharedModule,
