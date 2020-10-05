@@ -10,11 +10,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'forgot-password/:token', component: ForgotPasswordComponent } 
+  { path: 'forgot-password/:token', component: ForgotPasswordComponent },
+  { path: 'private', loadChildren: () => import(`./modules/private-section/private-section.module`).then(m => m.PrivateSectionModule) },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule]
 })
 

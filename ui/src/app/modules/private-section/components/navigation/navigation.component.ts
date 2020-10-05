@@ -25,7 +25,13 @@ export class NavigationComponent {
 
 
   public consts = Constants;
-  public projectActionRoutes: Array<any> = [];
+  public projectActionRoutes: Array<any> = [
+    {
+      route:'projects/create',
+      icon:'',
+      title:'Add Project'
+    }
+  ];
   public subscription: Subscription;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

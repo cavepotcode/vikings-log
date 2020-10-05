@@ -1,21 +1,18 @@
 import { Routes, RouterModule } from '@angular/router';
 import { PrivateComponent } from './components/private/private.component';
-import { LogComponent } from './components/log/log.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
-    path: 'private',
-    component: PrivateComponent,
-    children: [
-      {
-        path: 'logs',
-        children: [{
-          path: ':id',
-          component: LogComponent,
-        }]
-      },
+    path: '', component: PrivateComponent, children: [
+      { 
+        path: 'projects', loadChildren: () => import(`../projects/projects.module`).then(m => m.ProjectsModule) },
     ]
   },
 ];
 
-export const PrivateRouting = RouterModule.forRoot(routes);
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class PrivateRouting { }

@@ -1,4 +1,10 @@
 <div class="log-screen" *ngIf="logs.length !== 0">
+  
+  
+  <section>
+    <router-outlet name="projects"></router-outlet>
+  </section>
+  
   <app-filter></app-filter>
   <app-log-table [logs]=logs></app-log-table>
 </div>

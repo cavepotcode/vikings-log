@@ -47,12 +47,6 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatMenuModule,
     BlockUIModule.forRoot(),
     ToastrModule.forRoot(
       {
@@ -60,8 +54,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
         positionClass: 'toast-bottom-full-width'
       }
     ),
-    SharedModule,
-    PrivateSectionModule,
+    SharedModule,  
     FormsModule,    
     LoadingBarHttpClientModule,    
     LoadingBarRouterModule,    

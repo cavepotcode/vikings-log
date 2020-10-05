@@ -1,7 +1,8 @@
 export interface IProject {
-    route: string
-    icon: string
+    route?: string
+    icon?: string
     title: string;
     apiKey: string;
-    id: string
+    id?: string
+    type?: string;
 }

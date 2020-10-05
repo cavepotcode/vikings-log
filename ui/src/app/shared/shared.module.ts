@@ -36,6 +36,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -52,6 +54,9 @@ import {MatTreeModule} from '@angular/material/tree';
     }
   ],
   exports:[
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
