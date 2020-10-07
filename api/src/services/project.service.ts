@@ -1,7 +1,7 @@
 
 import { getRepository } from '../datastore';
 import { Project, Log } from '../datastore/entities';
-import { ObjectID as ObjectIDType} from 'typeorm'
+import { ObjectID as ObjectIDType } from 'typeorm'
 import { ObjectID } from 'mongodb';
 
 export class ProjectService {
@@ -18,9 +18,15 @@ export class ProjectService {
     return await projRepository.findOne(condition);
   }
 
-  async list(project_ids: Array<ObjectIDType>){
+  async list(project_ids: Array<ObjectIDType>) {
     const projRepository = await getRepository(Project);
-    const condition =  { _id: { $in: project_ids} }
+    const condition = { _id: { $in: project_ids } }
     return await projRepository.find(condition);
+  }
+
+  async add(project: Project) {
+    
+    const projRepository = await getRepository(Project);
+    return await projRepository.insert(project);
   }
 }

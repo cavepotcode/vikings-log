@@ -10,7 +10,6 @@ import { Constants } from 'src/app/shared/consts/app-constants';
 export class HeaderComponent implements OnInit {
 
   @Input() public user: any;
-  @Output() toggleSidenav = new EventEmitter<void>();
 
   public const = Constants;
   constructor(private userService: UserService) { }
@@ -24,10 +23,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-  }
-
-  public toggleSidenavEvent(): void {
-    this.toggleSidenav.emit();
   }
 
 }

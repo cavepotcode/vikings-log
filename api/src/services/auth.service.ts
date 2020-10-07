@@ -13,7 +13,7 @@ export class AuthService {
     const userRepository = await getRepository(User);
     const user = new User();
     user.email = data.email;
-    user.username = data.username;
+    user.username = data.username; 
     user.password = encrypt(data.password);
     const result = await userRepository.insert(user);
     return new Response(ResponseCode.OK, 'User created');

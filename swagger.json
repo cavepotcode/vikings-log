@@ -162,6 +162,29 @@
                 "tags": [
                     "user"
                 ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "user"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Object"
+                            }
+                        }
+                    },
+                    "description": "Object",
+                    "required": true
+                }
             }
         },
         "/v1/user/forgot-password": {
@@ -212,6 +235,32 @@
                     "description": "ResetPasswordIn",
                     "required": true
                 }
+            }
+        },
+        "/v1/project/projects": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "project"
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "tags": [
+                    "project"
+                ]
             }
         }
     },

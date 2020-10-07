@@ -24,6 +24,15 @@ import { SharedModule } from './shared/shared.module';
 import { PrivateSectionModule } from './modules/private-section/private-section.module';
 import { StateService } from './shared/services/state/state.service';
 
+
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+
+// for Router import:
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+
+// for Core import:
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,12 +47,6 @@ import { StateService } from './shared/services/state/state.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatMenuModule,
     BlockUIModule.forRoot(),
     ToastrModule.forRoot(
       {
@@ -51,9 +54,11 @@ import { StateService } from './shared/services/state/state.service';
         positionClass: 'toast-bottom-full-width'
       }
     ),
-    SharedModule,
-    PrivateSectionModule,
-    FormsModule
+    SharedModule,  
+    FormsModule,    
+    LoadingBarHttpClientModule,    
+    LoadingBarRouterModule,    
+    LoadingBarModule
   ],
   providers: [StateService],
   bootstrap: [AppComponent]

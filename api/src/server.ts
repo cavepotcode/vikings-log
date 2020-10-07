@@ -4,11 +4,12 @@ import { LogController } from './controllers/log.controller'
 import { UserController } from './controllers/user.controller'
 import { AuthService } from './services/auth.service';
 import { HeadersMiddleware } from './middlewares/headers.middleware.before';
+import { ProjectController } from './controllers/project.controller';
 
 async function validateAuthentication(request: http.IncomingMessage, roles: Array<string>): Promise<AuthorizeResponse | boolean> {
     const token = request.headers['authorization'];
     if (!token) {
-      return new AuthorizeResponse(401, 'User is not atuhenticated')
+        return new AuthorizeResponse(401, 'User is not atuhenticated')
     }
     const authService = new AuthService();
     request['user'] = authService.decode(token);
@@ -16,9 +17,9 @@ async function validateAuthentication(request: http.IncomingMessage, roles: Arra
 }
 
 const options: IKiwiOptions = {
-    controllers: [ LogController, UserController ],
+    controllers: [LogController, UserController, ProjectController],
     authorization: validateAuthentication,
-    middlewares: [  HeadersMiddleware ],
+    middlewares: [HeadersMiddleware],
     cors: {
         enabled: true,
         domains: ['http://log.cavepotlab.com', 'http://localhost:4200']

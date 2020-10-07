@@ -7,6 +7,7 @@ import { Response } from '../sdk/response';
 import { environment } from '../../environments/environment';
 import { UserService } from '../services/user.service';
 import { ResponseCode } from '../sdk/constants';
+import { Project } from '../datastore/entities';
 
 @JsonController('/user')
 export class UserController {
@@ -21,7 +22,7 @@ export class UserController {
 		} catch (err) {
 			Log.error(`user/login`, err);
 			return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
-		}	
+		}
 	}
 
 	@Post()
@@ -35,9 +36,9 @@ export class UserController {
 		try {
 			return new Response(ResponseCode.OK, '', request.user);
 		} catch (err) {
-      Log.error(`user/current`, err);
-      return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
-    }	
+			Log.error(`user/current`, err);
+			return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
+		}
 	}
 
 	@Authorize()
@@ -48,15 +49,36 @@ export class UserController {
 
 	@Authorize()
 	@Get('/projects')
-	public async projects(request: any){
+	public async projects(request: any) {
 		try {
 			const user = await this.userService.get(request.user.email);
-      const projects = await this.projectService.list(user.projects);
-      return new Response(ResponseCode.OK, '', projects);
-    } catch (err) {
-      Log.error(`user/projects`, err);
-      return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
-    }
+			const projects = await this.projectService.list(user.projects);
+			return new Response(ResponseCode.OK, '', projects);
+		} catch (err) {
+			Log.error(`user/projects`, err);
+			return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
+		}
+	}
+
+	@Authorize()
+	@Post('/projects')
+	public async create(@Body() body: any, request: any) {
+		try {
+			console.log(request, body);
+			const projectModel = new Project();
+			if (body.name == '' || body.type == '' || body.apiKey == '') {
+				throw new Error('all fields are required')
+			}
+			projectModel.name = body.title;
+			projectModel.type = body.type;
+			projectModel.apiKey = body.apiKey;
+
+			const project = await this.projectService.add(projectModel)
+			return new Response(ResponseCode.OK, '', project);
+		} catch (err) {
+			Log.error(`/projects`, err);
+			return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
+		}
 	}
 
 	@Post('/forgot-password')

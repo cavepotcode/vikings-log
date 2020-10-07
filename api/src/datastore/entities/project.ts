@@ -10,4 +10,7 @@ export class Project {
   
   @Column()
   apiKey: string;
+
+  @Column()
+  type: string;
 }

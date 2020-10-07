@@ -1,2 +1,2 @@
-<app-header (toggleSidenav)=toggleSidenav($event) [user]="user"></app-header>
+<app-header [user]="user"></app-header>
 <app-navigation [projects]="projects" (projectSelected)=projectChange($event) [currentProject]="defaultProject" class="navigation"></app-navigation>

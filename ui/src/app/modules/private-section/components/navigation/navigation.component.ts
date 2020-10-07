@@ -25,7 +25,13 @@ export class NavigationComponent {
 
 
   public consts = Constants;
-  public projectActionRoutes: Array<any> = [];
+  public projectActionRoutes: Array<any> = [
+    {
+      route:'projects/create',
+      icon:'',
+      title:'Add Project'
+    }
+  ];
   public subscription: Subscription;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -36,7 +42,6 @@ export class NavigationComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private notifications: NotificationService,
     private commandBarSidenavService: SidenavService) {
     
   }
@@ -44,20 +49,10 @@ export class NavigationComponent {
   public ngOnInit(): void {
     console.log('prjects',this.projects)
     this.commandBarSidenavService.setSidenav(this.sidenav);
-    this.subscription = this.notifications.onNotifications().subscribe(notifications => {
-      if (this.isNotificationForMe(notifications)) {
-        this.sidenav.toggle();
-      }
-    });
   }
 
 
   public projectClick(id: string) {
-    console.log('projectClick');
     this.projectSelected.emit(id);
-  }
-
-  private isNotificationForMe(notification: any) {
-    return notification.from === Constants.Private && notification.to === Constants.NAVIGATION
   }
 }

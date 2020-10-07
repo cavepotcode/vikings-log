@@ -44,7 +44,7 @@ export class UserService {
         if (res.meta.code === 0) {
           return res.data.map((p) => {
             return {
-              route: 'logs',
+              route: `projects/project/${p.id}/logs`,
               icon: 'assignment',
               title: p.name,
               id: p.id,
