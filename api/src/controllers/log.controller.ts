@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 import { LogService } from '../services/log.service';
 import { LogIn, LogListIn } from '../models/log.models';
 
-@JsonController('/log')
+@JsonController('/logs')
 export class LogController {
 
   constructor(private projectSvc: ProjectService, private logSvc: LogService) {}

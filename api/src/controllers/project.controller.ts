@@ -10,9 +10,7 @@ import { Project } from '../datastore/entities';
 @JsonController('/project')
 export class ProjectController {
 
-
     constructor(private projectService: ProjectService, private userService: UserService) { }
-
 
     @Authorize()
     @Get('/projects')

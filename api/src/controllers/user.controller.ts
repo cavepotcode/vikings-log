@@ -84,7 +84,6 @@ export class UserController {
 	@Post('/forgot-password')
 	public forgotPassword(@Body() body: ForgotPasswordIn) { }
 
-
 	@Put('/reset-password')
 	public resetPassword(@Body() body: ResetPasswordIn) { }
 }
