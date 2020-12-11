@@ -61,8 +61,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     LoadingBarRouterModule,    
     LoadingBarModule
   ],
-  providers: [StateService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
