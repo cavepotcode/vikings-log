@@ -13,7 +13,7 @@ export class LogService {
   constructor(private httpClient: HttpClient) { }
 
   public logsByProject(id: string, page: number, size: number): Observable<Array<ILogs>> {
-    const url = `${environment.apiUrl}log/project/${id}`;
+    const url = `${environment.apiUrl}logs/project/${id}`;
     return this.httpClient
       .post(url, { id, page, size })
       .pipe(map((res: any) => {
