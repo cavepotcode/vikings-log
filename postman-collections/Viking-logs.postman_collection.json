@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "c8c3e467-ce50-4392-9e4b-edfac694cbd4",
+		"name": "Viking-logs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{Viking-Log-Environment}}/v1/logs/error",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "92707c64-50a9-49a0-b170-21c663c218c2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"message\":\"message\",\r\n    \"level\":\"level\",\r\n    \"type\":\"type\",\r\n    \"project\":\"project\",\r\n    \"exception\":{\r\n        \"code\":200,\r\n        \"message\":\"message\",\r\n        \"stack\":\"stack\"\r\n    },\r\n    \"info\":\"info\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Viking-Log-Environment}}/v1/logs/error",
+					"host": [
+						"{{Viking-Log-Environment}}"
+					],
+					"path": [
+						"v1",
+						"logs",
+						"error"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{Viking-Log-Environment}}/v1/user/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"cavepot\",\r\n    \"password\": \"n1rvanA!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Viking-Log-Environment}}/v1/user/login",
+					"host": [
+						"{{Viking-Log-Environment}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
