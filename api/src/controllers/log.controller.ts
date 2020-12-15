@@ -14,7 +14,6 @@ export class LogController {
 
   @Post('/:level')
   public async log_info(@Body() body: LogIn, @HeaderParam('apikey') apikey: string, @Param('level') level:string){
-    let variable =  JSON.stringify(body);
     try {
       if(!levels.includes(level)){
         return new Response(ResponseCode.ERROR, `Level ${level} is incorrect`);
