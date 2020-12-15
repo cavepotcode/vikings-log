@@ -3,18 +3,13 @@ import { getRepository } from '../datastore';
 import { Log } from '../datastore/entities';
 import { ObjectID } from 'mongodb';
 import { ObjectID as ObjectIDType} from 'typeorm'
-import { LogListIn } from '../models/log.models';
+import { LogIn, LogListIn } from '../models/log.models';
 
 export class LogService {
-  async create(body: any, level: string, project_id: ObjectIDType){
-    const log = new Log();
-    log.date = new Date();
-    log.level = level;
-    log.message = body.message;
-    log.project = project_id;
-    log.stackTrace = body.stackTrace;
+  async create(body: LogIn, level: string, project_id: ObjectIDType){
+    body.date = new Date();
     const projRepository = await getRepository(Log);
-    return await projRepository.insert(log)
+    return await projRepository.insert(body)
   }
 
   async list(body: LogListIn, project_id: string){
