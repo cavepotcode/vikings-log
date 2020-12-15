@@ -6,7 +6,7 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <span class="toolbar-title"> {{ const.APP_TOOLBAR_TITLE  }} </span>
+        <span class="toolbar-title"> {{ constants.APP_TOOLBAR_TITLE  }} </span>
 
         <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
@@ -32,14 +32,14 @@
 
                         <button mat-menu-item>
                             <mat-icon> person </mat-icon>
-                            <span> {{ const.PROFILE_NAVIGATION_BAR_BUTTON }} </span>
+                            <span> {{ constants.PROFILE_NAVIGATION_BAR_BUTTON }} </span>
                         </button>
 
                         <mat-divider></mat-divider>
 
                         <button mat-menu-item (click)="logout()">
                             <mat-icon> exit_to_app </mat-icon>
-                            <span> {{ const.SIGN_OUT_NAVIGATION_BAR_BUTTON }} </span>
+                            <span> {{ constants.SIGN_OUT_NAVIGATION_BAR_BUTTON }} </span>
                         </button>
 
                     </mat-menu>
