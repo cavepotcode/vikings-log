@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() public user: any;
 
-  public const = Constants;
+  public constants = Constants;
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {

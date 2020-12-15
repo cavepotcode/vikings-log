@@ -24,7 +24,7 @@ export class NavigationComponent {
   public sidenav: MatSidenav;
 
 
-  public consts = Constants;
+  public constants = Constants;
   public projectActionRoutes: Array<any> = [
     {
       route:'projects/create',
