@@ -2,8 +2,8 @@
 import { getRepository } from '../datastore';
 import { Log } from '../datastore/entities';
 import { ObjectID } from 'mongodb';
-import { ObjectID as ObjectIDType} from 'typeorm'
-import { LogIn, LogListIn } from '../models/log.models';
+import { ObjectID as ObjectIDType, Like} from 'typeorm'
+import { LogIn, LogListIn, LogListOut } from '../models/log.models';
 
 export class LogService {
   async create(body: LogIn, level: string, project_id: ObjectIDType){
@@ -14,8 +14,25 @@ export class LogService {
 
   async list(body: LogListIn, project_id: string){
     const projRepository = await getRepository(Log);
-    const condition = { project: new ObjectID(project_id) };
-    return await projRepository.find(condition);
+    const offset = (parseInt(body.page)-1) * parseInt(body.size);
+    const condition = { 
+      take: parseInt(body.size),
+      skip: offset,
+      order: { date: "DESC" },
+      where: { 
+        project: new ObjectID(project_id),
+        message: new RegExp(body.text)
+      }
+    };
+
+    if(body.level){
+      condition.where['level'] = body.level;
+    }
+    const [items, total] = await projRepository.findAndCount(condition);
+    const result = new LogListOut();
+    result.items = items;
+    result.total = total;
+    return result;
   }
   
 }

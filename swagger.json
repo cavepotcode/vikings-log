@@ -4,7 +4,7 @@
         "http"
     ],
     "paths": {
-        "/v1/log/:level": {
+        "/v1/logs/:level": {
             "post": {
                 "consumes": [
                     "application/json"
@@ -23,7 +23,7 @@
                     }
                 ],
                 "tags": [
-                    "log"
+                    "logs"
                 ],
                 "requestBody": {
                     "content": {
@@ -38,8 +38,8 @@
                 }
             }
         },
-        "/v1/log/project/:project": {
-            "post": {
+        "/v1/logs/project/:project": {
+            "get": {
                 "consumes": [
                     "application/json"
                 ],
@@ -57,19 +57,8 @@
                     }
                 ],
                 "tags": [
-                    "log"
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/LogListIn"
-                            }
-                        }
-                    },
-                    "description": "LogListIn",
-                    "required": true
-                }
+                    "logs"
+                ]
             }
         },
         "/v1/user/login": {
@@ -272,29 +261,81 @@
                     "message": {
                         "type": "string"
                     },
-                    "stackTrace": {
+                    "level": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "date": {
+                        "oneOf": [
+                            {
+                                "format": "date",
+                                "type": "string"
+                            },
+                            {
+                                "format": "date-time",
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "project": {
+                        "type": "string"
+                    },
+                    "info": {
                         "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
                     "message",
-                    "stackTrace"
+                    "level",
+                    "type",
+                    "date",
+                    "project",
+                    "info"
+                ]
+            },
+            "Exception": {
+                "properties": {
+                    "code": {
+                        "type": "number"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "stack": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "code",
+                    "message",
+                    "stack"
                 ]
             },
             "LogListIn": {
                 "properties": {
                     "page": {
-                        "type": "string"
+                        "type": "number"
                     },
                     "size": {
+                        "type": "number"
+                    },
+                    "text": {
+                        "type": "string"
+                    },
+                    "level": {
                         "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
                     "page",
-                    "size"
+                    "size",
+                    "text",
+                    "level"
                 ]
             },
             "UserIn": {

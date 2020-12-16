@@ -1,4 +1,4 @@
-import { JsonController, HeaderParam, Post, Get, Body, Param, Authorize} from 'kiwi-server';
+import { JsonController, HeaderParam, Post, Get, Body, Param, Authorize, QueryParam} from 'kiwi-server';
 import { ProjectService } from '../services/project.service';
 import { Log } from '../sdk/logs';
 import { Response } from '../sdk/response';
@@ -31,8 +31,8 @@ export class LogController {
   }
 
   @Authorize()
-  @Post('/project/:project')
-  public async list(@Body() body: LogListIn, @Param('project') project_id: string){
+  @Get('/project/:project')
+  public async list(@QueryParam() body: LogListIn, @Param('project') project_id: string){
     try {
       const project = await this.projectSvc.getById(project_id);
       if(!project){
