@@ -1,35 +1,27 @@
 <div class="card-items" *ngIf="log">
-  <div class="item actions info">
+    <div class="item actions info">
 
-    <div class="select-item">
-      <div class="select-item-info level-indicator"
-        [ngClass]="{'error': log.level === 'error','info': log.level === 'info'}">
+        <div class="select-item">
+            <div class="select-item-info level-indicator"
+                [ngClass]="{'error': log.level === 'error','info': log.level === 'info'}">
 
-      </div>
-      <mat-checkbox class="select-item-info"></mat-checkbox>
+            </div>
+            <mat-checkbox class="select-item-info"></mat-checkbox>
+        </div>
+        <div class="item-info">
+            <div class="title">
+                <a>{{log.message}}</a>
+            </div>
+            <div class="error-location">
+                <span>{{log.exception.message}}</span>
+            </div>
+            <app-log-item-detail [stack]="log.exception" [info]="log.info"></app-log-item-detail>
+            <div class="footer">
+                <img src="https://img.icons8.com/color/22/000000/{{log.type.toLowerCase()}}.png" />
+                <span>{{log.type}}</span>
+                <mat-icon aria-hidden="false" aria-label="watch">watch_later</mat-icon>
+                <span>{{log.date | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+            </div>
+        </div>
     </div>
-    <div class="item-info">
-      <div class="title">
-        <a>{{log.id}}</a>
-        <span>{{log.project}}</span>
-      </div>
-      <div class="error-location">
-        <span>in ./sarasa/sarasa1.js</span>
-      </div>
-      <div class="description">
-        <b>
-          {{log.message}}
-        </b>
-      </div>
-      <div class="footer">
-        <img src="https://img.icons8.com/color/22/000000/{{log.type}}.png" />
-        <span>{{log.type}}</span>
-        <mat-icon aria-hidden="false" aria-label="watch">watch_later</mat-icon>
-        <span>{{log.date | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
-      </div>
-    </div>
-  </div>
-  <div class="item num-info"> {{log.exception.code}} </div>
-  <div class="item num-info"> 45 </div>
-  <div class="item num-info"> bssantiago</div>
 </div>

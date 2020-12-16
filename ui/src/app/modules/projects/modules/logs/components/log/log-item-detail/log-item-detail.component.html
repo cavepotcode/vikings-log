@@ -1,0 +1,12 @@
+<div class="card-items-detail" (click)="collapsed=!collapsed">
+    <div [ngClass]="{'item-left-noexpand': !collapsed, 'item-left-expand': collapsed}">
+        <b>Stack</b>
+        <p>{{stack.message}}</p>
+        <mat-divider></mat-divider>
+        <b>Info</b>
+        <p>{{info.request}}</p>
+    </div>
+    <div class="item-right" ng-click="collapsed=!collapsed">
+        <mat-icon [ngClass]="{'expand_more': !collapsed, 'expand_more-collapsed': collapsed}">expand_more</mat-icon>
+    </div>
+</div>

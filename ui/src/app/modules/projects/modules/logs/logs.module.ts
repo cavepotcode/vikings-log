@@ -8,11 +8,12 @@ import { LogTableComponent } from './components/log/log-table/log-table.componen
 import { LogItemComponent } from './components/log/log-item/log-item.component';
 import { LogDashboardComponent } from './components/log/log.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { LogItemDetailComponent } from './components/log/log-item-detail/log-item-detail.component';
 
 
 
 @NgModule({
-  declarations: [LogMainComponent, LogDetailsComponent, LogDashboardComponent, FilterComponent, LogTableComponent, LogItemComponent],
+  declarations: [LogMainComponent, LogDetailsComponent, LogDashboardComponent, FilterComponent, LogTableComponent, LogItemComponent, LogItemDetailComponent],
   imports: [
     CommonModule,
     LogsRoutingModule,

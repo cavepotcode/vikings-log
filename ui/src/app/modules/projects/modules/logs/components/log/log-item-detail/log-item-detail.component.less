@@ -1,0 +1,25 @@
+.card-items-detail{
+    display: flex;
+    min-height: 45px;
+    overflow: hidden;
+    .item-left-noexpand{
+        flex-grow: 2;
+        max-height: 50px;
+        
+    }
+    .item-left-expand{
+        flex-grow: 2;
+        max-height: 400px;
+        
+    }
+    .item-right{
+        margin-right: 50px;
+        
+    }
+    .expand_more {
+        transition: ease all 0.3s;
+    }
+    .expand_more-collapsed {
+        transform: rotate(180deg);
+    }
+}

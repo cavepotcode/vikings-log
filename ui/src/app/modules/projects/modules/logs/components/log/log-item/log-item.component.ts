@@ -9,7 +9,7 @@ import { ILogs } from 'src/app/shared/interfaces/ILogs';
 export class LogItemComponent implements OnInit {
 
   @Input() public log: ILogs;
-
+  
   constructor() { }
 
   ngOnInit(): void {

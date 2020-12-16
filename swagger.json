@@ -280,9 +280,6 @@
                     "message": {
                         "type": "string"
                     },
-                    "level": {
-                        "type": "string"
-                    },
                     "type": {
                         "type": "string"
                     },
@@ -305,7 +302,6 @@
                 "type": "object",
                 "required": [
                     "message",
-                    "level",
                     "type",
                     "date",
                     "info"
