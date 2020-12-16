@@ -1,5 +1,5 @@
 import { IsString, IsEmail, IsDate, IsNumber } from 'kiwi-server';
-import { isNumber, isString } from 'util';
+import { Log } from '../datastore/entities'; 
 
 export class LogIn{
   @IsString() message: string;
@@ -18,6 +18,13 @@ export class Exception{
 }
 
 export class LogListIn{
-  @IsString() page: number;
-  @IsString() size: number;
+  @IsNumber() page: string;
+  @IsNumber() size: string;
+  @IsString() text: string;
+  @IsString() level: string;
+}
+
+export class LogListOut{
+  items: Array<Log>;
+  total: number;
 }
