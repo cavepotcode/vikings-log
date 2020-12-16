@@ -12,17 +12,23 @@ export class Log {
   id: ObjectID;
 
   @Column()
-  date: Date;
-  
-  @Column()
-  level: string;
-  
-  @Column()
   message: string;
 
   @Column()
-  stackTrace: string;
+  level: string;
+
+  @Column()
+  type: string;
 
   @ObjectIdColumn()
   project: ObjectID;
+  
+  @Column()
+  date: Date;
+  
+  @Column()
+  info: object;
+  
+  @Column()
+  exception: object;
 }

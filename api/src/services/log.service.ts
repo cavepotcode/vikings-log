@@ -7,9 +7,16 @@ import { LogIn, LogListIn, LogListOut } from '../models/log.models';
 
 export class LogService {
   async create(body: LogIn, level: string, project_id: ObjectIDType){
-    body.date = new Date();
+    const log = new Log()
+    log.date = new Date();
+    log.level = level;
+    log.message = body.message;
+    log.project = project_id;
+    log.type = body.type;
+    log.info = body.info;
+    log.exception = body.exception;
     const projRepository = await getRepository(Log);
-    return await projRepository.insert(body)
+    return await projRepository.insert(log);
   }
 
   async list(body: LogListIn, project_id: string){

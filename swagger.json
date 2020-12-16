@@ -39,7 +39,11 @@
             }
         },
         "/v1/logs/project/:project": {
+<<<<<<< HEAD
             "get": {
+=======
+            "post": {
+>>>>>>> 12f6b98... add properties
                 "consumes": [
                     "application/json"
                 ],
@@ -58,7 +62,22 @@
                 ],
                 "tags": [
                     "logs"
+<<<<<<< HEAD
                 ]
+=======
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LogListIn"
+                            }
+                        }
+                    },
+                    "description": "LogListIn",
+                    "required": true
+                }
+>>>>>>> 12f6b98... add properties
             }
         },
         "/v1/user/login": {
@@ -279,9 +298,6 @@
                             }
                         ]
                     },
-                    "project": {
-                        "type": "string"
-                    },
                     "info": {
                         "type": "string"
                     }
@@ -292,7 +308,6 @@
                     "level",
                     "type",
                     "date",
-                    "project",
                     "info"
                 ]
             },
