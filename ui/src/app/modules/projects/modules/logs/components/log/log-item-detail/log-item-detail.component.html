@@ -1,10 +1,17 @@
 <div class="card-items-detail" (click)="collapsed=!collapsed">
     <div [ngClass]="{'item-left-noexpand': !collapsed, 'item-left-expand': collapsed}">
+        <mat-divider></mat-divider>
         <b>Stack</b>
-        <p>{{stack.message}}</p>
+        <div class="stack">
+            <p>{{stack.message}}</p>
+        </div>
         <mat-divider></mat-divider>
         <b>Info</b>
-        <p>{{info.request}}</p>
+        <div class="info" *ngIf="info">
+            <div *ngFor="let item of info | keyvalue">
+                <p><b>{{item.key}} </b>{{item.value}} </p>
+            </div>
+        </div>
     </div>
     <div class="item-right" ng-click="collapsed=!collapsed">
         <mat-icon [ngClass]="{'expand_more': !collapsed, 'expand_more-collapsed': collapsed}">expand_more</mat-icon>

@@ -13,9 +13,9 @@ export class LogService {
   constructor(private httpClient: HttpClient) { }
 
   public logsByProject(id: string, page: number, size: number): Observable<Array<ILogs>> {
-    const url = `${environment.apiUrl}logs/project/${id}`;
+    const url = `${environment.apiUrl}logs/project/${id}?page=${page}&size=${size}`;
     return this.httpClient
-      .post(url, { id, page, size })
+      .get(url)
       .pipe(map((res: any) => {
         if (res.meta.code === 0) {
           return res.data;
