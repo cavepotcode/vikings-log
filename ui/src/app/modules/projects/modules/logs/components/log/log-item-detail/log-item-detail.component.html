@@ -3,13 +3,19 @@
         <mat-divider></mat-divider>
         <b>Stack</b>
         <div class="stack">
-            <p>{{stack.message}}</p>
+            <p>{{stack.stack}}</p>
         </div>
         <mat-divider></mat-divider>
-        <b>Info</b>
-        <div class="info" *ngIf="info">
-            <div *ngFor="let item of info | keyvalue">
-                <p><b>{{item.key}} </b>{{item.value}} </p>
+        <div *ngIf="info">
+            <b>Info</b>
+            <div class="info" *ngFor="let item of info | keyvalue">
+                <b>{{item.key}}:</b>
+                <div *ngIf="item.key ==='request' || item.key ==='response';else elseBlock">
+                    <p>{{item.value|json}}</p>
+                </div>
+                <ng-template #elseBlock>
+                    <p>{{item.value}}</p>
+                </ng-template>
             </div>
         </div>
     </div>
