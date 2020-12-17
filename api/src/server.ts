@@ -5,6 +5,7 @@ import { UserController } from './controllers/user.controller'
 import { AuthService } from './services/auth.service';
 import { HeadersMiddleware } from './middlewares/headers.middleware.before';
 import { ProjectController } from './controllers/project.controller';
+import { GenericController } from './controllers/generic.controller';
 
 async function validateAuthentication(request: http.IncomingMessage, roles: Array<string>): Promise<AuthorizeResponse | boolean> {
     const token = request.headers['authorization'];
@@ -17,7 +18,7 @@ async function validateAuthentication(request: http.IncomingMessage, roles: Arra
 }
 
 const options: IKiwiOptions = {
-    controllers: [LogController, UserController, ProjectController],
+    controllers: [LogController, UserController, ProjectController, GenericController],
     authorization: validateAuthentication,
     middlewares: [HeadersMiddleware],
     cors: {
