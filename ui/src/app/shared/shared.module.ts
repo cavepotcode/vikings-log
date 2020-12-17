@@ -91,7 +91,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
   ]
 })
 export class SharedModule { }

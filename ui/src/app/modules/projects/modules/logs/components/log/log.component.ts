@@ -13,7 +13,7 @@ import { LogService} from '../../services/log/log.service';
 })
 export class LogDashboardComponent implements OnInit {
 
-  public size = 10;
+  public size = 5;
   public page = 1;
   public subscription: Subscription;
   public sub: Subscription;
@@ -48,8 +48,8 @@ export class LogDashboardComponent implements OnInit {
   public getLogs(id: string): void {
     var storedProject = this.id;
     if (storedProject !== null && storedProject !== '') {
-      this.logService.logsByProject(storedProject, this.page, this.size).subscribe((logs) => {
-        this.logs = logs;
+      this.logService.logsByProject(storedProject, this.page, this.size).subscribe((logs:any) => {
+        this.logs = logs.items;
       });
     }
   }

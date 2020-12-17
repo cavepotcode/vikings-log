@@ -1,9 +1,17 @@
 export interface ILogs {
     id:string
-    date: string;
-    level: string;
     message: string;
-    stackTrace: string;
+    level: string;
+    type: string;
     project: string;
+    date: string;
+    info: any;
+    exception: IException;
 
+}
+
+export interface IException{
+    code: number;
+    message: string;
+    stack:string;
 }

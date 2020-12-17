@@ -13,13 +13,13 @@ export class createLogs1596571671005 implements MigrationInterface {
         log.date = new Date();
         log.level = LevelsCode.ERROR;
         log.message = 'Broke everything';
-        log.stackTrace = `ConsoleApplication1.MyCustomException: some message .... ---> System.Exception: Oh noes!
-                            at ConsoleApplication1.SomeObject.OtherMethod() in C:\ConsoleApplication1\SomeObject.cs:line 24
-                            at ConsoleApplication1.SomeObject..ctor() in C:\ConsoleApplication1\SomeObject.cs:line 14
-                            --- End of inner exception stack trace ---
-                            at ConsoleApplication1.SomeObject..ctor() in C:\ConsoleApplication1\SomeObject.cs:line 18
-                            at ConsoleApplication1.Program.DoSomething() in C:\ConsoleApplication1\Program.cs:line 23
-                            at ConsoleApplication1.Program.Main(String[] args) in C:\ConsoleApplication1\Program.cs:line 13`
+        // log.stackTrace = `ConsoleApplication1.MyCustomException: some message .... ---> System.Exception: Oh noes!
+        //                     at ConsoleApplication1.SomeObject.OtherMethod() in C:\ConsoleApplication1\SomeObject.cs:line 24
+        //                     at ConsoleApplication1.SomeObject..ctor() in C:\ConsoleApplication1\SomeObject.cs:line 14
+        //                     --- End of inner exception stack trace ---
+        //                     at ConsoleApplication1.SomeObject..ctor() in C:\ConsoleApplication1\SomeObject.cs:line 18
+        //                     at ConsoleApplication1.Program.DoSomething() in C:\ConsoleApplication1\Program.cs:line 23
+        //                     at ConsoleApplication1.Program.Main(String[] args) in C:\ConsoleApplication1\Program.cs:line 13`
 
         
         await queryRunner.insertOne('logs', log);

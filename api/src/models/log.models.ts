@@ -1,12 +1,11 @@
 import { IsString, IsEmail, IsDate, IsNumber } from 'kiwi-server';
 import { Log } from '../datastore/entities'; 
 
+//TODO:: fix exception object. @IsObject...
 export class LogIn{
   @IsString() message: string;
-  @IsString() level: string;
   @IsString() type: string;
   @IsDate() date: Date;
-  @IsString() project: string;
   exception: Exception;
   @IsString() info: any;
 }
