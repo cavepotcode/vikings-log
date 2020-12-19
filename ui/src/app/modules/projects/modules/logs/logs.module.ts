@@ -9,6 +9,7 @@ import { LogItemComponent } from './components/log/log-item/log-item.component';
 import { LogDashboardComponent } from './components/log/log.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LogItemDetailComponent } from './components/log/log-item-detail/log-item-detail.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { LogItemDetailComponent } from './components/log/log-item-detail/log-ite
   imports: [
     CommonModule,
     LogsRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class LogsModule { }

@@ -2,25 +2,25 @@
     <div fxLayout="row">
         <mat-form-field fxFlex appearance="fill">
             <mat-label>Search</mat-label>
-            <input matInput>
+            <input (keyup)="onKey($event)" matInput >
         </mat-form-field>
 
         <mat-form-field fxFlex appearance="fill">
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [rangePicker]="picker">
-                <input matStartDate placeholder="Start date">
-                <input matEndDate placeholder="End date">
+                <input matStartDate placeholder="Start date" [(ngModel)]="selectedDateFrom" (dateChange)="selectedDates()">
+                <input matEndDate placeholder="End date" [(ngModel)]="selectedDateTo" (dateChange)="selectedDates()" >
             </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker (dateChange)="selectedDates()"></mat-date-range-picker>
         </mat-form-field>
 
-        <mat-form-field fxFlex appearance="fill">
+        <mat-form-field fxFlex appearance="fill" >
             <mat-label>Nivel de error</mat-label>
-            <mat-select>
-                <mat-option value="option">Option</mat-option>
+            <mat-select (selectionChange)="filter()" [(value)]="selectedlevel" >
+                <mat-option *ngFor="let item of levelsCode" [value]="item"  >{{item |titlecase}}</mat-option>
             </mat-select>
-            <mat-hint align="end">Nivel de error</mat-hint>
+            <mat-hint align="end">{{selectedDateFrom |date: 'dd/MM/yyyy HH:mm:ss' }} - {{selectedDateTo |date: 'dd/MM/yyyy HH:mm:ss'}} ACA  Nivel de error </mat-hint>
         </mat-form-field>
     </div>
 </div>

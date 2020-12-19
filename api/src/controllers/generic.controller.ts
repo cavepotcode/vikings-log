@@ -10,7 +10,6 @@ export class GenericController {
 
     @Get('/levelsCode')
     public async levelsCode() {
-        return new Response(ResponseCode.OK,levels);
+        return new Response(ResponseCode.OK,'',levels);
     }
-
 }

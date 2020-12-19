@@ -21,6 +21,8 @@ export class LogListIn{
   @IsNumber() size: string;
   @IsString() text: string;
   @IsString() level: string;
+  @IsDate() dateFrom: Date;
+  @IsDate() dateTo: Date;
 }
 
 export class LogListOut{
