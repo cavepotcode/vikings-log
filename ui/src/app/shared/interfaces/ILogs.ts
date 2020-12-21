@@ -15,3 +15,10 @@ export interface IException{
     message: string;
     stack:string;
 }
+
+export interface ILogsFilter{
+    level:string;
+    dateFrom?: string;
+    dateTo?:string;
+    text?:string;
+}

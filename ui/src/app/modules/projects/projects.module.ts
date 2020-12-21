@@ -7,8 +7,6 @@ import { ProjectRouting } from './projects-routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-
-
 @NgModule({
   declarations: [NewProjectComponent, ProjectsComponent],
   imports: [

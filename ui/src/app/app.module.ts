@@ -34,6 +34,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    UsersComponent
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
