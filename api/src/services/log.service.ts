@@ -2,7 +2,7 @@
 import { getRepository } from '../datastore';
 import { Log } from '../datastore/entities';
 import { ObjectID } from 'mongodb';
-import { ObjectID as ObjectIDType, Like, Between, MoreThan, LessThan } from 'typeorm'
+import { ObjectID as ObjectIDType } from 'typeorm'
 import { LogIn, LogListIn, LogListOut } from '../models/log.models';
 
 export class LogService {
@@ -25,11 +25,10 @@ export class LogService {
 
 
         var myDate = new Date();
-        myDate.setDate(myDate.getDate() + 2);
+        myDate.setDate(myDate.getDate()-20);
 
         var myDate2 = new Date();
         myDate2.setDate(myDate.getDate() + 10);
-
 
         const condition = {
             take: parseInt(body.size),
@@ -38,22 +37,19 @@ export class LogService {
             where: {
                 project: new ObjectID(project_id),
                 message: new RegExp(body.text),
-                numero: new RegExp('10')
-            }
+            },
         };
         if (body.level) {
             condition.where['level'] = body.level;
         }
-        // if (body.dateTo) {
-        //     condition.where['numero'] = { $lt: 10 };
-        // }
-        let value = JSON.stringify(condition);
-        // const res = await projRepository.createEntityCursor();
+        if(body.dateFrom && body.dateTo)
+        {
+            condition.where['date'] = {$gte: new Date(body.dateFrom) ,$lt: new Date(body.dateTo)}
+        }
         const [items, total] = await projRepository.findAndCount(condition);
         const result = new LogListOut();
         result.items = items;
         result.total = total;
         return result;
     }
-
 }

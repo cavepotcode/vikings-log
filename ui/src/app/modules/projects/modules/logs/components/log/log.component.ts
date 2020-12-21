@@ -19,6 +19,9 @@ export class LogDashboardComponent implements OnInit {
     public sub: Subscription;
     public id: string;
     public logs: Array<ILogs> = [];
+    public search: string = "search";
+    public message: string = "There are no results that match your search";
+
 
     constructor(
         private logService: LogService,

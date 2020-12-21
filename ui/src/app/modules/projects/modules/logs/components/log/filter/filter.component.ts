@@ -49,8 +49,15 @@ export class FilterComponent implements OnInit {
             filter['dateFrom'] = this.selectedDateFrom;
             filter['dateTo'] = this.selectedDateTo;
         }
-        console.log(filter);
+
         this.filterChange.emit(filter);
+    }
+    public clearFilter() {
+        this.selectedlevel = '';
+        this.selectedkey = '';
+        this.selectedDateFrom = '';
+        this.selectedDateTo = '';
+        this.filter();
     }
 
 }
