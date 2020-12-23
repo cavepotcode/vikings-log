@@ -39,7 +39,6 @@ export class FilterComponent implements OnInit {
         }
     }
 
-
     public filter() {
         const filter: ILogsFilter = {
             level: this.selectedlevel,
