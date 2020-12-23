@@ -1,5 +1,7 @@
 /.git
+/swagger.json
 /api/node_modules
+/api/swagger.json
 /ui/node_modules
 /node_modules
 /api/dist

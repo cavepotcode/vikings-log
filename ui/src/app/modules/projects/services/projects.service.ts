@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IProject } from 'src/app/shared/interfaces/IProject';
+import { IProjectType } from 'src/app/shared/interfaces/IProjectType';
 import { environment } from 'src/environments/environment';
 import { StateService } from 'src/app/shared/services/state/state.service';
 import { Router } from '@angular/router';
@@ -39,4 +40,19 @@ export class ProjectsService {
     return this.httpClient
       .post<any>(url, project);
   }
+
+  
+  public projectType():Observable<Array<IProjectType>>{
+    const url = `${environment.apiUrl}generic/projects`;
+    return this.httpClient
+    .get(url)
+    .pipe(map((res: any) => {
+      if (res.meta.code === 0) {
+        return res.data;
+      }
+      throw (new Error());
+    }));
+  }
+
+  
 }

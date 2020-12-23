@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ILogs, ILogsFilter } from 'src/app/shared/interfaces/ILogs';
 import { ActivatedRoute } from '@angular/router';
 import { LogService } from '../../services/log/log.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
     selector: 'app-log',
@@ -14,6 +15,7 @@ import { LogService } from '../../services/log/log.service';
 export class LogDashboardComponent implements OnInit {
 
     public size = 5;
+    public length = 0;
     public page = 1;
     public subscription: Subscription;
     public sub: Subscription;
@@ -21,7 +23,7 @@ export class LogDashboardComponent implements OnInit {
     public logs: Array<ILogs> = [];
     public search: string = "search";
     public message: string = "There are no results that match your search";
-
+    public filters : ILogsFilter;
 
     constructor(
         private logService: LogService,
@@ -38,30 +40,30 @@ export class LogDashboardComponent implements OnInit {
         });
     }
 
-    public sizeChange(event: number): void {
-        this.size = event;
-        this.getLogs(this.id);
-    }
-
-    public pageChange(event: number): void {
-        this.page = event;
-        this.getLogs(this.id);
-    }
-
     public getLogs(id: string): void {
         var storedProject = this.id;
         if (storedProject !== null && storedProject !== '') {
-            this.logService.logsByProject(storedProject, this.page, this.size).subscribe((logs: any) => {
+            this.logService.logsByProject(storedProject, this.page, this.size, this.filters).subscribe((logs: any) => {
                 this.logs = logs.items;
+                this.length = logs.total;
             });
         }
     }
+
     public filter(filter : ILogsFilter) {
-        var storedProject = this.id;
-        if (storedProject !== null && storedProject !== '') {
-            this.logService.logsByProject(storedProject, this.page, this.size,filter).subscribe((logs: any) => {
-                this.logs = logs.items;
-            });
+        this.page = 1;
+        this.length = this.length;
+        this.filters = filter;
+        this.getLogs(this.id);
+    }
+
+    changePage(changes: PageEvent){
+        this.page = changes.pageIndex;
+        if(this.size !== changes.pageSize){
+            this.page = 1;
+            this.size = changes.pageSize;
         }
+        
+        this.getLogs(this.id);
     }
 }
