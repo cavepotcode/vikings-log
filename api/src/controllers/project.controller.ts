@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { UserService } from '../services/user.service';
 import { ResponseCode } from '../sdk/constants';
 import { Project } from '../datastore/entities';
+import { v4 as uuidv4 } from 'uuid';
 
 @JsonController('/project')
 export class ProjectController {

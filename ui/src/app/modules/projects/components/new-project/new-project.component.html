@@ -13,15 +13,6 @@
       </mat-form-field>
 
       <mat-form-field class="form-field" appearance="outline">
-        <mat-label> ApiKey
-        </mat-label>
-        <input matInput formControlName="apikey">
-        <mat-error *ngIf="projectForm.controls.apikey.touched && projectForm.controls.apikey.invalid">
-          <span *ngIf="projectForm.controls.apikey.errors.required">This field is mandatory.</span>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-field" appearance="outline">
         <mat-label> Type
         </mat-label>
         <input matInput formControlName="type">

@@ -1,0 +1,33 @@
+<div class="project-container">
+    <div class="form-container">
+      <form [formGroup]="projectForm" (submit)="submit()" class="form">
+        <h2>Create Project</h2>
+  
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Name
+          </mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngIf="projectForm.controls.name.touched && projectForm.controls.name.invalid">
+            <span *ngIf="projectForm.controls.name.errors.required">This field is mandatory.</span>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label> Select an type</mat-label>
+            <mat-select [(value)]="selectedtype" formControlName="type">
+                <mat-option *ngFor="let item of typeProject" [value]="item" >{{item.name |uppercase}}</mat-option>
+            </mat-select>
+            <mat-error>
+                <span *ngIf="projectForm.controls.type.errors">This field is mandatory.</span>
+            </mat-error>
+        </mat-form-field>
+  
+        <div class="form-element">
+          <button mat-raised-button color="primary" type="submit" class="button"
+            [disabled]="!projectForm.valid" mat-dialog-close>Create</button>
+        </div>
+        
+  
+      </form>
+    </div>
+  </div>

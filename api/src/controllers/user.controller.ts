@@ -1,4 +1,4 @@
-import { JsonController, Get, Post, Body, Authorize, Put } from 'kiwi-server';
+import { JsonController, Get, Post, Body, Authorize, Put, Param, HeaderParam } from 'kiwi-server';
 import { UserIn, LoginIn, ForgotPasswordIn, ResetPasswordIn } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { ProjectService } from '../services/project.service';
@@ -8,6 +8,9 @@ import { environment } from '../../environments/environment';
 import { UserService } from '../services/user.service';
 import { ResponseCode } from '../sdk/constants';
 import { Project } from '../datastore/entities';
+import { v4 as uuidv4 } from 'uuid';
+import { ObjectID as ObjectIDType } from 'typeorm'
+import { ObjectID } from 'mongodb';
 
 @JsonController('/user')
 export class UserController {
@@ -62,19 +65,23 @@ export class UserController {
 
 	@Authorize()
 	@Post('/projects')
-	public async create(@Body() body: any, request: any) {
+	public async create(@Body() body: any,@HeaderParam("authorization") token: string, request: any) {
 		try {
-			console.log(request, body);
+			console.log(request, body,token);
 			const projectModel = new Project();
 			if (body.name == '' || body.type == '' || body.apiKey == '') {
 				throw new Error('all fields are required')
 			}
 			projectModel.name = body.title;
 			projectModel.type = body.type;
-			projectModel.apiKey = body.apiKey;
+			projectModel.apiKey = uuidv4();
 
+            let user = this.authService.decode(token);
+            
 			const project = await this.projectService.add(projectModel)
-			return new Response(ResponseCode.OK, '', project);
+            this.addProjectUser(project.identifiers[0].id,user.email);
+            
+            return new Response(ResponseCode.OK, '', project);
 		} catch (err) {
 			Log.error(`/projects`, err);
 			return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
@@ -85,5 +92,17 @@ export class UserController {
 	public forgotPassword(@Body() body: ForgotPasswordIn) { }
 
 	@Put('/reset-password')
-	public resetPassword(@Body() body: ResetPasswordIn) { }
+    public resetPassword(@Body() body: ResetPasswordIn) { }
+    
+
+    private async addProjectUser(projectId:any, email :string){
+        let user = await this.userService.get(email);
+        if(!user.projects)
+        {
+            user.projects = new Array();
+        }
+        user.projects.push(new ObjectID(projectId.id));
+        let retorno = await this.userService.update(user);
+
+    }
 }
