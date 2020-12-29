@@ -29,7 +29,11 @@
         <mat-nav-list>
             <div class="title">
                 <h2 matSubheader> {{ constants.PROJECTS }} </h2>
-                <mat-icon class="material-icons addProject"  matTooltip="Add new project" (click)="openAddProjectDialog()" >add</mat-icon>
+                <div class="addProject" (click)="openAddProjectDialog()" matTooltip="Add new project">
+                    <mat-icon class="material-icons" 
+                        >add</mat-icon>
+                    <span>New Project</span>
+                </div>
             </div>
             <ng-container *ngIf="projects">
                 <a mat-list-item routerLink="/" style="height: 0;"></a>
