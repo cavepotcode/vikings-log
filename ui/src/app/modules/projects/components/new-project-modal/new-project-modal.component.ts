@@ -30,8 +30,7 @@ export class NewProjectModalComponent implements OnInit {
             title: this.projectForm.value.name,
             type: this.projectForm.value.type
         }).subscribe((data) => {
-            console.log(data);
-            this.router.navigate(['private/projects/project/5fea5d65b9d92a0dc84ae001/logs']);
+            this.router.navigate([`/private/projects/project/${data.data.identifiers[0].id}/logs`]);
         });
         
     }

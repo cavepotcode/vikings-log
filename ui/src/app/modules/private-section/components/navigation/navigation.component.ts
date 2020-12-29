@@ -21,6 +21,7 @@ export class NavigationComponent {
     @Input() public currentProject: string;
     @Output() onLogout: EventEmitter<any> = new EventEmitter();
     @Output() projectSelected: EventEmitter<any> = new EventEmitter();
+    @Output() projectNew: EventEmitter<any> = new EventEmitter();
 
     @ViewChild('navigationSidenav', { static: true })
     public sidenav: MatSidenav;
@@ -59,10 +60,15 @@ export class NavigationComponent {
         this.projectSelected.emit(id);
     }
 
-    public openDialog() {
+    public openAddProjectDialog() {
         const dialogRef = this.dialog.open(NewProjectModalComponent, {
-            height: '400px',
+            height: '320px',
             width: '600px'
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.projectNew.emit();
+            }
         });
     }
 }
