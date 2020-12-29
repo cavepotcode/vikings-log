@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewProjectComponent } from './components/new-project/new-project.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProjectRouting } from './projects-routing.module'
@@ -9,7 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NewProjectModalComponent } from './components/new-project-modal/new-project-modal.component';
 
 @NgModule({
-  declarations: [NewProjectComponent, ProjectsComponent, NewProjectModalComponent],
+  declarations: [ProjectsComponent, NewProjectModalComponent],
   imports: [
     CommonModule,
     FormsModule,
