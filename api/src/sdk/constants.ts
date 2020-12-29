@@ -18,5 +18,5 @@ export class LevelsCode {
   static ERROR = 'error';
   static WARNING = 'warning';
 }
-
 export const levels = [LevelsCode.INFO, LevelsCode.ERROR, LevelsCode.WARNING];
+

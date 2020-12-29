@@ -27,11 +27,15 @@
     <mat-sidenav #navigationSidenav [opened]="true" mode="side" role="navigation">
         <!-- <mat-nav-list dense> -->
         <mat-nav-list>
-
-            <ng-container *ngIf="projects">
-
+            <div class="title">
                 <h2 matSubheader> {{ constants.PROJECTS }} </h2>
-
+                <div class="addProject" (click)="openAddProjectDialog()" matTooltip="Add new project">
+                    <mat-icon class="material-icons" 
+                        >add</mat-icon>
+                    <span>New Project</span>
+                </div>
+            </div>
+            <ng-container *ngIf="projects">
                 <a mat-list-item routerLink="/" style="height: 0;"></a>
 
                 <div class="project-item" *ngFor="let item of projects">
@@ -44,18 +48,6 @@
                 </div>
 
                 <mat-divider></mat-divider>
-
-            </ng-container>
-
-            <ng-container *ngIf="projectActionRoutes">
-
-                <h2 matSubheader> {{ constants.NAVIGATION_MENU_PROJECT_ACTIONS }} </h2>
-
-                <a *ngFor="let item of projectActionRoutes" mat-list-item [routerLink]="[item.route]"
-                    routerLinkActive="list-item-active">
-                    <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
-                    {{item.title}}
-                </a>
 
             </ng-container>
 

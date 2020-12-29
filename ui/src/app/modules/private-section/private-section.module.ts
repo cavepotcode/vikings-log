@@ -11,6 +11,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { RouterModule } from '@angular/router';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
 // import { MatPaginator } from '@angular/material/paginator';
 
 
@@ -23,7 +24,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         RouterModule,
         PrivateRouting,
         LayoutModule,
-        SharedModule
+        SharedModule,
+        MatDialogModule
     ]
 })
 export class PrivateSectionModule { }
