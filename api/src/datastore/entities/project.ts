@@ -1,16 +1,20 @@
-import {Entity, ObjectID, ObjectIdColumn, Column} from "typeorm";
+import { Entity, ObjectID, ObjectIdColumn, Column } from "typeorm";
+
 
 @Entity('projects')
 export class Project {
-  @ObjectIdColumn()
-  id: ObjectID;
+    @ObjectIdColumn()
+    id: ObjectID;
 
-  @Column()
-  name: string;
-  
-  @Column()
-  apiKey: string;
+    @Column()
+    name: string;
 
-  @Column()
-  type: string;
+    @Column()
+    apiKey: string;
+
+    @Column()
+    type: string;
+
+    @Column()
+    status: string;
 }
