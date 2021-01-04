@@ -1,4 +1,4 @@
-import { JsonController, Get, Post, Body, Authorize, Put } from 'kiwi-server';
+import { JsonController, Get, Post, Body, Authorize, Put, Delete, Param } from 'kiwi-server';
 import { ProjectService } from '../services/project.service';
 import { Log } from '../sdk/logs';
 import { Response } from '../sdk/response';
@@ -40,6 +40,19 @@ export class ProjectController {
         } catch (err) {
             Log.error(`/projects`, err);
             return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
+        }
+    }
+
+    @Authorize()
+    @Delete('/:project')
+    public async delete (@Param('project') project_id: string){
+        try{
+            const project = await this.projectService.delete(project_id);
+            return new Response(ResponseCode.OK,'','');
+
+        }catch(err){
+            Log.error(`/projects`,err);
+            return new Response(ResponseCode.ERROR,environment.common.genericErrorMessage);
         }
     }
 }

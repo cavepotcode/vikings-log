@@ -9,6 +9,8 @@ import { Constants } from 'src/app/shared/consts/app-constants';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
 import { NewProjectModalComponent } from 'src/app/modules/projects/components/new-project-modal/new-project-modal.component';
+import { DeleteProjectModalComponent } from 'src/app/modules/projects/components/delete-project-modal/delete-project-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navigation',
@@ -46,12 +48,12 @@ export class NavigationComponent {
     constructor(
         private breakpointObserver: BreakpointObserver,
         private commandBarSidenavService: SidenavService,
-        private dialog: MatDialog) {
+        private dialog: MatDialog,
+        private router:Router) {
 
     }
 
     public ngOnInit(): void {
-        console.log('prjects', this.projects)
         this.commandBarSidenavService.setSidenav(this.sidenav);
     }
 
@@ -71,4 +73,20 @@ export class NavigationComponent {
             }
         });
     }
+    public openDeleteProjectDialog(id: string, title: string) {
+        const dialogRef = this.dialog.open(DeleteProjectModalComponent, {
+            height: '150px',
+            width: '600px',
+            data: { id: id, name: title },
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.projectNew.emit();
+                if(this.router.url === `/private/projects/project/${id}/logs`){
+                    this.router.navigate(['private']);
+                }
+            }
+        });
+    }
+
 }

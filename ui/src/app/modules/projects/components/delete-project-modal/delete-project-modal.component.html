@@ -1,0 +1,7 @@
+<div class="project-container">
+    <p>Are you sure you want to delete this project {{data.name|uppercase}}?</p>
+    <div class="botton-container">
+        <button mat-raised-button class="button delete" [mat-dialog-close]="true" (click)="deleteProject()" >Delete</button>
+        <button mat-raised-button class="button" [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+    </div>
+</div>
