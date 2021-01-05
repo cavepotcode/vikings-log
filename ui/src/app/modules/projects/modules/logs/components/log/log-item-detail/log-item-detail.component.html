@@ -1,9 +1,11 @@
 <div class="card-items-detail" (click)="collapsed=!collapsed">
     <div [ngClass]="{'item-left-noexpand': !collapsed, 'item-left-expand': collapsed}">
         <mat-divider></mat-divider>
-        <b>Stack</b>
-        <p class="stack">{{stack.stack}}</p>
-        <mat-divider></mat-divider>
+        <div *ngIf="stack.stack">
+            <b>Stack</b>
+            <p class="stack">{{stack.stack}}</p>
+            <mat-divider></mat-divider>
+        </div>
         <div *ngIf="info">
             <b>Info</b>
             <div class="info" *ngFor="let item of info | keyvalue">
@@ -11,7 +13,9 @@
                 <div *ngIf="item.key ==='request' || item.key ==='response';else elseBlock">
                     <p>{{item.value|json}}</p>
                 </div>
-                <ng-template #elseBlock><p>{{item.value}}</p></ng-template>
+                <ng-template #elseBlock>
+                    <p>{{item.value}}</p>
+                </ng-template>
             </div>
         </div>
     </div>
