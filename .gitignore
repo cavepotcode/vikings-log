@@ -10,3 +10,8 @@
 /ui/package-lock.json
 /api/package-lock.json
 package-lock.json
+
+/_integrations/.Net/bin/*
+/_integrations/.Net/obj/*
+/_integrations/Php/vendor/*
+
