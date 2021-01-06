@@ -3,12 +3,12 @@ services:
     log:
         image: log
         ports:
-            - "4200:4200"            
-        volumes:
-            - ./://data/
+            - "4200:4200"
+            - "8099:8099"
         tty: true
         expose:
-            - "4200"        
+            - "4200"
+            - "8099"     
         stdin_open: true
         environment:
             - MODE=dev
