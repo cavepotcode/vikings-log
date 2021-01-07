@@ -51,10 +51,8 @@ class MainController
     public function error($request, $response)
     {
         $text = "important information: unhandled exception";
-
-
         $body =  new Log();
-        
+
         $body->message = "unhandled error";
         $body->type = "php";
         $body->info = (object) "ImportantInfo = {$text}";

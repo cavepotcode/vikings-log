@@ -1,0 +1,24 @@
+<div class="php-screen">
+    <mat-card>
+        <mat-card-header class="header">
+            <!-- <span class="material-icons">content_copy</span>     -->
+            <mat-icon matTooltip="Copy" class="copy-icon" [cdkCopyToClipboard]="concatenate">content_copy</mat-icon>
+        </mat-card-header>
+        <mat-card-content>
+            <pre>
+                <div>
+                    <label class="red">Create object</label>
+                    {{createObject}}
+
+                    <label class="red">Send information</label>
+                    {{sendInformation}}
+                </div>
+            </pre>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-footer class="align-right">
+            <span><strong>Github: </strong><a href="https://github.com/cavepotcode/vikings-log" target="_blank">https://github.com/cavepotcode/vikings-log</a></span>
+        </mat-card-footer>
+
+    </mat-card>
+</div>

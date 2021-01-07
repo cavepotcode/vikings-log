@@ -1,3 +1,8 @@
+#.NET
+
+This project use .net core 5.0
+
+
 #.Net Implementation
 
 ## Include in appSettings.
