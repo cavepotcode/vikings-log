@@ -23,6 +23,15 @@
             </mat-select>
         </mat-form-field>
         
+        <mat-form-field fxFlex appearance="fill" >
+            <mat-label>Log status</mat-label>
+            <mat-select (selectionChange)="filter()" [(value)]="selectedStatusLog" >
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let item of statusLog" [value]="item" >{{item |titlecase}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+
         <button class="clear-filter" mat-raised-button (click)="clearFilter()">Clear Filter</button>
 
 

@@ -1,5 +1,5 @@
 export interface ILogs {
-    id:string
+    id: string
     message: string;
     level: string;
     type: string;
@@ -7,18 +7,25 @@ export interface ILogs {
     date: string;
     info: any;
     exception: IException;
+    status: string;
 
 }
 
-export interface IException{
+export interface IException {
     code: number;
     message: string;
-    stack:string;
+    stack: string;
 }
 
-export interface ILogsFilter{
-    level:string;
+export interface ILogsFilter {
+    level: string;
     dateFrom?: string;
-    dateTo?:string;
-    text?:string;
+    dateTo?: string;
+    text?: string;
+    status: string;
+}
+
+export interface ILogsStatus{
+    id:string;
+    status?:string;
 }

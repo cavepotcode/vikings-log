@@ -24,5 +24,12 @@ export class StatusProject {
     static DISABLED = 'disabled';
 }
 
+export class StatusLog {
+    static ACTIVE = 'active';
+    static INACTIVE = 'inactive';
+    static IGNORED = 'ignored';
+}
+
 export const levels = [LevelsCode.INFO, LevelsCode.ERROR, LevelsCode.WARNING];
+export const statuslogs = [StatusLog.ACTIVE, StatusLog.INACTIVE, StatusLog.IGNORED];
 

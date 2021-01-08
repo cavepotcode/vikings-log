@@ -31,4 +31,7 @@ export class Log {
 
     @Column()
     exception: object;
+
+    @Column()
+    status: string;
 }
