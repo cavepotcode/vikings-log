@@ -1,5 +1,8 @@
 <div class="card-items-detail" (click)="collapsed=!collapsed">
-    <div [ngClass]="{'item-left-noexpand': !collapsed, 'item-left-expand': collapsed}">
+    <div [ngClass]="{'item-left-noexpand transition': !collapsed, 'item-left-expand transition': collapsed}">
+        <mat-divider></mat-divider>
+        <b>Stack</b>
+        <p class="stack">{{stack.stack}}</p>
         <mat-divider></mat-divider>
         <div *ngIf="stack.stack">
             <b>Stack</b>
@@ -20,6 +23,6 @@
         </div>
     </div>
     <div class="item-right" ng-click="collapsed=!collapsed">
-        <mat-icon [ngClass]="{'expand_more': !collapsed, 'expand_more-collapsed': collapsed}">expand_more</mat-icon>
+        <mat-icon [ngClass]="{'expand_more transition': !collapsed, 'expand_more-collapsed transition': collapsed}">expand_more</mat-icon>
     </div>
 </div>

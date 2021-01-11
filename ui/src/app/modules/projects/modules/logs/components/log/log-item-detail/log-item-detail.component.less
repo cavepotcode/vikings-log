@@ -5,12 +5,9 @@
     overflow: hidden;
     .item-left-noexpand{
         max-height: 10px;
-        transition: ease all 0.1s;
     }
     .item-left-expand{
-        min-height: 120px;
         max-height: 900px;
-        transition: ease all 0.3s;
     }
     .stack, .info{
         padding-left: 20px;
@@ -21,13 +18,12 @@
     }
     .item-right{
         margin-right: 50px;
-
-    }
-    .expand_more {
-        transition: ease all 0.3s;
     }
     .expand_more-collapsed {
+         transform: rotate(180deg);
+    }
+    
+    .transition{
         transition: ease all 0.3s;
-        transform: rotate(180deg);
     }
 }
