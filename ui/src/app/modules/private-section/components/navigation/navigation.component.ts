@@ -89,4 +89,8 @@ export class NavigationComponent {
         });
     }
 
+    public openIntegrations(){
+        this.router.navigate(['/private/projects/integrations']);
+    }
+
 }

@@ -61,7 +61,15 @@
                 <mat-divider></mat-divider>
 
             </ng-container>
-
+            <div class="title">
+                <h2 matSubheader> Options</h2>
+            </div>
+            <ng-container>
+                <a mat-list-item [routerLink]="'/private/projects/integrations'" routerLinkActive="list-item-active">
+                    <mat-icon matListIcon class="nav-list-icon">integration_instructions </mat-icon>
+                    Integrations
+                </a>
+            </ng-container>
         </mat-nav-list>
 
     </mat-sidenav>
