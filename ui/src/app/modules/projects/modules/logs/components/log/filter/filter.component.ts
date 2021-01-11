@@ -27,10 +27,16 @@ export class FilterComponent implements OnInit {
     }
 
     public onKey(event: any) {
-        this.selectedkey = event.target.value;
-        if (this.selectedkey.length > 2) {
+        let lettercount = event.target.value.length;
+        if (lettercount > 2) {
+            this.selectedkey = event.target.value;
             this.filter();
         }
+        if (lettercount == 0) {
+            this.selectedkey = '';
+            this.filter();
+        }
+
     }
 
     public selectedDates() {

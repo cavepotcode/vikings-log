@@ -10,7 +10,7 @@ export class LogService {
         const log = new Log()
         log.date = new Date();
         log.level = level;
-        log.message = body.message;
+        log.message = body.message.toLowerCase();
         log.project = project_id;
         log.type = body.type;
         log.info = body.info;

@@ -7,13 +7,17 @@
 
             </div>
             <mat-checkbox class="select-item-info"></mat-checkbox>
+
         </div>
         <div class="item-info">
             <div class="title">
                 <a>{{log?.message}}</a>
             </div>
             <div class="error-location">
-                <span>{{log?.exception.message}}</span>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-basic-chip selected  class="chip-label {{log.level}}">{{log.level}}</mat-basic-chip>
+                    <span>{{log.exception.message}}</span>
+                </mat-chip-list>
             </div>
             <app-log-item-detail [stack]="log.exception" [info]="log.info"></app-log-item-detail>
             <div class="footer">
