@@ -1,7 +1,7 @@
 version: '3'
 services:
     log:
-        image: log
+        image: vikingslog
         ports:
             - "4200:4200"
             - "8099:8099"

@@ -15,4 +15,4 @@ RUN apt update && apt install nano && apt install telnet
 
 EXPOSE 4200
 
-#CMD cd api && forever start dist/default/src/server.js && cd .. && cd ui && npm run startdocker 
+CMD npm run complete-build
