@@ -42,14 +42,17 @@ export class LogTableComponent implements OnInit, OnChanges {
     }
 
     loadsubtasks() {
-        this.logs.forEach(element => {
-            let item: ICheckItems = {
-                name: element.id,
-                completed: false,
-                log: element
-            }
-            this.task.subtasks.push(item);
-        });
+        
+        if (this.task.subtasks.length != this.logs.length) {
+            this.logs.forEach(element => {
+                let item: ICheckItems = {
+                    name: element.id,
+                    completed: false,
+                    log: element
+                }
+                this.task.subtasks.push(item);
+            });
+        }
     }
 
     updateAllComplete() {
@@ -95,17 +98,17 @@ export class LogTableComponent implements OnInit, OnChanges {
         items.forEach(element => {
             element.status = Constants.STATUS_INACTIVE;
         });
-        this.logService.changeStatus(items).subscribe(()=>{
+        this.logService.changeStatus(items).subscribe(() => {
             this.logsChange.emit();
         });
     }
 
-    setIngore(){
+    setIngore() {
         let items = this.getCheckedElements();
         items.forEach(element => {
             element.status = Constants.STATUS_IGNORED;
         });
-        this.logService.changeStatus(items).subscribe(()=>{
+        this.logService.changeStatus(items).subscribe(() => {
             this.logsChange.emit();
         });
     }
