@@ -1,7 +1,7 @@
 version: '3'
 services:
     log:
-        image: vikingslog
+        image: public.ecr.aws/a4v3h0f0/vikingslog:v1
         ports:
             - "4200:4200"
             - "8099:8099"
@@ -12,3 +12,5 @@ services:
         stdin_open: true
         environment:
             - MODE=dev
+        env_file:
+            - 'api/.env'
