@@ -37,6 +37,7 @@ export class addTestAndTest1Logs1610460846338 implements MigrationInterface {
         log.project = result_proj.id;
         log.info = info;
         log.exception = exception;
+        log.status = 'active'
 
         await queryRunner.insertOne('logs', log);
 
@@ -48,6 +49,7 @@ export class addTestAndTest1Logs1610460846338 implements MigrationInterface {
         log.project = result_proj.id;
         log.info = {message: "dummy message text"};
         log.exception = {};
+        log.status = 'active'
 
         await queryRunner.insertOne('logs', log);
 
@@ -59,6 +61,7 @@ export class addTestAndTest1Logs1610460846338 implements MigrationInterface {
         log.project = result_proj.id;
         log.info = {message: "dummy message text"};
         log.exception = {};
+        log.status = 'active'
 
         await queryRunner.insertOne('logs', log);
 
@@ -72,6 +75,7 @@ export class addTestAndTest1Logs1610460846338 implements MigrationInterface {
         log.project = result_proj_test2.id;
         log.info = info;
         log.exception = exception;
+        log.status = 'active'
 
         await queryRunner.insertOne('logs', log);
 
@@ -83,6 +87,7 @@ export class addTestAndTest1Logs1610460846338 implements MigrationInterface {
         log.project = result_proj_test2.id;
         log.info = {message: "dummy message text"};
         log.exception = {};
+        log.status = 'active'
 
         await queryRunner.insertOne('logs', log);
 
@@ -94,6 +99,7 @@ export class addTestAndTest1Logs1610460846338 implements MigrationInterface {
         log.project = result_proj_test2.id;
         log.info = {message: "dummy message text"};
         log.exception = {};
+        log.status = 'active'
 
         await queryRunner.insertOne('logs', log);
 
