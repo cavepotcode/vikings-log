@@ -5,38 +5,45 @@
             <div class="log-table-column size-section action-region-section">
                 <div class="select-region">
                     <div class="select-item-info level-indicator"></div>
-                    <mat-checkbox class="select-item-info"></mat-checkbox>
+                    <mat-checkbox class="example-margin" [checked]="allComplete" [indeterminate]="someComplete()"
+                        (change)="setAll($event.checked)">
+                    </mat-checkbox>
                 </div>
-                <div class="action-region">
-                    <button mat-raised-button [matMenuTriggerFor]="animals">
-                        Resolve
-                        <mat-icon aria-hidden="false" aria-label="watch">keyboard_arrow_down</mat-icon>
-                    </button>
-                    <button mat-raised-button [matMenuTriggerFor]="animals">Ignore
-                        <mat-icon aria-hidden="false" aria-label="watch">keyboard_arrow_down</mat-icon>
-                    </button>
-                    <button mat-raised-button [matMenuTriggerFor]="animals">
+                <div class="action-region" >
+                    <div *ngIf="someComplete() || allComplete">
+                        <button mat-raised-button (click)="setInactive()">Inactive</button>
+                        <button mat-raised-button (click)="setIngore()">Ignore</button>
+                    </div>
+                    <!-- <button mat-raised-button>
                         <mat-icon aria-hidden="false" aria-label="watch">star_rate</mat-icon>
+                    </button> -->
+                    <!-- <button mat-raised-button [matMenuTriggerFor]="animals">
+                        <mat-icon aria-hidden="false" aria-label="watch">keyboard_arrow_down</mat-icon>
                     </button>
                     <button mat-raised-button [matMenuTriggerFor]="animals">
                         <mat-icon aria-hidden="false" aria-label="watch">more_horiz</mat-icon>
-                    </button>
+                    </button> -->
                     <!-- #docregion sub-menu -->
-                    <mat-menu #animals="matMenu">
+                    <!-- <mat-menu #animals="matMenu">
                         <button mat-menu-item>Vertebrates</button>
                         <button mat-menu-item>Invertebrates</button>
-                    </mat-menu>
+                    </mat-menu> -->
                 </div>
             </div>
             <div class="log-table-column num-info"></div>
             <div class="log-table-column num-info"></div>
             <div class="log-table-column num-info"></div>
         </div>
-    
+
     </div>
-    
-    <app-log-item *ngFor="let log of logs" [log]=log></app-log-item>
-    <mat-paginator (page)="pageChange($event)" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions">
+
+
+    <app-log-item *ngFor="let log of task.subtasks" [log]=log (allComplete)="updateAllComplete($event)"></app-log-item>
+
+
+
+    <mat-paginator (page)="pageChange($event)" [length]="length" [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions">
     </mat-paginator>
-    
+
 </div>
