@@ -38,6 +38,6 @@ Every services needs to send the apikey of the client on the http headers
 
 ### Docker
 ```
-docker build -t log -f Dockerfile . 
+docker build -t vikingslog -f Dockerfile . 
 docker-compose up
 ```
