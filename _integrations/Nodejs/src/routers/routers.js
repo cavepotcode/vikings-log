@@ -7,12 +7,6 @@ module.exports = http.createServer((req,res) => {
     const reqUrl = url.parse(req.url,true);
 
     // POST endpoint
-    if (reqUrl.pathname == '/main/test' && req.method === 'POST') {
-        console.log('Request type: ' + req.method + ' Endpoint: ' + req.url);
-        mainOps.test(req,res)
-    }
-    
-    // POST endpoint
     if (reqUrl.pathname == '/main/info' && req.method === 'POST') {
         console.log('Request type: ' + req.method + ' Endpoint: ' + req.url);
         mainOps.info(req,res);

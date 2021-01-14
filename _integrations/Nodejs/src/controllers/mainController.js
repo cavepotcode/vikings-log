@@ -1,12 +1,4 @@
-const { findSourceMap } = require('module');
 const logs = require('../helpers/logs');
-
-exports.test = async function (req,res) {
-    let response = await logs.test();
-    res.statusCode = 200;
-    res.setHeader('content-Type','Application/json');
-    res.end(response)
-}
 
 exports.info = async function (req,res) {
 

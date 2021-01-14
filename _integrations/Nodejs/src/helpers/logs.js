@@ -1,31 +1,7 @@
-const https = require('https');
 const http = require('http');
-
-
-exports.test = () => {
-    return new Promise((resolve,rejects) => {
-        const req = https.get('https://jsonplaceholder.typicode.com/todos/1',res => {
-            res.on('data',data => {
-                process.stdout.write(data);
-                resolve(data)
-            })
-        })
-
-        req.on('error',error => {
-            rejects(error)
-        })
-
-        req.end()
-
-    })
-}
 
 exports.registerlog = (object,level) => {
     try {
-
-
-        const data = JSON.stringify(object)
-
         const options = {
             host: 'localhost',
             port: 8099,
@@ -33,7 +9,7 @@ exports.registerlog = (object,level) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'apikey':'b136e785-2cd5-48b6-bdd7-012d6af138bb'
+                'apikey': 'b136e785-2cd5-48b6-bdd7-012d6af138bb'
             }
         }
         return new Promise((resolve,rejects) => {
