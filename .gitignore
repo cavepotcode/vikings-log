@@ -14,4 +14,4 @@ package-lock.json
 /_integrations/.Net/bin/*
 /_integrations/.Net/obj/*
 /_integrations/Php/vendor/*
-
+/_integrations/Nodejs/node_modules

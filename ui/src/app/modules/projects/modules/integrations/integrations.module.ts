@@ -13,9 +13,10 @@ import {MatCardModule} from '@angular/material/card';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NodeComponent } from './components/node/node.component';
 
 @NgModule({
-  declarations: [IntegrationComponent, TabsComponent, NecoreComponent, PhpComponent],
+  declarations: [IntegrationComponent, TabsComponent, NecoreComponent, PhpComponent, NodeComponent],
   imports: [
     CommonModule,
     IntegrationsRoutingModule,
