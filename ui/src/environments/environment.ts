@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://log2.cavepotlab.com/v1/'
+  apiUrl: 'https://localhost:8099/v1/'
 };
 
 /*
