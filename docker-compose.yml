@@ -1,16 +1,16 @@
 version: '3'
 services:
     log:
-        image: public.ecr.aws/a4v3h0f0/vikingslog:v1
+        #image: public.ecr.aws/a4v3h0f0/vikingslog:v1
+        image: vikingslog
         ports:
-            - "4200:4200"
-            - "8099:8099"
+            - "80:80"
         tty: true
         expose:
-            - "4200"
-            - "8099"     
+            - "80" 
         stdin_open: true
         environment:
             - MODE=dev
+        command: npm run serve-forever
         env_file:
             - 'api/.env'

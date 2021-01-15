@@ -9,11 +9,12 @@
         "install-api": "cd api && npm i",
         "install": "npm run install-ui && npm run install-api",
         "compile": "cd api && kc build",
+        "compile-ui": "cd ui && ng build --configuration production",
         "serve": "npm run compile && node ./api/dist/default/src/server.js",
         "serve-ui": "cd ui && ng serve",
         "migrate_run": "cd api && kc build && npx typeorm migration:run --config .env",
         "migrate_revert": "cd api && kc build && npx typeorm migration:revert  --config .env",
-        "complete-build": "cd api && forever start dist/default/src/server.js && cd .. && cd ui && npm run startdocker"
+        "serve-forever": "cd api && forever start dist/default/src/server.js"
     },
     "repository": {
         "type": "git",
