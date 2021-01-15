@@ -25,44 +25,34 @@ import { SharedModule } from './shared/shared.module';
 import { PrivateSectionModule } from './modules/private-section/private-section.module';
 import { StateService } from './shared/services/state/state.service';
 
-
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-
-// for Router import:
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-
-// for Core import:
-import { LoadingBarModule } from '@ngx-loading-bar/core';
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    ForgotPasswordComponent,
-    LoginComponent,
-    RegisterComponent,
-    ResetPasswordComponent,
-    UsersComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    BlockUIModule.forRoot(),
-    ToastrModule.forRoot(
-      {
-        closeButton: true,
-        positionClass: 'toast-bottom-full-width'
-      }
-    ),
-    SharedModule,  
-    FormsModule,    
-    LoadingBarHttpClientModule,    
-    LoadingBarRouterModule,    
-    LoadingBarModule
-  ],
-  providers: [StateService, Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ForgotPasswordComponent,
+        LoginComponent,
+        RegisterComponent,
+        ResetPasswordComponent,
+        UsersComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        BlockUIModule.forRoot({
+            delayStart: 500,
+        }
+        ),
+        ToastrModule.forRoot(
+            {
+                closeButton: true,
+                positionClass: 'toast-bottom-full-width'
+            }
+        ),
+        SharedModule,
+        FormsModule,
+    ],
+    providers: [StateService, Location, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
