@@ -2,9 +2,11 @@ const http = require('http');
 
 exports.registerlog = (object,level) => {
     try {
+        const myUrl = new URL("http://localhost:8099");
+
         const options = {
-            host: 'localhost',
-            port: 8099,
+            host: myUrl.hostname,
+            port: myUrl.port,
             path: `/v1/logs/${level}`,
             method: 'POST',
             headers: {
