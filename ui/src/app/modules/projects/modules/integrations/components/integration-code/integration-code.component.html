@@ -2,7 +2,7 @@
     <mat-card>
         <mat-card-header class="header">
             <!-- <span class="material-icons">content_copy</span>     -->
-            <mat-icon matTooltip="Copy" class="copy-icon" [cdkCopyToClipboard]="concatenate">content_copy</mat-icon>
+            <mat-icon matTooltip="Copy" class="copy-icon" [cdkCopyToClipboard]="copyCode()">content_copy</mat-icon>
         </mat-card-header>
         <mat-card-content>
             <pre *ngIf="name === 'net'" class="code">
@@ -73,9 +73,9 @@
     <span class="comments">//Send information</span>
 
     <span class="variable-type"><strong>const</strong></span> <span class="variable-name">options</span> = {{'{'}}
-        host: <span class="property-value">{{url.hostname}}</span>,
+        host: <span class="property-value">'{{url.hostname}}'</span>,
         port: <span class="numbers">{{url.port}}</span>,
-        path: <span class="property-value">{{url.pathname}}</span>,
+        path: <span class="property-value">'{{url.pathname}}'</span>,
         method: <span class="property-value">'POST'</span>,
         headers: {{'{'}}
             <span class="property-value">'Content-Type': 'application/json'</span>,
