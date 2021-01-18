@@ -15,3 +15,4 @@ package-lock.json
 /_integrations/.Net/obj/*
 /_integrations/Php/vendor/*
 /_integrations/Nodejs/node_modules
+/_integrations/Nodejs/.env
