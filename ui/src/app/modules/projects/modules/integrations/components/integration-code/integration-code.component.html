@@ -2,7 +2,7 @@
     <mat-card>
         <mat-card-header class="header">
             <!-- <span class="material-icons">content_copy</span>     -->
-            <mat-icon matTooltip="Copy" class="copy-icon" [cdkCopyToClipboard]="copyCode()">content_copy</mat-icon>
+            <mat-icon matTooltip="Copy" class="copy-icon" (click)="copyCode()">content_copy</mat-icon>
         </mat-card-header>
         <mat-card-content>
             <pre *ngIf="name === 'net'" class="code">

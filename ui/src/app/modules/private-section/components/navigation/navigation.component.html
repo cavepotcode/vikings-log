@@ -47,7 +47,7 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item [cdkCopyToClipboard]="item.apiKey">
+                        <button mat-menu-item  (click)="copyItem(item.apiKey)">
                           <mat-icon >vpn_key</mat-icon>
                           <span>App-Key</span>
                         </button>

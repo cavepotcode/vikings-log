@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-integration-code',
@@ -16,7 +17,7 @@ export class IntegrationCodeComponent implements OnInit {
     public php: string;
     public node: string;
 
-    constructor(private clipboard: Clipboard) {
+    constructor(private clipboard: Clipboard, private toast: ToastrService) {
     }
 
     ngOnInit(): void {
@@ -24,8 +25,8 @@ export class IntegrationCodeComponent implements OnInit {
     }
 
     loadCode() {
-        this.net = 
-        `
+        this.net =
+            `
         Log data = new Log()
         {
             message = "unhandled error",
@@ -45,8 +46,8 @@ export class IntegrationCodeComponent implements OnInit {
         using HttpResponseMessage response = client.PostAsync(${this.url},content).Result;
         string strJson = response.Content.ReadAsStringAsync().Result;
         `;
-        this.php = 
-        `
+        this.php =
+            `
             $body =  new Log();
             $body->message = "unhandled error";
             $body->type = "php";
@@ -70,8 +71,8 @@ export class IntegrationCodeComponent implements OnInit {
             curl_close($ch); 
         `;
 
-        this.node = 
-        `
+        this.node =
+            `
         let  data = {
             message : 'unhandled error',
             type :'nodejs',
@@ -111,16 +112,17 @@ export class IntegrationCodeComponent implements OnInit {
         })
         `;
     }
-    copyCode(){
-        if(this.name === 'net'){
-            return this.net;
+    copyCode() {
+        if (this.name === 'net') {
+            this.clipboard.copy(this.net);
         }
-        if(this.name === 'php'){
-            return this.php;
+        if (this.name === 'php') {
+            this.clipboard.copy(this.php);
         }
-        if(this.name === 'node'){
-            return this.node;
+        if (this.name === 'node') {
+            this.clipboard.copy(this.node);
         }
+        this.toast.info(`${this.name.toUpperCase()} code has been copied`);
     }
 
 }
