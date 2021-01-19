@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewProjectModalComponent } from 'src/app/modules/projects/components/new-project-modal/new-project-modal.component';
 import { DeleteProjectModalComponent } from 'src/app/modules/projects/components/delete-project-modal/delete-project-modal.component';
 import { Router } from '@angular/router';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-navigation',
@@ -49,7 +51,9 @@ export class NavigationComponent {
         private breakpointObserver: BreakpointObserver,
         private commandBarSidenavService: SidenavService,
         private dialog: MatDialog,
-        private router:Router) {
+        private router:Router,
+        private clipboard: Clipboard,
+        private toast: ToastrService) {
 
     }
 
@@ -91,6 +95,11 @@ export class NavigationComponent {
 
     public openIntegrations(){
         this.router.navigate(['/private/projects/integrations']);
+    }
+    public copyItem(appkey: string){
+        this.clipboard.copy(appkey);
+
+        this.toast.info('APP-KEY has been copied');
     }
 
 }
