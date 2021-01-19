@@ -1,15 +1,18 @@
+require('dotenv').config();
 const http = require('http');
 
 exports.registerlog = (object,level) => {
     try {
+        const myUrl = new URL(process.env.API_LOGS_URL);
+
         const options = {
-            host: 'localhost',
-            port: 8099,
-            path: `/v1/logs/${level}`,
+            host: myUrl.hostname,
+            port: myUrl.port,
+            path: myUrl.pathname + `${level}`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'apikey': 'b136e785-2cd5-48b6-bdd7-012d6af138bb'
+                'apikey': `${process.env.API_LOGS_KEY}`
             }
         }
         return new Promise((resolve,rejects) => {

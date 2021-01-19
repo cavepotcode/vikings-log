@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NecoreComponent } from './necore.component';
+import { IntegrationCodeComponent } from './integration-code.component';
 
-describe('NecoreComponent', () => {
-  let component: NecoreComponent;
-  let fixture: ComponentFixture<NecoreComponent>;
+describe('IntegrationCodeComponent', () => {
+  let component: IntegrationCodeComponent;
+  let fixture: ComponentFixture<IntegrationCodeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NecoreComponent ]
+      declarations: [ IntegrationCodeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NecoreComponent);
+    fixture = TestBed.createComponent(IntegrationCodeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
