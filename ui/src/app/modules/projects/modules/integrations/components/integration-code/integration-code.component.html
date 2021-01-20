@@ -1,0 +1,107 @@
+<div class="integration-screen">
+    <mat-card>
+        <mat-card-header class="header">
+            <!-- <span class="material-icons">content_copy</span>     -->
+            <mat-icon matTooltip="Copy" class="copy-icon" (click)="copyCode()">content_copy</mat-icon>
+        </mat-card-header>
+        <mat-card-content>
+            <pre *ngIf="name === 'net'" class="code">
+    <span class="comments">//Create object</span>
+    <span class="class">Log</span> data = <span class="variable-type">new</span> <span class="class">Log</span>()
+    {{'{'}}
+        message = <span class="property-value">"unhandled error"</span>,
+        type = <span class="property-value"> error</span>,
+        exception = <span class="variable-type">new</span> <span class="class">LogException</span>(){{'{'}} 
+            code = (<span class="variable-type">int</span>)HttpStatusCode.InternalServerError, 
+            message = error.Error.Message, 
+            stack = error.Error.StackTrace
+        {{'}'}}
+    {{'}'}}
+
+    <span class="comments">//Send information</span>
+
+    <span class="class">MediaTypeFormatter</span> jsonFormatter = <span class="variable-type">new</span> <span class="class">JsonMediaTypeFormatter</span>();
+    <span class="class">HttpContent</span> content = new <span class="class">ObjectContent</span><span class="variable-type">object</span>>(data, jsonFormatter);
+    
+    using <span class="class">HttpClient</span> client = <span class="variable-type">new</span> <span class="class">HttpClient</span>();
+    client.DefaultRequestHeaders.<span class="method-arg">Add</span>(<span class="property-value">"apikey"</span>,<span class="property-value">"***"</span>);
+    using <span class="class">HttpResponseMessage</span> response = client.<span class="method-arg">PostAsync</span>(<span class="property-value">{{url}}</span>,content).Result;
+    string strJson = response.Content.<span class="method-arg">ReadAsStringAsync</span>().Result;
+            </pre>
+            <pre *ngIf="name === 'php'" class="code">
+    <span class="comments">//Create object</span>
+
+    $body =  new <span class="class">Log</span>();
+    $body->message = <span class="property-value">"unhandled error"</span>;
+    $body->type = <span class="property-value">"php"</span>;
+    $body->exception = new <span class="class">LogException</span>();
+    $body->exception->code = <span class="numbers">500</span>;
+    $body->exception->message = <span class="property-value">"Message"</span>;
+    $body->exception->stack =<span class="property-value">"Stack"</span>;
+
+    <span class="comments">//Send information</span>
+    $url = <span class="property-value">"{{url}}"</span>
+    $payload = <span class="method-arg">json_encode</span>($body);
+    $ch = <span class="method-arg">curl_init</span>($url);
+    <span class="method-arg">curl_setopt</span>($ch, <span class="curtlop">CURLOPT_POST</span>,<span class="numbers">1</span>);
+    <span class="method-arg">curl_setopt</span>($ch, <span class="curtlop">CURLOPT_POSTFIELDS</span>, $payload);
+    <span class="method-arg">curl_setopt</span>($ch, <span class="curtlop">CURLOPT_HTTPHEADER</span>, <span class="method-arg">array</span>(
+        <span class="property-value">'Content-Type:application/json'</span>,
+        <span class="property-value">'apikey: ***'</span>
+    ));
+    <span class="method-arg">curl_setopt</span>($ch, <span class="curtlop">CURLOPT_RETURNTRANSFER</span>,<span class="variable-type"> true</span>);
+
+    $result = <span class="method-arg">curl_exec</span>($ch);
+    <span class="method-arg">curl_close</span>($ch); 
+            </pre>
+            <pre *ngIf="name === 'node'" class="code">
+    <span class="comments">//Create object</span>
+
+    <span class="variable-type"><strong>let</strong></span>  data = {{'{'}}
+        message : <span class="property-value">'unhandled error'</span>,
+        type :<span class="property-value">'nodejs'</span>,
+        info : {{'{'}}
+            message: <span class="property-value">"Important error"</span>
+        {{'}'}},
+        exception : {{'{'}}
+            code : <span class="numbers">500</span>,
+            message : <span class="property-value">'message'</span>,
+            stack : <span class="property-value">'stack'</span>
+        {{'}'}}
+    {{'}'}}
+
+    <span class="comments">//Send information</span>
+
+    <span class="variable-type"><strong>const</strong></span> <span class="variable-name">options</span> = {{'{'}}
+        host: <span class="property-value">'{{url.hostname}}'</span>,
+        port: <span class="numbers">{{url.port}}</span>,
+        path: <span class="property-value">'{{url.pathname}}'</span>,
+        method: <span class="property-value">'POST'</span>,
+        headers: {{'{'}}
+            <span class="property-value">'Content-Type': 'application/json'</span>,
+            <span class="property-value">'apikey':'***'</span>
+        {{'}'}}
+    {{'}'}}
+
+    <span class="keywords">return</span> <span class="variable-type">new</span> <span class="class">Promise</span>((<span class="method-arg">resolve</span>,<span class="method-arg">rejects</span>)<span class="variable-type"> =></span> {{'{'}}
+        <span class="variable-type">const</span><span class="variable-name"> req</span> = <span class="class">http</span>.<span class="method-arg">request</span>(<span class="variable-name">options</span>,res <span class="variable-type"> =></span> {{'{'}}
+            res.<span class="method-arg">on</span>(<span class="property-value">'data'</span>,d => {{'{'}}
+                process.stdout.<span class="method-arg">write</span>(d)
+                <span class="method-arg">resolve</span>(d)
+            {{'}'}})
+            <span class="variable-name">req</span>.<span class="method-arg">on</span>(<span class="property-value">'error'</span>,error => {{'{'}}
+                console.error(error)
+                <span class="method-arg">rejects</span>(error)
+            {{'}'}})
+            <span class="variable-name">req</span>.<span class="method-arg">write</span>(JSON.stringify(data))
+            <span class="variable-name">req</span>.<span class="method-arg">end</span>()
+    {{'}'}})
+            </pre>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-footer class="align-right">
+            <span><strong>Github: </strong><a href="https://github.com/cavepotcode/vikings-log" target="_blank">https://github.com/cavepotcode/vikings-log</a></span>
+        </mat-card-footer>
+
+    </mat-card>
+</div>

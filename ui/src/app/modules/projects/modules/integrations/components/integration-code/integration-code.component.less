@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/robotomono/v12/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vq_ROW4.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  
+@color_blue:#0000FF;
+@color_navy:#001080;
+@color_orange:#A31515;
+@color_sky:#0070C1;
+@color_keywords:#AF00DB;
+@color_numbers:#098658;
+@color_class:#4892A8;
+@color_method_arg:#795E26;
+@color_black:#000000;
+@color_red:#DC143C;
+
+.integration-screen{
+    .mat-card{
+         background-color: #FAFAFA;
+
+        .header{
+            display: flex;
+            justify-content: flex-end;
+            .copy-icon{
+                cursor: pointer;
+            }
+        }
+
+    }
+    .align-right{
+        text-align: right;
+    }
+    .mat-card-content{
+        overflow-x: hidden; 
+        max-height: 580px;
+    }
+    .code{
+        font-family: 'Roboto Mono', monospace;
+        text-align:left;
+        color:@color_navy;
+    
+        .variable-type{
+            color:@color_blue;
+        }
+        .variable-name{
+            color:@color_sky;
+        }
+        .property-value{
+            color:@color_orange;
+        }
+        .keywords{
+            color:@color_keywords;
+        }
+        .numbers{
+            color:@color_numbers;
+        }
+        .class{
+            color:@color_class;
+        }
+        .method-arg{
+            color:@color_method_arg;
+        }
+        .curtlop{
+            color:@color_black;
+        }
+        .comments{
+            color:@color_red;
+          }
+    }
+}

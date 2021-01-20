@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Constants } from 'src/app/shared/consts/app-constants';
 import { ILogsFilter } from 'src/app/shared/interfaces/ILogs';
 import { LogService } from '../../../services/log/log.service';
 
@@ -10,14 +11,17 @@ import { LogService } from '../../../services/log/log.service';
 export class FilterComponent implements OnInit {
     @Output() filterChange = new EventEmitter();
     levelsCode: Array<String>;
+    statusLog: Array<String>;
     selectedlevel: string;
     selectedkey: string;
     selectedDateFrom: string;
     selectedDateTo: string;
+    selectedStatusLog: string;
     constructor(private logService: LogService) { }
 
     ngOnInit(): void {
         this.getlevelsCode();
+        this.getStatusLog();
     }
 
     public getlevelsCode() {
@@ -26,11 +30,24 @@ export class FilterComponent implements OnInit {
         });
     }
 
+    public getStatusLog() {
+        this.logService.statusLog().subscribe((status: any) => {
+            this.statusLog = status;
+        });
+    }
+
+
     public onKey(event: any) {
-        this.selectedkey = event.target.value;
-        if (this.selectedkey.length > 2) {
+        let lettercount = event.target.value.length;
+        if (lettercount > 2) {
+            this.selectedkey = event.target.value;
             this.filter();
         }
+        if (lettercount == 0) {
+            this.selectedkey = '';
+            this.filter();
+        }
+
     }
 
     public selectedDates() {
@@ -42,7 +59,9 @@ export class FilterComponent implements OnInit {
     public filter() {
         const filter: ILogsFilter = {
             level: this.selectedlevel,
-            text: this.selectedkey
+            text: this.selectedkey,
+            status: this.selectedStatusLog
+
         }
         if (this.selectedDateFrom && this.selectedDateTo) {
             filter['dateFrom'] = this.selectedDateFrom;
@@ -56,6 +75,7 @@ export class FilterComponent implements OnInit {
         this.selectedkey = '';
         this.selectedDateFrom = '';
         this.selectedDateTo = '';
+        this.selectedStatusLog = '';
         this.filter();
     }
 

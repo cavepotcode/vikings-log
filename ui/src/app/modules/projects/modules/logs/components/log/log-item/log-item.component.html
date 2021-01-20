@@ -3,24 +3,28 @@
 
         <div class="select-item">
             <div class="select-item-info level-indicator"
-                [ngClass]="{'error': log.level === 'error','info': log.level === 'info'}">
-
+                [ngClass]="{'error': log.log.level === 'error','info': log.log.level === 'info'}">
             </div>
-            <mat-checkbox class="select-item-info"></mat-checkbox>
+            <mat-checkbox class="select-item-info" [(ngModel)]="log.completed" (ngModelChange)="updateAllComplete()"></mat-checkbox>
+
         </div>
         <div class="item-info">
             <div class="title">
-                <a>{{log.message}}</a>
+                <a>{{log?.log.message}}</a>
             </div>
             <div class="error-location">
-                <span>{{log.exception.message}}</span>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-basic-chip selected  class="chip-label {{log.log.level}}">{{log.log.level}}</mat-basic-chip>
+                    <mat-basic-chip selected *ngIf="log.log.status!='active'" class="chip-label status">{{log.log.status}}</mat-basic-chip>
+                    <span>{{log.log.exception.message}}</span>
+                </mat-chip-list>
             </div>
-            <app-log-item-detail [stack]="log.exception" [info]="log.info"></app-log-item-detail>
+            <app-log-item-detail [stack]="log.log.exception" [info]="log.log.info"></app-log-item-detail>
             <div class="footer">
-                <img src="https://img.icons8.com/color/22/000000/{{log.type.toLowerCase()}}.png" />
-                <span>{{log.type}}</span>
+                <img src="https://img.icons8.com/color/22/000000/{{log.log.type.toLowerCase()}}.png" />
+                <span>{{log.log.type}}</span>
                 <mat-icon aria-hidden="false" aria-label="watch">watch_later</mat-icon>
-                <span>{{log.date | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+                <span>{{log.log.date | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
             </div>
         </div>
     </div>

@@ -11,3 +11,9 @@
 /ui/package-lock.json
 /api/package-lock.json
 package-lock.json
+
+/_integrations/.Net/bin/*
+/_integrations/.Net/obj/*
+/_integrations/Php/vendor/*
+/_integrations/Nodejs/node_modules
+/_integrations/Nodejs/.env

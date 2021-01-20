@@ -9,6 +9,7 @@ import { SharedModule } from '../../../../src/app/shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { RouterModule } from '@angular/router';
+
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
