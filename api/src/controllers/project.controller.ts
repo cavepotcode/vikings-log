@@ -13,18 +13,18 @@ export class ProjectController {
 
     constructor(private projectService: ProjectService, private userService: UserService) { }
 
-    @Authorize()
-    @Get('/projects')
-    public async projects(request: any) {
-        try {
-            const user = await this.userService.get(request.user.email);
-            const projects = await this.projectService.list(user.projects);
-            return new Response(ResponseCode.OK, '', projects);
-        } catch (err) {
-            Log.error(`user/projects`, err);
-            return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
-        }
-    }
+    // @Authorize()
+    // @Get('/projects')
+    // public async projects(request: any) {
+    //     try {
+    //         const user = await this.userService.get(request.user.email);
+    //         const projects = await this.projectService.list(user.projects);
+    //         return new Response(ResponseCode.OK, '', projects);
+    //     } catch (err) {
+    //         Log.error(`user/projects`, err);
+    //         return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
+    //     }
+    // }
 
     @Authorize()
     @Post('/projects')

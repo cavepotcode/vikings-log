@@ -68,4 +68,10 @@ export class LogService {
         const projRepository = await getRepository(Log);
         return await projRepository.findOneAndUpdate({ _id: new ObjectID(body.id) }, { $set: { status: body.status } });
     }
+
+    async countLogsByProjectId(id:string){
+        const projRepository = await getRepository(Log);
+        const condition = { project: new ObjectID(id) }
+        return  await projRepository.count(condition);
+    }
 }

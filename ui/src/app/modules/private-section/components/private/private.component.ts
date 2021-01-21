@@ -15,6 +15,7 @@ export class PrivateComponent implements OnInit {
     user: any;
     sub: any;
     id: any;
+    text:string;
 
     constructor(
         private userService: UserService,
@@ -30,12 +31,8 @@ export class PrivateComponent implements OnInit {
     }
 
     public getProjects() {
-        this.userService.projects().subscribe((response: any) => {
-            console.log('response projects', response);
+        this.userService.projects(this.text).subscribe((response: any) => {
             this.projects = response;
-            //      var storedProject = this.localSt.retrieve('currentProject');
-            //    this.defaultProject = storedProject === null ? this.projectChange(this.projects[0].id) : storedProject;
-            // this.router.navigate(['/private/logs', this.projects[0].id]);
         });
     }
 

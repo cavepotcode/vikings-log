@@ -1,4 +1,4 @@
-import { JsonController, Get, Post, Body, Authorize, Put, Param, HeaderParam } from 'kiwi-server';
+import { JsonController, Get, Post, Body, Authorize, Put, Param, HeaderParam, QueryParam } from 'kiwi-server';
 import { UserIn, LoginIn, ForgotPasswordIn, ResetPasswordIn } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { ProjectService } from '../services/project.service';
@@ -11,12 +11,14 @@ import { Project } from '../datastore/entities';
 import { v4 as uuidv4 } from 'uuid';
 import { ObjectID as ObjectIDType } from 'typeorm'
 import { ObjectID } from 'mongodb';
+import { ProjectListIn } from '../models/project.models';
+import { LogService } from '../services/log.service';
 
 @JsonController('/user')
 export class UserController {
 
 
-    constructor(private authService: AuthService, private projectService: ProjectService, private userService: UserService) { }
+    constructor(private authService: AuthService, private projectService: ProjectService, private userService: UserService, private logService: LogService) { }
 
     @Post('/login')
     public post(@Body() body: LoginIn) {
@@ -52,10 +54,14 @@ export class UserController {
 
     @Authorize()
     @Get('/projects')
-    public async projects(request: any) {
+    public async projects(@QueryParam() body: ProjectListIn,request: any) {
         try {
             const user = await this.userService.get(request.user.email);
-            const projects = await this.projectService.list(user.projects);
+            let projects = await this.projectService.list(user.projects,body?.text);
+            for(let item in projects){
+                projects[item].countLogs = await this.logService.countLogsByProjectId(projects[item].id);
+            }
+
             return new Response(ResponseCode.OK, '', projects);
         } catch (err) {
             Log.error(`user/projects`, err);

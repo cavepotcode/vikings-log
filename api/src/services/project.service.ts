@@ -19,9 +19,17 @@ export class ProjectService {
         return await projRepository.findOne(condition);
     }
 
-    async list(project_ids: Array<ObjectIDType>) {
+    async list(project_ids: Array<ObjectIDType>, text: string) {
         const projRepository = await getRepository(Project);
-        const condition = { where: { _id: { $in: project_ids }, status: StatusProject.ENABLED } }
+        const condition =
+        {
+            where:
+            {
+                _id: { $in: project_ids },
+                status: StatusProject.ENABLED,
+                name: new RegExp(text),
+            }
+        }
         return await projRepository.find(condition);
     }
 
@@ -32,6 +40,6 @@ export class ProjectService {
 
     async delete(id: string) {
         const projRepository = await getRepository(Project);
-        return await projRepository.findOneAndUpdate({_id: new ObjectID(id) },{$set:{status: StatusProject.DISABLED}});
+        return await projRepository.findOneAndUpdate({ _id: new ObjectID(id) }, { $set: { status: StatusProject.DISABLED } });
     }
 }
