@@ -1,13 +1,11 @@
 version: '3'
 services:
     migrate:
-        #image: public.ecr.aws/a4v3h0f0/vikingslog:v1
         image: vikingslog
         command: npm run migrate_run_prod
         env_file:
             - 'api/.env.prod'
     server:
-        #image: public.ecr.aws/a4v3h0f0/vikingslog:v1
         image: vikingslog
         ports:
             - "80:80"
@@ -18,7 +16,5 @@ services:
         environment:
             - MODE=dev
         command: npm run serve_prod
-        #command: nginx -g 'daemon off';
-        #command: forever start api/dist/default/src/server.js && nginx
         env_file:
             - 'api/.env.prod'
