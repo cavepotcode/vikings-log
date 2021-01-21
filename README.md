@@ -35,3 +35,21 @@ Bellow you can see the available services
 * POST `/log/error` (creates a log entry with error level) [message, stacktrace]
 
 Every services needs to send the apikey of the client on the http headers
+
+### Docker
+```
+docker build -t vikingslog -f Dockerfile . 
+docker-compose up server
+docker-compose up migrate
+```
+
+#### Docker push images
+```
+docker tag vikingslog public.ecr.aws/a4v3h0f0/vikingslog:v1
+docker push public.ecr.aws/a4v3h0f0/vikingslog:v1
+```
+
+### Fargate
+```
+aws ecs run-task --launch-type FARGATE --cluster vikings-log --task-definition Migrations --network-configuration "awsvpcConfiguration={subnets=[subnet-7b90921e],securityGroups=[sg-01acd29184121e7b5],assignPublicIp=ENABLED}" --region sa-east-1
+```

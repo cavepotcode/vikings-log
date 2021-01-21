@@ -1,34 +1,37 @@
 {
-  "name": "vikings-log",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install-ui": "cd ui && npm i",
-    "install-api": "cd api && npm i",
-    "install": "npm run install-ui && npm run install-api",
-    "compile": "cd api && kc build",
-    "serve": "npm run compile && node ./api/dist/default/src/server.js",
-    "serve-ui": "cd ui && ng serve",
-    "migrate_run": "cd api && kc build && npx typeorm migration:run --config .env",
-    "migrate_revert": "cd api && kc build && npx typeorm migration:revert  --config .env"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://ollita7:6d8231324d033d26d3e6577b54e46f55297e35d1@github.com/cavepotcode/vikings-log.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cavepotcode/vikings-log/issues"
-  },
-  "homepage": "https://github.com/cavepotcode/vikings-log#readme",
-  "devDependencies": {
-    "@types/node": "^14.14.13"
-  },
-  "dependencies": {
-    "mongodb": "^3.6.3",
-    "uuid": "^8.3.2"
-  }
+    "name": "vikings-log",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "install-ui": "cd ui && npm i",
+        "install-api": "cd api && npm i",
+        "install": "npm run install-ui && npm run install-api",
+        "compile": "cd api && kc build",
+        "compile-ui-prod": "cd ui && ng build --configuration production",
+        "serve": "npm run compile && node ./api/dist/default/src/server.js",
+        "serve-ui": "cd ui && ng serve",
+        "migrate_run": "cd api && kc build && npx typeorm migration:run --config .env",
+        "migrate_revert": "cd api && kc build && npx typeorm migration:revert  --config .env",
+        "migrate_run_prod": "cd api && npx typeorm migration:run",
+        "serve_prod": "forever start api/dist/default/src/server.js && nginx -g 'daemon off'\\;"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://ollita7:6d8231324d033d26d3e6577b54e46f55297e35d1@github.com/cavepotcode/vikings-log.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/cavepotcode/vikings-log/issues"
+    },
+    "homepage": "https://github.com/cavepotcode/vikings-log#readme",
+    "devDependencies": {
+        "@types/node": "^14.14.13"
+    },
+    "dependencies": {
+        "mongodb": "^3.6.3",
+        "uuid": "^8.3.2"
+    }
 }

@@ -6,6 +6,7 @@
 /node_modules
 /api/dist
 /api/.env
+/api/.env.prod
 /log
 /ui/package-lock.json
 /api/package-lock.json
