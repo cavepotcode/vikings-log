@@ -5,4 +5,5 @@ export interface IProject {
     apiKey: string;
     id?: string
     type?: string;
+    countLogs?:number;
 }

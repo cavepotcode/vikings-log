@@ -14,3 +14,12 @@ export function ValidatePassowrd(passwordName: string, password2Name: string, me
     }
   };
 }
+
+export function ValidateBlanks(projectName:string, message:string){
+    return (formGroup:FormGroup)=>{
+        const project = formGroup.controls[projectName];
+        if((project.value as string).indexOf(' ') >= 0){
+            project.setErrors({cannotContainSpace: message})
+        }
+    }
+}

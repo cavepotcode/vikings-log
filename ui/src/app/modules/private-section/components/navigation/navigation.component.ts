@@ -46,18 +46,22 @@ export class NavigationComponent {
             map(result => result.matches),
             shareReplay()
         );
+    selectedkey: string;
+    filter:boolean;
+    
 
     constructor(
         private breakpointObserver: BreakpointObserver,
         private commandBarSidenavService: SidenavService,
         private dialog: MatDialog,
-        private router:Router,
+        private router: Router,
         private clipboard: Clipboard,
         private toast: ToastrService) {
 
     }
 
     public ngOnInit(): void {
+
         this.commandBarSidenavService.setSidenav(this.sidenav);
     }
 
@@ -86,20 +90,44 @@ export class NavigationComponent {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.projectNew.emit();
-                if(this.router.url === `/private/projects/project/${id}/logs`){
+                if (this.router.url === `/private/projects/project/${id}/logs`) {
                     this.router.navigate(['private']);
                 }
             }
         });
     }
 
-    public openIntegrations(){
+    public openIntegrations() {
         this.router.navigate(['/private/projects/integrations']);
     }
-    public copyItem(appkey: string){
+    public copyItem(appkey: string) {
         this.clipboard.copy(appkey);
-
         this.toast.info('APP-KEY has been copied');
+    }
+
+    public onKey(event: any) {
+        let lettercount = event.target.value.length;
+        if (lettercount > 2) {
+            this.selectedkey = event.target.value;
+            this.filterProjects();
+        }
+        if (lettercount == 0) {
+            this.selectedkey = '';
+            this.filterProjects();
+        }
+
+    }
+
+    public filterProjects(){
+        if(!this.selectedkey){
+            this.filter = false;
+            return this.projects;
+        }
+        else{
+            this.filter = true;
+            return this.projects.filter(item => item.title.match(this.selectedkey))
+        }
+        return [];
     }
 
 }

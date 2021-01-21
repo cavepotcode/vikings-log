@@ -26,41 +26,56 @@
 
     <mat-sidenav #navigationSidenav [opened]="true" mode="side" role="navigation">
         <!-- <mat-nav-list dense> -->
+        <mat-form-field class="search-form-field" appearance="fill">
+            <mat-icon class="search" matPrefix>search</mat-icon>
+            <input matInput (keyup)="onKey($event)" placeholder="Search Project" autocomplete="off">
+        </mat-form-field>
         <mat-nav-list>
             <div class="title">
                 <h2 matSubheader> {{ constants.PROJECTS }} </h2>
                 <div class="addProject" (click)="openAddProjectDialog()" matTooltip="Add new project">
-                    <mat-icon class="material-icons" 
-                        >add</mat-icon>
+                    <mat-icon class="material-icons">add</mat-icon>
                     <span>New Project</span>
                 </div>
             </div>
-            <ng-container *ngIf="projects">
+            <ng-container>
                 <a mat-list-item routerLink="/" style="height: 0;"></a>
 
-                <div class="project-item" *ngFor="let item of projects">
+                <div class="no-projects" *ngIf="filterProjects().length === 0 && filter">
+                    <span>No results found for '{{selectedkey}}'</span>
+                </div>
+                <div class="no-projects" *ngIf="projects.length === 0 && !filter">
+                    <span>No projects yet</span>
+                </div>
+
+                <div class="project-item" *ngFor="let item of filterProjects()">
                     <a mat-list-item [routerLink]="[item.route]" routerLinkActive="list-item-active">
                         <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
-                        {{item.title}}
+
+                        <span matBadgeSize="small" matBadge='{{item.countLogs}}'
+                            matBadgeOverlap="false">{{item.title}}</span>
+
+
                     </a>
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item  (click)="copyItem(item.apiKey)">
-                          <mat-icon >vpn_key</mat-icon>
-                          <span>App-Key</span>
+                        <button mat-menu-item (click)="copyItem(item.apiKey)">
+                            <mat-icon>vpn_key</mat-icon>
+                            <span>App-Key</span>
                         </button>
-                        <button mat-menu-item [disabled]="" (click)="openDeleteProjectDialog(item.id,item.title)" >
-                          <mat-icon class="delete-icon" >delete_forever</mat-icon>
-                          <span>Delete</span>
+                        <button mat-menu-item [disabled]="" (click)="openDeleteProjectDialog(item.id,item.title)">
+                            <mat-icon class="delete-icon">delete_forever</mat-icon>
+                            <span>Delete</span>
                         </button>
-                      </mat-menu>
+                    </mat-menu>
                 </div>
 
                 <mat-divider></mat-divider>
 
             </ng-container>
+
             <div class="title">
                 <h2 matSubheader> Options</h2>
             </div>

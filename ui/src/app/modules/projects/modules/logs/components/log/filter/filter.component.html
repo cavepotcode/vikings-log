@@ -2,7 +2,7 @@
     <div fxLayout="row">
         <mat-form-field fxFlex appearance="fill">
             <mat-label>Search</mat-label>
-            <input (keyup)="onKey($event)" matInput [(ngModel)]="selectedkey">
+            <input (keyup)="onKey($event)" matInput [(ngModel)]="selectedkey" autocomplete="off">
         </mat-form-field>
 
         <mat-form-field fxFlex appearance="fill">

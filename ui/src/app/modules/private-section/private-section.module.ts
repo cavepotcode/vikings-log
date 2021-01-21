@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatBadgeModule} from '@angular/material/badge';
 // import { MatPaginator } from '@angular/material/paginator';
 
 
@@ -26,7 +27,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         PrivateRouting,
         LayoutModule,
         SharedModule,
-        MatDialogModule
+        MatDialogModule,
+        MatBadgeModule
     ]
 })
 export class PrivateSectionModule { }
