@@ -1,4 +1,4 @@
-import { createKiwiServer, IKiwiOptions, AuthorizeResponse } from 'kiwi-server';
+import { createKiwiServer, IKiwiOptions, AuthorizeResponse, getSocket } from 'kiwi-server';
 import * as http from 'http';
 import { LogController } from './controllers/log.controller'
 import { UserController } from './controllers/user.controller'
@@ -6,6 +6,8 @@ import { AuthService } from './services/auth.service';
 import { HeadersMiddleware } from './middlewares/headers.middleware.before';
 import { ProjectController } from './controllers/project.controller';
 import { GenericController } from './controllers/generic.controller';
+import { isObject } from 'util';
+import { Http2ServerResponse } from 'http2';
 
 async function validateAuthentication(request: http.IncomingMessage, roles: Array<string>): Promise<AuthorizeResponse | boolean> {
     const token = request.headers['authorization'];
@@ -31,6 +33,19 @@ const options: IKiwiOptions = {
     },
     prefix: '/v1',
     log: true,
-    port: 8099
+    port: 8099,
+    socket:true
 }
-const server = createKiwiServer(options);
+const server = createKiwiServer(options,socketInit);
+
+
+function socketInit() {
+    const io = getSocket();
+    
+    io.on('connection', (socket: any) => {
+        socket.userId  = socket.handshake.query.user;
+    });
+}
+
+
+

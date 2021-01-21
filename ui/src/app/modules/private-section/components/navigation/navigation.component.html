@@ -28,7 +28,7 @@
         <!-- <mat-nav-list dense> -->
         <mat-form-field class="search-form-field" appearance="fill">
             <mat-icon class="search" matPrefix>search</mat-icon>
-            <input matInput (keyup)="onKey($event)" placeholder="Search Project" autocomplete="off">
+            <input matInput (keyup)="onKey($event)" placeholder="Filter Project" autocomplete="off">
         </mat-form-field>
         <mat-nav-list>
             <div class="title">
@@ -41,25 +41,25 @@
             <ng-container>
                 <a mat-list-item routerLink="/" style="height: 0;"></a>
 
-                <div class="no-projects" *ngIf="filterProjects().length === 0 && filter">
+                <div class="no-projects" *ngIf="filterProjects()?.length === 0 && filter">
                     <span>No results found for '{{selectedkey}}'</span>
                 </div>
-                <div class="no-projects" *ngIf="projects.length === 0 && !filter">
+                <div class="no-projects" *ngIf="projects?.length === 0 && !filter">
                     <span>No projects yet</span>
                 </div>
 
                 <div class="project-item" *ngFor="let item of filterProjects()">
-                    <a mat-list-item [routerLink]="[item.route]" routerLinkActive="list-item-active">
-                        <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
+                    <div class="mat-list-item" [routerLink]="[item.route]" routerLinkActive="list-item-active">
+                        <div>
+                            <mat-icon matBadgeSize="small" matBadge='{{item.countLogs}}' matBadgeOverlap="true"
+                                matBadgePosition="before" matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
+                            <span>{{item.title}}</span>
+                        </div>
+                        <a mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </a>
+                    </div>
 
-                        <span matBadgeSize="small" matBadge='{{item.countLogs}}'
-                            matBadgeOverlap="false">{{item.title}}</span>
-
-
-                    </a>
-                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="copyItem(item.apiKey)">
                             <mat-icon>vpn_key</mat-icon>
@@ -81,7 +81,7 @@
             </div>
             <ng-container>
                 <a mat-list-item [routerLink]="'/private/projects/integrations'" routerLinkActive="list-item-active">
-                    <mat-icon matListIcon class="nav-list-icon">integration_instructions </mat-icon>
+                    <mat-icon matListIcon >integration_instructions </mat-icon>
                     Integrations
                 </a>
             </ng-container>

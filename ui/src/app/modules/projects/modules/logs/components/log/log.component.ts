@@ -6,6 +6,7 @@ import { ILogs, ILogsFilter } from 'src/app/shared/interfaces/ILogs';
 import { ActivatedRoute } from '@angular/router';
 import { LogService } from '../../services/log/log.service';
 import { PageEvent } from '@angular/material/paginator';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
     selector: 'app-log',
@@ -27,7 +28,8 @@ export class LogDashboardComponent implements OnInit {
 
     constructor(
         private logService: LogService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private socket: Socket
     ) {
 
     }
@@ -38,6 +40,12 @@ export class LogDashboardComponent implements OnInit {
             console.log(this.id);
             this.getLogs(this.id);
         });
+
+        this.socket.on('new-logs',(projectid: string)=>{
+            if(this.id == projectid){
+                this.getLogs(this.id);
+            }
+        })
     }
 
     public getLogs(id: string): void {
