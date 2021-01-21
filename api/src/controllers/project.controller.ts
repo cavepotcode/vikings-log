@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 @JsonController('/project')
 export class ProjectController {
 
-    constructor(private projectService: ProjectService, private userService: UserService) { }
+    constructor(private projectService: ProjectService, private userService: UserService) {}
 
     // @Authorize()
     // @Get('/projects')
@@ -36,6 +36,7 @@ export class ProjectController {
             projectModel.apiKey = request.project.apikey;
             
             const project = await this.projectService.add(projectModel)
+            
             return new Response(ResponseCode.OK, '', project);
         } catch (err) {
             Log.error(`/projects`, err);

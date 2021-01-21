@@ -1,4 +1,4 @@
-import { JsonController, HeaderParam, Post, Get, Body, Param, Authorize, QueryParam, Put } from 'kiwi-server';
+import { JsonController, HeaderParam, Post, Get, Body, Param, Authorize, QueryParam, Put, getSocket } from 'kiwi-server';
 import { ProjectService } from '../services/project.service';
 import { Log } from '../sdk/logs';
 import { Response } from '../sdk/response';
@@ -23,6 +23,7 @@ export class LogController {
                 return new Response(ResponseCode.ERROR, `Project with ${apikey} apiKey doesnt exists`);
             }
             const log = await this.logSvc.create(body, level, project.id);
+            getSocket().emit('new-logs', project.id);
             return new Response(ResponseCode.OK, '');
         } catch (err) {
             Log.error(`log/${level}`, err);
