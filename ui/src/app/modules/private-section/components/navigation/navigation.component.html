@@ -84,6 +84,10 @@
                     <mat-icon matListIcon >integration_instructions </mat-icon>
                     Integrations
                 </a>
+                <a *ngIf="isAdmin()" mat-list-item [routerLink]="'/private/projects/users/list'" routerLinkActive="list-item-active">
+                    <mat-icon matListIcon >person_add</mat-icon>
+                    Users
+                </a>
             </ng-container>
         </mat-nav-list>
 

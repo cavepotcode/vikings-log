@@ -15,11 +15,11 @@ export class ProjectService {
 
     async getById(id: string): Promise<Project> {
         const projRepository = await getRepository(Project);
-        const condition = { _id: new ObjectID(id) }
+        const condition = { where: { _id: new ObjectID(id), status: StatusProject.ENABLED } }
         return await projRepository.findOne(condition);
     }
 
-    async list(project_ids: Array<ObjectIDType>, text: string) {
+    async list(project_ids: Array<ObjectID>, text: string) {
         const projRepository = await getRepository(Project);
         const condition =
         {
@@ -30,6 +30,12 @@ export class ProjectService {
                 name: new RegExp(text),
             }
         }
+        return await projRepository.find(condition);
+    }
+
+    async getAll(): Promise<Project> {
+        const projRepository = await getRepository(Project);
+        const condition = { where: { status: StatusProject.ENABLED, } }
         return await projRepository.find(condition);
     }
 

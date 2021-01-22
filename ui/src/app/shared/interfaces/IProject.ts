@@ -7,3 +7,9 @@ export interface IProject {
     type?: string;
     countLogs?:number;
 }
+export interface IProjectItem {
+    id?: string
+    name?: string
+    apiKey: string;
+    type: string;
+}

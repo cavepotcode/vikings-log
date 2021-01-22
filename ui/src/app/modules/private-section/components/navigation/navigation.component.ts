@@ -9,11 +9,16 @@ import { Constants } from 'src/app/shared/consts/app-constants';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
 import { NewProjectModalComponent } from 'src/app/modules/projects/components/new-project-modal/new-project-modal.component';
-import { DeleteProjectModalComponent } from 'src/app/modules/projects/components/delete-project-modal/delete-project-modal.component';
 import { Router } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ToastrService } from 'ngx-toastr';
 import { Socket } from 'ngx-socket-io';
+import { StateService } from 'src/app/shared/services/state/state.service';
+import { TokenService } from 'src/app/shared/services/token/token.service';
+import { ProjectsService } from 'src/app/modules/projects/services/projects.service';
+import { DeleteModalComponent } from 'src/app/shared/modals/delete-modal/delete-modal.component';
+
+
 
 @Component({
     selector: 'app-navigation',
@@ -48,8 +53,8 @@ export class NavigationComponent {
             shareReplay()
         );
     selectedkey: string;
-    filter :boolean = false;
-    
+    filter: boolean = false;
+
 
     constructor(
         private breakpointObserver: BreakpointObserver,
@@ -58,21 +63,23 @@ export class NavigationComponent {
         private router: Router,
         private clipboard: Clipboard,
         private toast: ToastrService,
-        private socket: Socket) {
+        private socket: Socket,
+        private projectsService: ProjectsService,
+        private tokenService: TokenService) {
 
     }
 
     public ngOnInit(): void {
         this.commandBarSidenavService.setSidenav(this.sidenav);
-        this.socket.on('new-logs',(projectid: string)=>{
+        this.socket.on('new-logs', (projectid: string) => {
             this.logAdded(projectid);
         })
     }
-   
-    public logAdded(projectId: string){
-        this.projects.find(item=>item.id == projectId).countLogs++;
+
+    public logAdded(projectId: string) {
+        this.projects.find(item => item.id == projectId).countLogs++;
     }
-    
+
 
     public projectClick(id: string) {
         this.projectSelected.emit(id);
@@ -90,17 +97,19 @@ export class NavigationComponent {
         });
     }
     public openDeleteProjectDialog(id: string, title: string) {
-        const dialogRef = this.dialog.open(DeleteProjectModalComponent, {
+        const dialogRef = this.dialog.open(DeleteModalComponent, {
             height: '150px',
             width: '600px',
-            data: { id: id, name: title },
+            data: { text: `Are you sure you want to delete "${title.toUpperCase()}" project` },
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.projectNew.emit();
-                if (this.router.url === `/private/projects/project/${id}/logs`) {
-                    this.router.navigate(['private']);
-                }
+                this.projectsService.deleteProject(id).subscribe((data) => {
+                    this.projectNew.emit();
+                    if (this.router.url === `/private/projects/project/${id}/logs`) {
+                        this.router.navigate(['private']);
+                    }
+                });
             }
         });
     }
@@ -126,16 +135,17 @@ export class NavigationComponent {
 
     }
 
-    public filterProjects(){
-        if(!this.selectedkey){
+    public filterProjects() {
+        if (!this.selectedkey) {
             this.filter = false;
             return this.projects;
         }
-        else{
+        else {
             this.filter = true;
             return this.projects.filter(item => item.title.match(this.selectedkey))
         }
-        return [];
     }
-
+    public isAdmin() {
+        return this.tokenService.isAdmin();
+    }
 }

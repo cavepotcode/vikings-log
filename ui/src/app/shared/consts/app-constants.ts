@@ -11,5 +11,9 @@ export enum Constants {
 
     STATUS_ACTIVE = 'active',
     STATUS_INACTIVE = 'inactive',
-    STATUS_IGNORED = 'ignored'
+    STATUS_IGNORED = 'ignored',
+
+    ROLE_USER='user',
+    ROLE_ADMINISTRATOR='administrator',
+
 }

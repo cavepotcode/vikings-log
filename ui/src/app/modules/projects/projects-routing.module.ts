@@ -22,7 +22,8 @@ const routes: Routes = [
         ]
     },
     { path: 'integrations', loadChildren: () => import(`./modules/integrations/integrations.module`).then(m => m.IntegrationsModule) },
-
+    { path: 'users', loadChildren: () => import(`./modules/users/users.module`).then(m => m.UsersModule) },
+    
 ];
 
 @NgModule({

@@ -1,0 +1,61 @@
+<div id="user-form-project-list">
+    <mat-card class="project-selected" *ngIf="itemsSelected.length>0">
+        <mat-card-content fxFlex>
+            <mat-label>Projects selected</mat-label>
+            <mat-chip-list #chipList >
+                <mat-chip *ngFor="let project of itemsSelected" [selectable]="true" [removable]="true"
+                    (removed)="remove(project)">
+                    {{project.name}}
+                    <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="button" mat-raised-button (click)="removeAll()">Remove All</button>
+        </mat-card-actions>
+    </mat-card>
+    <ng-container>
+        <div class="filter-list">
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="onKey($event)" [(ngModel)]="selectedkey" autocomplete="off" #input>
+            </mat-form-field>
+            <mat-card-actions>
+                <button type="button" mat-raised-button (click)="selectAll()">Add All</button>
+            </mat-card-actions>
+        </div>
+    </ng-container>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let row"><img style="width: 39px; margin-top: 7px;"
+                        src='../../../../../../../../assets/img/projects-type/{{row.type.name}}.png' /></td>
+            </ng-container>
+
+            <ng-container matColumnDef="button">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row"> <button mat-stroked-button (click)="selectProject(row)"> Add
+                    </button> </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr class="mat-row" mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4" *ngIf="!filter">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>

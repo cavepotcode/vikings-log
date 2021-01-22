@@ -5,10 +5,9 @@ import { ProjectRouting } from './projects-routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NewProjectModalComponent } from './components/new-project-modal/new-project-modal.component';
-import { DeleteProjectModalComponent } from './components/delete-project-modal/delete-project-modal.component';
 
 @NgModule({
-  declarations: [ProjectsComponent, NewProjectModalComponent, DeleteProjectModalComponent],
+  declarations: [ProjectsComponent, NewProjectModalComponent],
   imports: [
     CommonModule,
     FormsModule,

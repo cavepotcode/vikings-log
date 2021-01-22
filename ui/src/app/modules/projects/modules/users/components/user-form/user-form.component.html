@@ -1,0 +1,52 @@
+<div class="user-form-screen">
+    <mat-card class="user-card">
+        <h1>User Form</h1>
+        <form class="user-form" [formGroup]="userForm" (submit)="submit()" autocomplete="off">
+            <mat-form-field appearance="fill">
+                <mat-label>User</mat-label>
+                <input matInput formControlName="user" autocomplete="off" required>
+                <mat-error *ngIf="form.user.errors">{{userValidation()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" autocomplete="off" required>
+                <mat-error *ngIf="form.email.errors">{{emailValidation()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" *ngIf="!updateUser">
+                <mat-label>Password</mat-label>
+                <div class="password-input">
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" autocomplete="off">
+                    <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-icon matTooltip="refresh" class="refresh" (click)="reGeneratePassword()">refresh</mat-icon>
+                    <mat-icon matTooltip="Copy" class="copy-icon" [cdkCopyToClipboard]="form.password.value">
+                        content_copy</mat-icon>
+                </div>
+                <mat-error *ngIf="form.password.errors">{{passwordValidation()}}</mat-error>
+            </mat-form-field>
+
+            <mat-slide-toggle formControlName="administrador">Administrator</mat-slide-toggle>
+
+
+            <mat-accordion class="project-list">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Add projects
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Selected projects ({{projectsSelected.length}})
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-user-form-project-list [items]="projectsItems" [itemsSelected]="projectsSelected"
+                        (newProjectSelected)=getProjects($event)></app-user-form-project-list>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div class="footer">
+                <button mat-raised-button type="submit">{{submitButton}}</button>
+                <button mat-raised-button type="button" (click)="cancelForm()">Cancel</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

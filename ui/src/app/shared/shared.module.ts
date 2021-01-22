@@ -38,15 +38,20 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { DeleteModalComponent } from './modals/delete-modal/delete-modal.component';
 
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [DeleteModalComponent],
   imports: [
     CommonModule,
-    HttpClientModule    
+    HttpClientModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [
     {
@@ -94,6 +99,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ClipboardModule
   ]
 })
 export class SharedModule { }

@@ -8,5 +8,6 @@ export const environment = {
     secret: process.env.JWT_SECRET,
     timestamp: 60
   },
-  password_secret: process.env.PASSWORD_SECRET
+  password_secret: process.env.PASSWORD_SECRET,
+  socket_path: process.env.SOCKET_PATH
 }

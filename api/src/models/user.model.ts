@@ -1,4 +1,5 @@
-import { IsString, IsEmail } from 'kiwi-server';
+import { IsString } from 'kiwi-server';
+import { Project } from '../datastore/entities';
 
 export class UserIn{
   @IsString() username: string;
@@ -18,4 +19,18 @@ export class ForgotPasswordIn{
 export class ResetPasswordIn{
   @IsString() token: string;
   @IsString() password: string;
+}
+
+export class CreateUserIn{
+    @IsString() username: string;
+    @IsString() email: string;
+    @IsString() role:string;
+    @IsString() password:string;
+    projects: Array<Project>;   
+}
+export class UpdateUserIn{
+    @IsString() username: string;
+    @IsString() email: string;
+    @IsString() role:string;
+    projects: Array<Project>;   
 }
