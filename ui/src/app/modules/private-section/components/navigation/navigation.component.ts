@@ -13,6 +13,7 @@ import { DeleteProjectModalComponent } from 'src/app/modules/projects/components
 import { Router } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ToastrService } from 'ngx-toastr';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
     selector: 'app-navigation',
@@ -47,7 +48,7 @@ export class NavigationComponent {
             shareReplay()
         );
     selectedkey: string;
-    filter:boolean;
+    filter :boolean = false;
     
 
     constructor(
@@ -56,15 +57,22 @@ export class NavigationComponent {
         private dialog: MatDialog,
         private router: Router,
         private clipboard: Clipboard,
-        private toast: ToastrService) {
+        private toast: ToastrService,
+        private socket: Socket) {
 
     }
 
     public ngOnInit(): void {
-
         this.commandBarSidenavService.setSidenav(this.sidenav);
+        this.socket.on('new-logs',(projectid: string)=>{
+            this.logAdded(projectid);
+        })
     }
-
+   
+    public logAdded(projectId: string){
+        this.projects.find(item=>item.id == projectId).countLogs++;
+    }
+    
 
     public projectClick(id: string) {
         this.projectSelected.emit(id);

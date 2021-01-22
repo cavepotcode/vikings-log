@@ -29,8 +29,9 @@
   .sidenav {
     width: 200px;
    .mat-nav-list{
+       
      .mat-list-item { 
-       &.active {
+         &.active {
          background: #fafafa;
        }
      }
@@ -52,15 +53,22 @@
   background: rgba(0, 0, 0, 0.04);
 }
 
-.nav-list-icon {
-  margin: 0 12px 0 12px;
-}
 .project-item{
-    display: flex;
-    justify-content: center;
-    padding-right: 10px;
-       
+    align-content: center;
+    padding: 5px;
+    .mat-list-item{
+        display: flex;
+        padding-top: 10px;
+        justify-content: space-between;
+    }
 }
+.nav-list-icon {
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    margin-left: 20px;
+}
+
 .nav-list-icon-copy{
     display: flex;
     align-self: center;
@@ -99,9 +107,7 @@
 .delete-icon{
     color: #f96a4f;
 }
-.mat-icon-button{
-    margin-top: 7px;
-}
+
 .search{
     position: relative;
     top: 2px;
@@ -111,15 +117,13 @@
     color: white;
 }
 .search-form-field{
-    width: 100%;
-    margin-top: 9px;
-    margin-bottom: 1px;
+    display: block;
+    margin: 9px 10px 1px 10px;
     padding: 0;
 }
 .search-form-field input{
     position: relative;
     bottom: 5px;
-    
 }
 .no-projects{
     display: flex;

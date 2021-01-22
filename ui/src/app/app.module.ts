@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/user/login/login.component';
@@ -24,6 +25,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SharedModule } from './shared/shared.module';
 import { PrivateSectionModule } from './modules/private-section/private-section.module';
 import { StateService } from './shared/services/state/state.service';
+import { environment } from 'src/environments/environment';
+
+const config: SocketIoConfig = { url: `${environment.socket}`, options: {} };
 
 @NgModule({
     declarations: [
@@ -51,6 +55,7 @@ import { StateService } from './shared/services/state/state.service';
         ),
         SharedModule,
         FormsModule,
+        SocketIoModule.forRoot(config)
     ],
     providers: [StateService, Location, { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
