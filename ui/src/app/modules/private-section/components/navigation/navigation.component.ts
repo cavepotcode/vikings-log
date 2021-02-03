@@ -79,11 +79,7 @@ export class NavigationComponent {
             this.logAdded(projectid);
         })
     }
-   
-    public logAdded(projectId: string){
-        this.projects.find(item=>item.id == projectId).countLogs++;
-    }
-    
+      
 
     public projectClick(id: string) {
         this.projectSelected.emit(id);
