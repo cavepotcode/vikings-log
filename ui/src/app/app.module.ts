@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { JwtModule } from "@auth0/angular-jwt";
-
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -29,7 +28,6 @@ import { StateService } from './shared/services/state/state.service';
 import { environment } from 'src/environments/environment';
 
 const config: SocketIoConfig = { url: `${environment.socket}`, options: {} };
-
 export function tokenGetter() {
     return localStorage.getItem("VIKINGS_LOG_AUTHORIZATION");
 }

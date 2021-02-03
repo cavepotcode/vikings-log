@@ -18,8 +18,6 @@ import { TokenService } from 'src/app/shared/services/token/token.service';
 import { ProjectsService } from 'src/app/modules/projects/services/projects.service';
 import { DeleteModalComponent } from 'src/app/shared/modals/delete-modal/delete-modal.component';
 
-
-
 @Component({
     selector: 'app-navigation',
     templateUrl: './navigation.component.html',
@@ -53,8 +51,8 @@ export class NavigationComponent {
             shareReplay()
         );
     selectedkey: string;
-    filter: boolean = false;
 
+    filter: boolean = false;
 
     constructor(
         private breakpointObserver: BreakpointObserver,
@@ -66,7 +64,6 @@ export class NavigationComponent {
         private socket: Socket,
         private projectsService: ProjectsService,
         private tokenService: TokenService) {
-
     }
 
     public ngOnInit(): void {
@@ -78,8 +75,15 @@ export class NavigationComponent {
 
     public logAdded(projectId: string) {
         this.projects.find(item => item.id == projectId).countLogs++;
+        this.socket.on('new-logs',(projectid: string)=>{
+            this.logAdded(projectid);
+        })
     }
-
+   
+    public logAdded(projectId: string){
+        this.projects.find(item=>item.id == projectId).countLogs++;
+    }
+    
 
     public projectClick(id: string) {
         this.projectSelected.emit(id);
