@@ -6,6 +6,7 @@ import { AuthService } from './services/auth.service';
 import { HeadersMiddleware } from './middlewares/headers.middleware.before';
 import { ProjectController } from './controllers/project.controller';
 import { GenericController } from './controllers/generic.controller';
+import { environment } from '../environments/environment';
 
 async function validateAuthentication(request: http.IncomingMessage, roles: Array<string>): Promise<AuthorizeResponse | boolean> {
     const token = request.headers['authorization'];
@@ -34,7 +35,7 @@ const options: IKiwiOptions = {
     port: 8099,
     socket: {
         enabled: true,
-        path: '/api'
+        path: environment.socket_path
     }
 }
 const server = createKiwiServer(options, socketInit);

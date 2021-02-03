@@ -5,12 +5,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-
+import { JwtModule } from "@auth0/angular-jwt";
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
-import { UsersComponent } from './components/users/users.component';
+
 import { BlockUIModule } from 'ng-block-ui';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +28,9 @@ import { StateService } from './shared/services/state/state.service';
 import { environment } from 'src/environments/environment';
 
 const config: SocketIoConfig = { url: `${environment.socket}`, options: {} };
+export function tokenGetter() {
+    return localStorage.getItem("VIKINGS_LOG_AUTHORIZATION");
+}
 
 @NgModule({
     declarations: [
@@ -36,7 +39,6 @@ const config: SocketIoConfig = { url: `${environment.socket}`, options: {} };
         LoginComponent,
         RegisterComponent,
         ResetPasswordComponent,
-        UsersComponent,
     ],
     imports: [
         BrowserModule,
@@ -55,9 +57,15 @@ const config: SocketIoConfig = { url: `${environment.socket}`, options: {} };
         ),
         SharedModule,
         FormsModule,
-        SocketIoModule.forRoot(config)
+        SocketIoModule.forRoot(config),
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter
+            },
+        })
     ],
     providers: [StateService, Location, { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
+

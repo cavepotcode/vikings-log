@@ -1,0 +1,47 @@
+.user-form-screen{
+    width: 50%;
+    margin: 0 auto;
+    padding: 50px;
+
+    .user-form{
+        display: flex;
+        flex-direction: column;
+        .project-list{
+            margin: 20px 0;
+        }
+        .password-content{
+            margin-bottom: 10px;
+            button{
+                border: 2px solid;
+                border-color:  #04b004;
+                
+            }
+            .password-label{
+                margin-right: 10px;
+            }
+        }
+        .password-input{
+            display: flex;
+            mat-icon{
+                cursor: pointer;
+                margin-left: 5px;
+            }
+        }
+        .footer{
+            display: flex;
+            justify-content: flex-end;
+            button{
+                width: 150px;
+            }
+            button:first-child {
+                margin-right: 10px;
+                color: white;
+                background-color: #04b004;
+            }
+            button:nth-child(2) {
+                background-color:#f96a4f;
+                color: white;
+            }
+        }
+    }
+}

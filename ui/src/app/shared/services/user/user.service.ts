@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IProject } from '../../interfaces/IProject'
 import { ILogs } from '../../interfaces/ILogs'
-import { IUser } from '../../interfaces/IUser'
+import { ICreateUser, IUser, IUserWithOutPassword } from '../../interfaces/IUser'
 
 @Injectable({
     providedIn: 'root'
@@ -43,19 +43,24 @@ export class UserService {
             params = params.append('text', text);
         }
         return this.httpClient
-            .get<any>(url,{ params })
+            .get<any>(url, { params })
             .pipe(map((res) => {
                 if (res.meta.code === 0) {
-                    return res.data.map((p) => {
-                        return {
-                            route: `projects/project/${p.id}/logs`,
-                            icon: 'assignment',
-                            title: p.name,
-                            id: p.id,
-                            apiKey: p.apiKey,
-                            countLogs: p.countLogs
-                        }
-                    });;
+                    if (res.data) {
+                        return res.data.map((p) => {
+                            return {
+                                route: `projects/project/${p.id}/logs`,
+                                icon: 'assignment',
+                                title: p.name,
+                                id: p.id,
+                                apiKey: p.apiKey,
+                                countLogs: p.countLogs
+                            }
+                        });;
+                    }
+                    else {
+                        return [];
+                    }
                 }
                 throw (new Error());
             }));
@@ -82,6 +87,60 @@ export class UserService {
         const url = `${environment.apiUrl}user/current`;
         return this.httpClient
             .get<any>(url)
+            .pipe(map((res) => {
+                if (res.meta.code === 0) {
+                    return res.data;
+                }
+                throw (new Error());
+            }));
+    }
+    public getUsers(): Observable<Array<IUserWithOutPassword>> {
+        const url = `${environment.apiUrl}user/users`;
+        return this.httpClient
+            .get<any>(url)
+            .pipe(map((res) => {
+                if (res.meta.code === 0) {
+                    return res.data;
+                }
+                throw (new Error());
+            }));
+    }
+    public createUser(user:ICreateUser) {
+        const url = `${environment.apiUrl}user/user`;
+        return this.httpClient.post(url,user)
+        .pipe(map((res: any) => {
+            if (res.meta.code === 0) {
+                return res.data;
+            }
+            throw (new Error());
+        }));
+    }
+    public updateUser(id:string, user:IUserWithOutPassword) {
+        const url = `${environment.apiUrl}user/${id}`;
+        return this.httpClient.put(url,user)
+        .pipe(map((res: any) => {
+            if (res.meta.code === 0) {
+                return res.data;
+            }
+            throw (new Error());
+        }));
+    }
+    public getUser(id:string): Observable<IUserWithOutPassword> {
+        const url = `${environment.apiUrl}user/user/${id}`;
+        return this.httpClient
+            .get<any>(url)
+            .pipe(map((res) => {
+                if (res.meta.code === 0) {
+                    return res.data;
+                }
+                throw (new Error());
+            }));
+    }
+    
+    public deleteUser(id:string) {
+        const url = `${environment.apiUrl}user/user/${id}`;
+        return this.httpClient
+            .delete<any>(url)
             .pipe(map((res) => {
                 if (res.meta.code === 0) {
                     return res.data;

@@ -29,7 +29,17 @@ export class StatusLog {
     static INACTIVE = 'inactive';
     static IGNORED = 'ignored';
 }
+export class UserStatus {
+    static ACTIVE = 'active';
+    static DELETED = 'deleted';
+}
+
+export class UserRoles {
+    static ADMINISTRATOR = 'administrator';
+    static USER = 'user';
+}
 
 export const levels = [LevelsCode.INFO, LevelsCode.ERROR, LevelsCode.WARNING];
 export const statuslogs = [StatusLog.ACTIVE, StatusLog.INACTIVE, StatusLog.IGNORED];
+export const userRoles = [UserRoles.ADMINISTRATOR,UserRoles.USER];
 

@@ -28,7 +28,7 @@ import {MatBadgeModule} from '@angular/material/badge';
         LayoutModule,
         SharedModule,
         MatDialogModule,
-        MatBadgeModule
+        MatBadgeModule,
     ]
 })
 export class PrivateSectionModule { }
