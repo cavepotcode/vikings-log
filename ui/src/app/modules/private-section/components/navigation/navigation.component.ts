@@ -142,7 +142,7 @@ export class NavigationComponent {
         }
         else {
             this.filter = true;
-            return this.projects.filter(item => item.title.match(this.selectedkey))
+            return this.projects.filter(item => item.title.toLowerCase().match(this.selectedkey.toLowerCase()))
         }
     }
     public isAdmin() {

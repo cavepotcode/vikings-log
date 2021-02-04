@@ -16,7 +16,7 @@
                 <mat-chip-list aria-label="Fish selection">
                     <mat-basic-chip selected  class="chip-label {{log.log.level}}">{{log.log.level}}</mat-basic-chip>
                     <mat-basic-chip selected *ngIf="log.log.status!='active'" class="chip-label status">{{log.log.status}}</mat-basic-chip>
-                    <span>{{log.log.exception.message}}</span>
+                    <span>{{log.log.exception?.message}}</span>
                 </mat-chip-list>
             </div>
             <app-log-item-detail [stack]="log.log.exception" [info]="log.log.info"></app-log-item-detail>
