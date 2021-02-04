@@ -3,6 +3,6 @@ export const environment = {
   apiUrl: 'https://logqa.cavepotlab.com/api/v1/',
   socket:{
     host: 'https://logqa.cavepotlab.com',
-    path: '/api'
+    path: '/api/socket.io'
   }
 };
