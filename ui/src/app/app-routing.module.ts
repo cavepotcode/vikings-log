@@ -8,9 +8,9 @@ import { ForgotPasswordComponent } from './components/user/forgot-password/forgo
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'forgot-password/:token', component: ForgotPasswordComponent },
+//   { path: 'register', component: RegisterComponent },
+//   { path: 'reset-password', component: ResetPasswordComponent },
+//   { path: 'forgot-password/:token', component: ForgotPasswordComponent },
   { path: 'private', loadChildren: () => import(`./modules/private-section/private-section.module`).then(m => m.PrivateSectionModule) },
 ];
 
