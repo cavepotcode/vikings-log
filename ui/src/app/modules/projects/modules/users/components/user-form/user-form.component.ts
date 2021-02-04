@@ -19,9 +19,9 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 export class UserFormComponent implements OnInit {
     @HostListener('window:beforeunload', ['$event'])
     unloadNotification($event: any) {
-      if (this.formDirty) {
-        $event.returnValue = true;
-      }
+        if (this.formDirty) {
+            $event.returnValue = true;
+        }
     }
     public id: string;
     public userForm: FormGroup;
@@ -38,7 +38,7 @@ export class UserFormComponent implements OnInit {
 
     get form() { return this.userForm.controls; }
     get formDirty() { return this.userForm.dirty; }
-    get formComplete(){return this.userForm;}
+    get formComplete() { return this.userForm; }
 
     constructor(private activatedRoute: ActivatedRoute,
         private formBuilder: FormBuilder,
@@ -54,7 +54,7 @@ export class UserFormComponent implements OnInit {
             user: [null, [Validators.required]],
             email: [null, [Validators.required, Validators.email]],
             administrador: false,
-            password:null
+            password: null
 
 
         })
@@ -68,7 +68,7 @@ export class UserFormComponent implements OnInit {
             this.getUser(this.id)
         }
         else {
-            this.form.password.setValidators([Validators.required]);
+            this.form.password.setValidators([Validators.required, Validators.minLength(6)]);
             this.form.password.setValue(generatePass())
             this.updateState(false);
         }
@@ -99,11 +99,14 @@ export class UserFormComponent implements OnInit {
         if (this.form.password.errors.required) {
             return 'Password field is mandatory';
         }
+        if (this.form.password.errors.minlength) {
+            return 'Password need to be at least 6 characteres';
+        }
     }
 
 
     public submitUser() {
-        
+
         if (this.updateUser) {
             let user: IUserWithOutPassword = {
                 email: this.form.email.value,
@@ -175,7 +178,7 @@ export class UserFormComponent implements OnInit {
         this.updateUser = update;
         this.submitButton = update ? 'Update' : 'Register';
     }
-    public cancelForm(){
+    public cancelForm() {
         this.formComplete.reset(this.user)
         this.router.navigate([`/private/projects/users/list`]);
     }

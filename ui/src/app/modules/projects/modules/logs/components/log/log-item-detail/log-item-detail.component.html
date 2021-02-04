@@ -1,9 +1,10 @@
 <div class="card-items-detail" (click)="collapsed=!collapsed">
     <div [ngClass]="{'item-left-noexpand transition': !collapsed, 'item-left-expand transition': collapsed}">
         <mat-divider></mat-divider>
-        <div *ngIf="stack.stack">
-            <b>Stack</b>
+        <div style="display: flex; flex-direction: column;" *ngIf="stack?.stack">
+            <b>Stack:</b>
             <p class="stack">{{stack.stack}}</p>
+            <span><b>Code:</b> {{stack.code}}</span>
             <mat-divider></mat-divider>
         </div>
         <div *ngIf="info">

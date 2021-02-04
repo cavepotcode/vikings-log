@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./integration.component.less']
 })
 export class IntegrationComponent implements OnInit {
-
+  public baseUrl = new URL(`${environment.apiUrl}`);
+  
   constructor() { }
 
   ngOnInit(): void {
