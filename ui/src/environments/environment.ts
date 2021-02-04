@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8099/v1/',
-  socket:'http://localhost:8099/'
+  socket:{
+    host: 'http://localhost:8099',
+    path: ''
+  }
 };
 
 /*

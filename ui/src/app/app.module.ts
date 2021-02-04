@@ -27,7 +27,7 @@ import { PrivateSectionModule } from './modules/private-section/private-section.
 import { StateService } from './shared/services/state/state.service';
 import { environment } from 'src/environments/environment';
 
-const config: SocketIoConfig = { url: `${environment.socket}`, options: {} };
+const config: SocketIoConfig = { url: `${environment.socket.host}`, options: { path: environment.socket.path} };
 export function tokenGetter() {
     return localStorage.getItem("VIKINGS_LOG_AUTHORIZATION");
 }

@@ -1,5 +1,8 @@
 export const environment = {
   production: true,
   apiUrl: 'https://logqa.cavepotlab.com/api/v1/',
-  socket:'https://logqa.cavepotlab.com/api/'
+  socket:{
+    host: 'https://logqa.cavepotlab.com',
+    path: '/api'
+  }
 };
