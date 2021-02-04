@@ -1,4 +1,4 @@
-import { JsonController, Get, Post, Body, Authorize, Put, Param, HeaderParam, QueryParam, Delete } from 'kiwi-server';
+import { JsonController, Get, Post, Body, Authorize, Put, Param, HeaderParam, QueryParam, Delete, getSocket } from 'kiwi-server';
 import { UserIn, LoginIn, ForgotPasswordIn, ResetPasswordIn, CreateUserIn, UpdateUserIn } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { ProjectService } from '../services/project.service';
@@ -142,7 +142,6 @@ export class UserController {
         if (!userRoles.includes(body.role)) {
             return new Response(ResponseCode.ERROR, 'user role does not exist')
         }
-
         
         user.username = body.username;
         user.role = body.role == UserRoles.ADMINISTRATOR ? UserRoles.ADMINISTRATOR : UserRoles.USER;
@@ -155,6 +154,7 @@ export class UserController {
             }
         }
         const result = await this.userService.update(user);
+        getSocket().emit('refresh-project-list');
         return new Response(ResponseCode.OK, '')
     }
     @Authorize()

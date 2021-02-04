@@ -71,6 +71,7 @@ export class NavigationComponent {
         this.socket.on('new-logs', (projectid: string) => {
             this.logAdded(projectid);
         })
+       
     }
 
     public logAdded(projectId: string) {
