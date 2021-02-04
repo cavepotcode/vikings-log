@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../../../src/app/shared/services/user/user.service';
 import { IProject } from '../../../../../../src/app/shared/interfaces/IProject';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
     selector: 'app-private',
@@ -20,7 +21,8 @@ export class PrivateComponent implements OnInit {
     constructor(
         private userService: UserService,
         private router: Router,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        private socket: Socket) {
     }
 
     ngOnInit(): void {
@@ -28,6 +30,9 @@ export class PrivateComponent implements OnInit {
         this.userService.current().subscribe((response: any) => {
             this.user = response.data;
         });
+        this.socket.on('refresh-project-list', () => {
+            this.getProjects();
+        })
     }
 
     public getProjects() {
