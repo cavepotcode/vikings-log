@@ -34,7 +34,7 @@ const options: IKiwiOptions = {
     log: true,
     port: 8099,
     socket: {
-        enabled: true,
+        enabled: false,
         path: environment.socket_path
     }
 }
@@ -42,11 +42,11 @@ const server = createKiwiServer(options, socketInit);
 
 
 function socketInit() {
-    const io = getSocket();
+    /*const io = getSocket();
     
     io.on('connection', (socket: any) => {
         socket.userId  = socket.handshake.query.user;
-    });
+    });*/
 }
 
 
