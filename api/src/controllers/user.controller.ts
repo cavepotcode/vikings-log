@@ -45,17 +45,6 @@ export class UserController {
     }
 
     @Authorize()
-    @Get('/current')
-    public current(request: any) {
-        try {
-            return new Response(ResponseCode.OK, '', request.user);
-        } catch (err) {
-            Log.error(`user/current`, err);
-            return new Response(ResponseCode.ERROR, environment.common.genericErrorMessage);
-        }
-    }
-
-    @Authorize()
     @Get('/logout')
     public logout() {
         // TODO: not sure if we need it

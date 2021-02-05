@@ -83,17 +83,7 @@ export class UserService {
         return this.httpClient.post(url, data);
     }
 
-    public current(): Observable<IUser> {
-        const url = `${environment.apiUrl}user/current`;
-        return this.httpClient
-            .get<any>(url)
-            .pipe(map((res) => {
-                if (res.meta.code === 0) {
-                    return res.data;
-                }
-                throw (new Error());
-            }));
-    }
+    
     public getUsers(): Observable<Array<IUserWithOutPassword>> {
         const url = `${environment.apiUrl}user/users`;
         return this.httpClient
