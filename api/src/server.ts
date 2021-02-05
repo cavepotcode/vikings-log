@@ -24,7 +24,7 @@ const options: IKiwiOptions = {
     middlewares: [HeadersMiddleware],
     cors: {
         enabled: true,
-        domains: ['https://log.cavepotlab.com', 'http://localhost:4200', 'https://logqa.cavepotlab.com']
+        domains: ['https://log.cavepotlab.com', 'http://localhost:4200', 'https://logqa.cavepotlab.com', 'http://log.cavepotlab.com']
     },
     documentation: {
         enabled: true,
@@ -34,7 +34,7 @@ const options: IKiwiOptions = {
     log: true,
     port: 8099,
     socket: {
-        enabled: false,
+        enabled: true,
         path: environment.socket_path
     }
 }
@@ -42,11 +42,11 @@ const server = createKiwiServer(options, socketInit);
 
 
 function socketInit() {
-    /*const io = getSocket();
+    const io = getSocket();
     
     io.on('connection', (socket: any) => {
         socket.userId  = socket.handshake.query.user;
-    });*/
+    });
 }
 
 
