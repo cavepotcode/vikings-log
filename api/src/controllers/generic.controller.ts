@@ -19,4 +19,9 @@ export class GenericController {
         const projects = await this.projectTypeService.get();
         return new Response(ResponseCode.OK, '', projects);
     }
+
+    @Get('/statuslog')
+    public async statuslog() {
+        return new Response(ResponseCode.OK, '', statuslogs);
+    }
 }

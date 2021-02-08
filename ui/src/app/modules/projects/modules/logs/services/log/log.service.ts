@@ -56,7 +56,18 @@ export class LogService {
                 throw (new Error());
             }));
     }
-  
+    public statusLog() {
+        const url = `${environment.apiUrl}generic/statuslog`;
+        return this.httpClient
+            .get(url)
+            .pipe(map((res: any) => {
+                if (res.meta.code === 0) {
+                    return res.data;
+                }
+                throw (new Error());
+            }));
+    }
+
     public changeStatus(items: Array<ILogsStatus>) {
         const url = `${environment.apiUrl}logs`;
         return this.httpClient
