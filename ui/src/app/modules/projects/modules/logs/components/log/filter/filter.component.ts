@@ -23,7 +23,6 @@ export class FilterComponent implements OnInit {
 
     ngOnInit(): void {
         this.getlevelsCode();
-        // this.getStatusLog();
     }
 
     public getlevelsCode() {
@@ -32,14 +31,7 @@ export class FilterComponent implements OnInit {
         });
     }
 
-    // public getStatusLog() {
-    //     this.logService.statusLog().subscribe((status: any) => {
-    //         this.statusLog = status;
-    //     });
-    // }
-
-
-    public onKey(event: any) {
+  public onKey(event: any) {
         let lettercount = event.target.value.length;
         if (lettercount > 2) {
             this.selectedkey = event.target.value;
