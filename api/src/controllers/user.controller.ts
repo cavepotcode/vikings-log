@@ -6,7 +6,7 @@ import { Log } from '../sdk/logs';
 import { Response } from '../sdk/response';
 import { environment } from '../../environments/environment';
 import { UserService } from '../services/user.service';
-import { ResponseCode, StatusProject, userRoles, UserRoles, UserStatus } from '../sdk/constants';
+import { ResponseCode, StatusLog, StatusProject, userRoles, UserRoles, UserStatus } from '../sdk/constants';
 import { Project, User } from '../datastore/entities';
 import { v4 as uuidv4 } from 'uuid';
 import { ObjectID } from 'mongodb';
@@ -83,6 +83,8 @@ export class UserController {
             projectModel.type = body.type;
             projectModel.apiKey = uuidv4();
             projectModel.status = StatusProject.ENABLED;
+            body.typeLogStatus.push(StatusLog.ACTIVE);
+            projectModel.typeLogStatus = body.typeLogStatus
             let user = this.authService.decode(token);
 
             const project = await this.projectService.add(projectModel)

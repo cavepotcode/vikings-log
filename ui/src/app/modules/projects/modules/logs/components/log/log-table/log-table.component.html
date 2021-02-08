@@ -11,8 +11,8 @@
                 </div>
                 <div class="action-region" >
                     <div *ngIf="someComplete() || allComplete">
-                        <button mat-raised-button (click)="setInactive()">Inactive</button>
-                        <button mat-raised-button (click)="setIngore()">Ignore</button>
+                        <button *ngFor="let item of project.typeLogStatus" button mat-raised-button (click)="setStatus(item)" >{{item|titlecase}}</button>
+                        <!-- <button mat-raised-button (click)="setIngore()">Ignore</button> -->
                     </div>
                     <!-- <button mat-raised-button>
                         <mat-icon aria-hidden="false" aria-label="watch">star_rate</mat-icon>

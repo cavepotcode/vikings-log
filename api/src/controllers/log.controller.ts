@@ -56,11 +56,7 @@ export class LogController {
                 if (!log) {
                     return new Response(ResponseCode.ERROR, `Log ${element.id} doesn't exists`);
                 }
-                if (!statuslogs.includes(element.status)) {
-                    return new Response(ResponseCode.ERROR, `Status ${element.status} doesn't exists`);
-                }
-                const result =  this.logSvc.updateStatus(element);
-
+                const result = this.logSvc.updateStatus(element);
             });
             return new Response(ResponseCode.OK, '');
 

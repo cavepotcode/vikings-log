@@ -17,4 +17,7 @@ export class Project {
 
     @Column()
     status: string;
+
+    @Column()
+    typeLogStatus: Array<string>;
 }

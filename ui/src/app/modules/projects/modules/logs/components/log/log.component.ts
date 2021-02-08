@@ -3,10 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ILogs, ILogsFilter } from 'src/app/shared/interfaces/ILogs';
+import { ProjectsService } from '../../../../services/projects.service';
 import { ActivatedRoute } from '@angular/router';
 import { LogService } from '../../services/log/log.service';
 import { PageEvent } from '@angular/material/paginator';
+
 import { Socket } from 'ngx-socket-io';
+import { IProject } from 'src/app/shared/interfaces/IProject';
+
 
 @Component({
     selector: 'app-log',
@@ -24,13 +28,14 @@ export class LogDashboardComponent implements OnInit {
     public logs: Array<ILogs> = [];
     public search: string = "search";
     public message: string = "There are no results that match your search";
-    public filters : ILogsFilter;
+    public filters: ILogsFilter;
+    public project: IProject
 
     constructor(
         private logService: LogService,
         private route: ActivatedRoute,
-        private socket: Socket
-    ) {
+        private socket: Socket,
+        private projectService: ProjectsService) {
 
     }
 
@@ -39,13 +44,15 @@ export class LogDashboardComponent implements OnInit {
             this.id = params['id'];
             console.log(this.id);
             this.getLogs(this.id);
+            this.getProject(this.id);
         });
 
-        this.socket.on('new-logs',(projectid: string)=>{
-            if(this.id == projectid){
+        this.socket.on('new-logs', (projectid: string) => {
+            if (this.id == projectid) {
                 this.getLogs(this.id);
             }
         })
+        
     }
 
     public getLogs(id: string): void {
@@ -58,20 +65,25 @@ export class LogDashboardComponent implements OnInit {
         }
     }
 
-    public filter(filter : ILogsFilter) {
+    public filter(filter: ILogsFilter) {
         this.page = 1;
         this.length = this.length;
         this.filters = filter;
         this.getLogs(this.id);
     }
 
-    changePage(changes: PageEvent){
+    changePage(changes: PageEvent) {
         this.page = changes.pageIndex;
-        if(this.size !== changes.pageSize){
+        if (this.size !== changes.pageSize) {
             this.page = 1;
             this.size = changes.pageSize;
         }
-        
+
         this.getLogs(this.id);
+    }
+    public getProject(id: string) {
+        this.projectService.projectById(id).subscribe((project) => {
+            this.project = project
+        })
     }
 }

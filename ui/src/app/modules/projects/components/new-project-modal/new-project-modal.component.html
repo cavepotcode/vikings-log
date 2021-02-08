@@ -1,31 +1,49 @@
 <div class="project-container">
     <div class="form-container">
-      <form [formGroup]="projectForm" (submit)="submit()" class="form">
-        <h2>Create Project</h2>
-  
-        <mat-form-field class="form-field" appearance="outline">
-          <mat-label> Name
-          </mat-label>
-          <input matInput formControlName="name" required>
-          <mat-error *ngIf="f.name.errors">{{getProjectNameErrorMessage()}}</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field class="form-field" appearance="fill">
-            <mat-label> Select an type</mat-label>
-            <mat-select [(value)]="selectedtype" formControlName="type">
-                <mat-option *ngFor="let item of typeProject" [value]="item" >{{item.name |uppercase}}</mat-option>
-            </mat-select>
-            <mat-error>
-                <span *ngIf="projectForm.controls.type.errors">This field is mandatory.</span>
-            </mat-error>
-        </mat-form-field>
-  
-        <div class="form-element">
-          <button tabindex="0" mat-raised-button color="primary" type="submit" class="button"
-            [disabled]="!projectForm.valid" [mat-dialog-close]="true">Create</button>
-        </div>
-        
-  
-      </form>
+        <form [formGroup]="projectForm" (submit)="submit()" class="form">
+            <h2>Create Project</h2>
+
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Name
+                </mat-label>
+                <input matInput formControlName="name" required>
+                <mat-error *ngIf="f.name.errors">{{getProjectNameErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-divider></mat-divider>
+
+            <mat-form-field class="example-chip-list">
+                <mat-label>Status Log</mat-label>
+                <mat-chip-list #chipList aria-label="Status Log">
+                    <mat-chip *ngFor="let item of statusLog" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(item)">
+                        {{item|titlecase}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New Status... Press Enter" #statusInput formControlName="statusLog"
+                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        autocomplete="off" (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+
+
+            <mat-divider></mat-divider>
+
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label> Select an type</mat-label>
+                <mat-select [(value)]="selectedtype" formControlName="type">
+                    <mat-option *ngFor="let item of typeProject" [value]="item">{{item.name |uppercase}}</mat-option>
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="projectForm.controls.type.errors">This field is mandatory.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <div class="form-element">
+                <button tabindex="0" mat-raised-button color="primary" type="submit" class="button"
+                    [disabled]="!projectForm.valid" [mat-dialog-close]="true">Create</button>
+            </div>
+
+
+        </form>
     </div>
-  </div>
+</div>

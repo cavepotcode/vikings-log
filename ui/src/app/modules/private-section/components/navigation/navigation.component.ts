@@ -88,7 +88,7 @@ export class NavigationComponent {
 
     public openAddProjectDialog() {
         const dialogRef = this.dialog.open(NewProjectModalComponent, {
-            height: '320px',
+            // height: '50%',
             width: '600px'
         });
         dialogRef.afterClosed().subscribe(result => {
