@@ -14,16 +14,7 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
 import { BlockUIModule } from 'ng-block-ui';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatMenuModule } from '@angular/material/menu';
-
 import { SharedModule } from './shared/shared.module';
-import { PrivateSectionModule } from './modules/private-section/private-section.module';
 import { StateService } from './shared/services/state/state.service';
 import { environment } from 'src/environments/environment';
 
