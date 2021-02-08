@@ -42,7 +42,7 @@ const options: IKiwiOptions = {
     port: 8099,
     socket: {
         enabled: true,
-        path: environment.socket_path
+        path: ''//environment.socket_path
     }
 }
 const server = createKiwiServer(options, socketInit);
@@ -51,9 +51,12 @@ const server = createKiwiServer(options, socketInit);
 function socketInit() {
     const io = getSocket();
     
-    io.on('connection', (socket: any) => {
-        socket.userId  = socket.handshake.query.user;
+    io.on('connection', (client: any) => {
+        client.userId  = client.handshake.query.user;
+        client.on('event', data => { console.log(data) });
+        client.on('disconnect', () => { console.log('disconnect') });
     });
+    
 }
 
 
