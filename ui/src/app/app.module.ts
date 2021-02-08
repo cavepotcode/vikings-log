@@ -18,7 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { StateService } from './shared/services/state/state.service';
 import { environment } from 'src/environments/environment';
 
-const config: SocketIoConfig = { url: `${environment.socket.host}`, options: { path: 'socket2.io'} };
+const config: SocketIoConfig = { url: `${environment.socket.host}`, options: { path: environment.socket.path} };
 export function tokenGetter() {
     return localStorage.getItem("VIKINGS_LOG_AUTHORIZATION");
 }
