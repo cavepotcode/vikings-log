@@ -12,25 +12,14 @@
 
         <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
-            <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-
-                <li fxHide.xs>
-                    <button mat-icon-button>
-                        <mat-icon> settings </mat-icon>
-                    </button>
-                </li>
-
-                <li fxHide.xs>
-                    <button mat-icon-button>
-                        <mat-icon> help_outline </mat-icon>
-                    </button>
-                </li>
+            <ul fxLayout class="navigation-items">
 
                 <li>
-                    <button mat-icon-button [matMenuTriggerFor]="auth">
-                        <mat-icon> person </mat-icon>
+                    <button class="white-icon" mat-button [matMenuTriggerFor]="auth">
+                        {{user.username|uppercase}}
+                        <mat-icon class="white-icon"> person </mat-icon>
                     </button>
-                    <mat-menu #auth="matMenu">
+                    <mat-menu #auth="matMenu" xPosition="before">
 
                         <button mat-menu-item>
                             <mat-icon> person </mat-icon>
@@ -45,6 +34,12 @@
                         </button>
 
                     </mat-menu>
+                </li>
+                <li fxHide.xs>
+                    <button mat-icon-button>
+                        <mat-icon class="white-icon" [routerLink]="'/private/projects/integrations'"> help_outline
+                        </mat-icon>
+                    </button>
                 </li>
 
             </ul>

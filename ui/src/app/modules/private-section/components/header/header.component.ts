@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../../../shared/services/user/user.service';
 import { Constants } from 'src/app/shared/consts/app-constants';
+import { TokenService } from 'src/app/shared/services/token/token.service';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +16,6 @@ export class HeaderComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-  }
-
-  get username() {
-    return this.user ? this.user.email : '';
   }
 
   logout() {
