@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Constants } from 'src/app/shared/consts/app-constants';
 import { ILogsFilter } from 'src/app/shared/interfaces/ILogs';
+import { IProject } from 'src/app/shared/interfaces/IProject';
 import { LogService } from '../../../services/log/log.service';
 
 @Component({
@@ -10,8 +11,9 @@ import { LogService } from '../../../services/log/log.service';
 })
 export class FilterComponent implements OnInit {
     @Output() filterChange = new EventEmitter();
+    @Input() project :IProject
     levelsCode: Array<String>;
-    statusLog: Array<String>;
+    
     selectedlevel: string;
     selectedkey: string;
     selectedDateFrom: string;
@@ -21,7 +23,6 @@ export class FilterComponent implements OnInit {
 
     ngOnInit(): void {
         this.getlevelsCode();
-        this.getStatusLog();
     }
 
     public getlevelsCode() {
@@ -30,14 +31,7 @@ export class FilterComponent implements OnInit {
         });
     }
 
-    public getStatusLog() {
-        this.logService.statusLog().subscribe((status: any) => {
-            this.statusLog = status;
-        });
-    }
-
-
-    public onKey(event: any) {
+  public onKey(event: any) {
         let lettercount = event.target.value.length;
         if (lettercount > 2) {
             this.selectedkey = event.target.value;

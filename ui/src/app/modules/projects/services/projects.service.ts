@@ -72,6 +72,17 @@ export class ProjectsService {
                 throw (new Error());
             }));
     }
+    public projectById(id:string): Observable<IProject> {
+        const url = `${environment.apiUrl}project/${id}`;
+        return this.httpClient
+            .get(url)
+            .pipe(map((res: any) => {
+                if (res.meta.code === 0) {
+                    return res.data;
+                }
+                throw (new Error());
+            }));
+    }
 
     public deleteProject(id: string): Observable<any> {
         const url = `${environment.apiUrl}project/${id}`;

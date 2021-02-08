@@ -4,6 +4,7 @@ import { ILogs, ILogsStatus } from 'src/app/shared/interfaces/ILogs';
 import { ICheckItems } from 'src/app/shared/interfaces/ICheckItems';
 import { Constants } from "src/app/shared/consts/app-constants";
 import { LogService } from '../../../services/log/log.service';
+import { IProject } from 'src/app/shared/interfaces/IProject';
 
 
 
@@ -20,6 +21,7 @@ export class LogTableComponent implements OnInit, OnChanges {
     @Input() public logs: Array<ILogs>;
     @Input() public pageSize;
     @Input() public length;
+    @Input() project :IProject
     @Output() paginatorChange = new EventEmitter();
     @Output() logsChange = new EventEmitter();
     public task: ICheckItems = {
@@ -42,7 +44,6 @@ export class LogTableComponent implements OnInit, OnChanges {
     }
 
     loadsubtasks() {
-        
         if (this.task.subtasks.length != this.logs.length) {
             this.logs.forEach(element => {
                 let item: ICheckItems = {
@@ -93,20 +94,11 @@ export class LogTableComponent implements OnInit, OnChanges {
     }
 
 
-    setInactive() {
+    setStatus(data:any) {
+        debugger
         let items = this.getCheckedElements();
         items.forEach(element => {
-            element.status = Constants.STATUS_INACTIVE;
-        });
-        this.logService.changeStatus(items).subscribe(() => {
-            this.logsChange.emit();
-        });
-    }
-
-    setIngore() {
-        let items = this.getCheckedElements();
-        items.forEach(element => {
-            element.status = Constants.STATUS_IGNORED;
+            element.status = data;
         });
         this.logService.changeStatus(items).subscribe(() => {
             this.logsChange.emit();

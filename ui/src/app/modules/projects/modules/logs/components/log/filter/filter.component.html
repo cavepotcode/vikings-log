@@ -27,7 +27,7 @@
             <mat-label>Log status</mat-label>
             <mat-select (selectionChange)="filter()" [(value)]="selectedStatusLog" >
                 <mat-option>All</mat-option>
-                <mat-option *ngFor="let item of statusLog" [value]="item" >{{item |titlecase}}</mat-option>
+                <mat-option *ngFor="let item of project?.typeLogStatus.sort()" [value]="item" >{{item |titlecase}}</mat-option>
             </mat-select>
         </mat-form-field>
         

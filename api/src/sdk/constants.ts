@@ -26,7 +26,7 @@ export class StatusProject {
 
 export class StatusLog {
     static ACTIVE = 'active';
-    static INACTIVE = 'inactive';
+    static RESOLVED = 'resolved';
     static IGNORED = 'ignored';
 }
 export class UserStatus {
@@ -40,6 +40,6 @@ export class UserRoles {
 }
 
 export const levels = [LevelsCode.INFO, LevelsCode.ERROR, LevelsCode.WARNING];
-export const statuslogs = [StatusLog.ACTIVE, StatusLog.INACTIVE, StatusLog.IGNORED];
+export const statuslogs = [StatusLog.ACTIVE, StatusLog.RESOLVED, StatusLog.IGNORED];
 export const userRoles = [UserRoles.ADMINISTRATOR,UserRoles.USER];
 

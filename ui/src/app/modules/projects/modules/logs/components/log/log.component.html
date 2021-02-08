@@ -3,12 +3,12 @@
     <router-outlet name="projects"></router-outlet>
   </section>
   
-  <app-filter (filterChange)="filter($event)" ></app-filter>
+  <app-filter (filterChange)="filter($event)" [project]=project ></app-filter>
   <app-log-table 
     [logs]=logs
     [pageSize]="size"
     [length]="length"
     (paginatorChange)="changePage($event)"
-    *ngIf="logs.length !== 0 ;else elseBlock" (logsChange)="getLogs(id)" ></app-log-table>
+    *ngIf="logs.length !== 0 ;else elseBlock" (logsChange)="getLogs(id)" [project]=project ></app-log-table>
   <ng-template #elseBlock><app-watermark [icon]="search" [message]="message"></app-watermark></ng-template>
 </div>
