@@ -19,7 +19,7 @@
    "dependencies": {
       "dotenv": "^8.2.0",
       "jsonwebtoken": "^8.5.1",
-      "kiwi-server": "^1.4.1",
+      "kiwi-server": "^1.4.2",
       "mongodb": "^3.5.9",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.25",
