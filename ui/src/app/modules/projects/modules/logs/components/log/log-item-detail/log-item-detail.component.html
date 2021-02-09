@@ -1,7 +1,7 @@
-<div class="card-items-detail" (click)="collapsed=!collapsed">
+<div class="card-items-detail">
     <div [ngClass]="{'item-left-noexpand transition': !collapsed, 'item-left-expand transition': collapsed}">
         <mat-divider></mat-divider>
-        <div style="display: flex; flex-direction: column;" *ngIf="stack?.stack">
+        <div style="display: flex; flex-direction: column;" *ngIf="stack?.stack" (click)="changeCollapsed()">
             <b>Stack:</b>
             <p class="stack">{{stack.stack}}</p>
             <span><b>Code:</b> {{stack.code}}</span>
@@ -9,18 +9,23 @@
         </div>
         <div *ngIf="info">
             <b>Info</b>
-            <div class="info" *ngFor="let item of info | keyvalue">
-                <b>{{item.key}}:</b>
-                <div *ngIf="item.key ==='request' || item.key ==='response';else elseBlock">
-                    <p>{{item.value|json}}</p>
+            <div class="info">
+                <ngx-json-viewer [json]="info"></ngx-json-viewer>
+            </div>
+        </div>
+        <div *ngIf="history.length>0">
+            <mat-divider></mat-divider>
+            <b>History</b>
+            <div class="history-content">
+                <div class="history" *ngFor="let item of history">
+                    <p> {{item.date | date: 'dd/MM/yyyy HH:mm:ss' }} - {{item.movements}} - {{item.user}}</p>
                 </div>
-                <ng-template #elseBlock>
-                    <p>{{item.value}}</p>
-                </ng-template>
             </div>
         </div>
     </div>
-    <div class="item-right" ng-click="collapsed=!collapsed">
-        <mat-icon [ngClass]="{'expand_more transition': !collapsed, 'expand_more-collapsed transition': collapsed}">expand_more</mat-icon>
+    <div class="item-right">
+        <mat-icon [ngClass]="{'expand_more transition': !collapsed, 'expand_more-collapsed transition': collapsed}"
+            (click)="changeCollapsed()">
+            expand_more</mat-icon>
     </div>
 </div>

@@ -1,5 +1,5 @@
-import { IsString, IsEmail, IsDate, IsNumber } from 'kiwi-server';
-import { isString } from 'util';
+import { IsString, IsDate, IsNumber } from 'kiwi-server';
+import { isDate, isString } from 'util';
 import { Log } from '../datastore/entities';
 
 //TODO:: fix exception object. @IsObject...
@@ -30,9 +30,17 @@ export class LogListIn {
 export class LogUpdate {
     @IsString() id: string;
     @IsString() status: string;
+    history: Array<HistoryLog>;
 }
 
 export class LogListOut {
     items: Array<Log>;
     total: number;
+}
+
+export class HistoryLog{
+    @IsDate() date :Date;
+    @IsString() movements:string;
+    @IsString() user:string;
+
 }

@@ -5,6 +5,11 @@ export enum Level {
     WARNING,
     ERROR
 }
+export class HistoryLog {
+    date: Date;
+    movements: string;
+    user: string;
+}
 
 @Entity('logs')
 export class Log {
@@ -34,4 +39,7 @@ export class Log {
 
     @Column()
     status: string;
+
+    @Column()
+    history: Array<HistoryLog>;
 }

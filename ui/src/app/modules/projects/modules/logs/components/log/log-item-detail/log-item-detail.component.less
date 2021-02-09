@@ -9,7 +9,7 @@
     .item-left-expand{
         max-height: 900px;
     }
-    .stack, .info{
+    .stack, .info, .history{
         padding-left: 20px;
         display: flex;
         b{
@@ -22,8 +22,12 @@
     .expand_more-collapsed {
          transform: rotate(180deg);
     }
-    
+
     .transition{
         transition: ease all 0.3s;
+    }
+    .history-content{
+        max-height: 50px;
+        overflow-y: auto;
     }
 }

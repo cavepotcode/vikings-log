@@ -8,7 +8,13 @@ export interface ILogs {
     info: any;
     exception: IException;
     status: string;
+    history: Array<IHistoryLog>;
+}
 
+export interface IHistoryLog{
+    date :Date;
+    movements:string;
+    user:string;
 }
 
 export interface IException {

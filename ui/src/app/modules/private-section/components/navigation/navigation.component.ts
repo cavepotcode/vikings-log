@@ -3,7 +3,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { IProject } from '../../../../../../src/app/shared/interfaces/IProject';
-import { NotificationService } from 'src/app/shared/services/appNotifications/notification-changes.service';
 import { SidenavService } from 'src/app/shared/services/sidenav/sidenav.service';
 import { Constants } from 'src/app/shared/consts/app-constants';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -13,7 +12,6 @@ import { Router } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ToastrService } from 'ngx-toastr';
 import { Socket } from 'ngx-socket-io';
-import { StateService } from 'src/app/shared/services/state/state.service';
 import { TokenService } from 'src/app/shared/services/token/token.service';
 import { ProjectsService } from 'src/app/modules/projects/services/projects.service';
 import { DeleteModalComponent } from 'src/app/shared/modals/delete-modal/delete-modal.component';
@@ -71,16 +69,13 @@ export class NavigationComponent {
         this.socket.on('new-logs', (projectid: string) => {
             this.logAdded(projectid);
         })
-       
+
     }
 
     public logAdded(projectId: string) {
         this.projects.find(item => item.id == projectId).countLogs++;
-        this.socket.on('new-logs',(projectid: string)=>{
-            this.logAdded(projectid);
-        })
     }
-      
+
 
     public projectClick(id: string) {
         this.projectSelected.emit(id);
