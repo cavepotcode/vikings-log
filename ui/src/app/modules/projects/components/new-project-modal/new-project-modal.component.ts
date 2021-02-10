@@ -25,23 +25,26 @@ export class NewProjectModalComponent implements OnInit {
     filteredFruits: Observable<string[]>;
 
     @ViewChild('statusInput') statusInput: ElementRef<HTMLInputElement>;
+    @ViewChild('urlInput') urlInput: ElementRef<HTMLInputElement>;
     @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
     public typeProject: Array<IProjectType> = [];
     projectForm: FormGroup;
-    public selectedtype: String;
-    statusLog: Array<String>;
-
+    public selectedtype: string;
+    statusLog: Array<string>;
+    urlsSelected: Array<string> = [];
 
     get f() { return this.projectForm.controls; }
-
-    constructor(private formBuilder: FormBuilder, private projectSvc: ProjectsService, private router: Router, private logService: LogService,private toast: ToastrService) { }
+    constructor(private formBuilder: FormBuilder, private projectSvc: ProjectsService, private router: Router, private logService: LogService, private toast: ToastrService) { }
 
     ngOnInit(): void {
+        const reg = '(https?://)?([\da-z.-]+)\.([a-z.]{2,6})[/\w .-]*/?';
+
         this.projectForm = this.formBuilder.group({
             name: ['', [Validators.required]],
             type: [null, Validators.required],
-            statusLog: [null, ],
+            statusLog: [null,],
+            url: ['', [Validators.pattern('(http?://)?([\da-z.-]+)\.([a-z.]{2,6})[/\w .-]*/?')]],
         }, {
             validator: ValidateBlanks('name', 'Project cannot have blanks'),
         }
@@ -80,7 +83,7 @@ export class NewProjectModalComponent implements OnInit {
 
     public getStatusLog() {
         this.logService.statusLog().subscribe((status: any) => {
-            this.statusLog = status.filter(status=>status!='active');
+            this.statusLog = status.filter(status => status != 'active');
         });
     }
     remove(fruit: string): void {
@@ -93,7 +96,7 @@ export class NewProjectModalComponent implements OnInit {
                 //     this.removable=false;
                 // }
             }
-        }else{
+        } else {
             // this.removable = false;
             this.toast.warning('You must choose at least two states for the log')
         }
@@ -120,5 +123,16 @@ export class NewProjectModalComponent implements OnInit {
         this.statusLog.push(event.option.viewValue);
         this.statusInput.nativeElement.value = '';
         this.statusCtrl.setValue(null);
+    }
+
+    addUrl() {
+        this.urlsSelected.push(this.projectForm.value.url);
+        this.urlInput.nativeElement.value='';
+    }
+    removeUrl(data: string) {
+        const index = this.urlsSelected.indexOf(data, 0);
+        if (index > -1) {
+            this.urlsSelected.splice(index, 1);
+        }
     }
 }

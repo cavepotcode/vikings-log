@@ -25,6 +25,20 @@
                 </mat-chip-list>
             </mat-form-field>
 
+            <mat-divider></mat-divider>
+
+
+            <mat-form-field appearance="fill">
+                <mat-label>Url</mat-label>
+                <input matInput formControlName="url" (keydown.enter)="addUrl()" #urlInput autocomplete="off">
+                <!-- <mat-error *ngIf="f.url.errors.pattern">error</mat-error> -->
+            </mat-form-field>
+            <mat-selection-list #shoes [multiple]="false" style="max-height: 120px; overflow-y: auto;">
+                <mat-list-option *ngFor="let item of urlsSelected" [value]="item">
+                    <mat-icon mat-list-icon (click)="removeUrl(item)">delete</mat-icon>
+                    {{item}}
+                </mat-list-option>
+            </mat-selection-list>
 
             <mat-divider></mat-divider>
 
