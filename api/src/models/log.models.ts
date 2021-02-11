@@ -40,7 +40,8 @@ export class LogListOut {
 
 export class HistoryLog{
     @IsDate() date :Date;
-    @IsString() movements:string;
+    @IsString() fromStatus:string
+    @IsString() toStatus:string;
     @IsString() user:string;
 
 }

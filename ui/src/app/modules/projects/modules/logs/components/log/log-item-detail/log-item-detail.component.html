@@ -17,8 +17,15 @@
             <mat-divider></mat-divider>
             <b>History</b>
             <div class="history-content">
-                <div class="history" *ngFor="let item of history">
-                    <p> {{item.date | date: 'dd/MM/yyyy HH:mm:ss' }} - {{item.movements}} - {{item.user}}</p>
+                <div class="history"*ngFor="let item of history" >
+                    <mat-label><strong>{{item.date | date: 'dd/MM/yyyy HH:mm:ss' }} </strong>- Update status from </mat-label>
+                    <mat-chip-list aria-label="Fish selection">
+                        <mat-basic-chip selected class="chip-label info">{{item.fromStatus}}</mat-basic-chip>
+                        <mat-label>to </mat-label>
+                        <mat-basic-chip selected class="chip-label info">{{item.toStatus}}</mat-basic-chip>
+                    </mat-chip-list>
+                    <mat-label> by {{item.user|titlecase}}</mat-label>
+                    <mat-divider></mat-divider>
                 </div>
             </div>
         </div>

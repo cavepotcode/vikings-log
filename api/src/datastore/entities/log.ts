@@ -7,7 +7,8 @@ export enum Level {
 }
 export class HistoryLog {
     date: Date;
-    movements: string;
+    fromStatus:string;
+    toStatus:string;
     user: string;
 }
 

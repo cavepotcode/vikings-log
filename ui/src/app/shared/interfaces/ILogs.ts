@@ -13,7 +13,8 @@ export interface ILogs {
 
 export interface IHistoryLog{
     date :Date;
-    movements:string;
+    fromStatus:string;
+    toStatus:string;
     user:string;
 }
 

@@ -1,4 +1,4 @@
-import { JsonController, HeaderParam, Post, Get, Body, Param, Authorize, QueryParam, Put, getSocket } from 'kiwi-server';
+import { JsonController, HeaderParam, Post, Get, Body, Param, Authorize, QueryParam, Put, getSocket, IsString } from 'kiwi-server';
 import { ProjectService } from '../services/project.service';
 import { Log } from '../sdk/logs';
 import { Response } from '../sdk/response';
@@ -70,9 +70,10 @@ export class LogController {
 
     private addHistoryRegister(log: any, data: LogUpdate, token: string) {
         let history: HistoryLog = {
-            user: this.authService.decode(token).email,
+            user: this.authService.decode(token).username,
             date: new Date(),
-            movements: `Update status from '${log.status.toUpperCase()}' to '${data.status.toUpperCase()}'`
+            fromStatus:`${log.status.toUpperCase()}`,
+            toStatus:`${data.status.toUpperCase()}`
         }
         data.history = log.history;
         data.history.splice(0, 0, history);
