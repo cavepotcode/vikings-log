@@ -19,7 +19,6 @@
     {{'}'}}
 
     <span class="comments">//Send information</span>
-
     <span class="class">MediaTypeFormatter</span> jsonFormatter = <span class="variable-type">new</span> <span class="class">JsonMediaTypeFormatter</span>();
     <span class="class">HttpContent</span> content = new <span class="class">ObjectContent</span><span class="variable-type">object</span>>(data, jsonFormatter);
     
@@ -30,7 +29,6 @@
             </pre>
             <pre *ngIf="name === 'php'" class="code">
     <span class="comments">//Create object</span>
-
     $body =  new <span class="class">Log</span>();
     $body->message = <span class="property-value">"unhandled error"</span>;
     $body->type = <span class="property-value">"php"</span>;
@@ -56,7 +54,6 @@
             </pre>
             <pre *ngIf="name === 'node'" class="code">
     <span class="comments">//Create object</span>
-
     <span class="variable-type"><strong>let</strong></span>  data = {{'{'}}
         message : <span class="property-value">'unhandled error'</span>,
         type :<span class="property-value">'nodejs'</span>,
@@ -71,7 +68,6 @@
     {{'}'}}
 
     <span class="comments">//Send information</span>
-
     <span class="variable-type"><strong>const</strong></span> <span class="variable-name">options</span> = {{'{'}}
         host: <span class="property-value">'{{url.hostname}}'</span>,
         port: <span class="numbers">{{url.port}}</span>,
