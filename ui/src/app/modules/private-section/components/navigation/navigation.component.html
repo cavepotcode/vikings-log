@@ -1,27 +1,3 @@
-<!--<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Projects</mat-toolbar>
-    <mat-nav-list>
-      <div class="pitems" *ngFor="let p of projects">
-        <a mat-list-item (click)=projectClick(p.id) [ngClass]="{'active': p.id === currentProject}">
-          {{p.name}}
-        </a>
-        <span class="apikey">{{p.apiKey}}</span>
-      </div>
-      
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-
-     Add Content Here 
-    <router-outlet></router-outlet>
-
-
-  </mat-sidenav-content>
-</mat-sidenav-container>
--->
-
 <mat-sidenav-container class="navigation-container">
 
     <mat-sidenav #navigationSidenav [opened]="true" mode="side" role="navigation">
