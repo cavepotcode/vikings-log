@@ -17,6 +17,7 @@ export class LogService {
         log.info = body.info;
         log.exception = body.exception;
         log.status = StatusLog.ACTIVE;
+        log.history = [];
         const projRepository = await getRepository(Log);
         return await projRepository.insert(log);
     }
@@ -66,7 +67,7 @@ export class LogService {
 
     async updateStatus(body: LogUpdate) {
         const projRepository = await getRepository(Log);
-        return await projRepository.findOneAndUpdate({ _id: new ObjectID(body.id) }, { $set: { status: body.status } });
+        return await projRepository.findOneAndUpdate({ _id: new ObjectID(body.id) }, { $set: { status: body.status,history:body.history }});
     }
 
     async countLogsByProjectId(id:string){
@@ -74,4 +75,5 @@ export class LogService {
         const condition = { project: new ObjectID(id) }
         return  await projRepository.count(condition);
     }
+
 }

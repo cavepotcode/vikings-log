@@ -10,7 +10,7 @@ export class LogItemComponent implements OnInit {
 
     @Input() public log: ICheckItems;
     @Output() public allComplete: EventEmitter<any> = new EventEmitter();
-
+    public collapsed: boolean;
     constructor() { }
 
     ngOnInit(): void {
@@ -18,5 +18,8 @@ export class LogItemComponent implements OnInit {
     }
     updateAllComplete() {
         this.allComplete.emit();
+    }
+    changeCollapsed(data: boolean){
+        this.collapsed = data;
     }
 }

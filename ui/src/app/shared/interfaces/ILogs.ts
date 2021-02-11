@@ -8,7 +8,14 @@ export interface ILogs {
     info: any;
     exception: IException;
     status: string;
+    history: Array<IHistoryLog>;
+}
 
+export interface IHistoryLog{
+    date :Date;
+    fromStatus:string;
+    toStatus:string;
+    user:string;
 }
 
 export interface IException {

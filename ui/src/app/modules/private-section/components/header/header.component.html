@@ -10,13 +10,13 @@
 
         <img src="../../../../../assets/img/vikinglog.png" alt="">
 
-        <div fxFlex fxLayout fxLayoutAlign="flex-end">
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" >
 
             <ul fxLayout class="navigation-items">
 
                 <li>
-                    <button class="white-icon" mat-button [matMenuTriggerFor]="auth">
-                        {{user.username|uppercase}}
+                    <button class="white-icon" mat-button [matMenuTriggerFor]="auth" class="person">
+                        <span style="margin-top: 5px;">{{user.username|uppercase}}</span>
                         <mat-icon class="white-icon"> person </mat-icon>
                     </button>
                     <mat-menu #auth="matMenu" xPosition="before">

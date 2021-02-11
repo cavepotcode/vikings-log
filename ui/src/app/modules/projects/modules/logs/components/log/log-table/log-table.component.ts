@@ -95,7 +95,7 @@ export class LogTableComponent implements OnInit, OnChanges {
 
 
     setStatus(data:any) {
-        debugger
+        
         let items = this.getCheckedElements();
         items.forEach(element => {
             element.status = data;

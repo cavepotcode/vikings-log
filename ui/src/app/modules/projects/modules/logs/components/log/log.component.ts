@@ -52,7 +52,7 @@ export class LogDashboardComponent implements OnInit {
                 this.getLogs(this.id);
             }
         })
-        
+
     }
 
     public getLogs(id: string): void {

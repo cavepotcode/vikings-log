@@ -1,5 +1,5 @@
-<div style="flex-direction: column;">
-    <h2 class="log-count" fxFlex="none" *ngIf="logs">Logs ({{logs.length}})</h2>
+<div class="log-screen"  style="flex-direction: column;">
+    <h2 class="log-count" fxFlex="none" *ngIf="logs">Logs ({{length}})</h2>
     <div class="log-table">
         <div class="log-table-header">
             <div class="log-table-column size-section action-region-section">
@@ -12,22 +12,6 @@
                 <div class="action-region" >
                     <div *ngIf="someComplete() || allComplete">
                         <button *ngFor="let item of project.typeLogStatus" button mat-raised-button (click)="setStatus(item)" >{{item|titlecase}}</button>
-                        <!-- <button mat-raised-button (click)="setIngore()">Ignore</button> -->
-                    </div>
-                    <!-- <button mat-raised-button>
-                        <mat-icon aria-hidden="false" aria-label="watch">star_rate</mat-icon>
-                    </button> -->
-                    <!-- <button mat-raised-button [matMenuTriggerFor]="animals">
-                        <mat-icon aria-hidden="false" aria-label="watch">keyboard_arrow_down</mat-icon>
-                    </button>
-                    <button mat-raised-button [matMenuTriggerFor]="animals">
-                        <mat-icon aria-hidden="false" aria-label="watch">more_horiz</mat-icon>
-                    </button> -->
-                    <!-- #docregion sub-menu -->
-                    <!-- <mat-menu #animals="matMenu">
-                        <button mat-menu-item>Vertebrates</button>
-                        <button mat-menu-item>Invertebrates</button>
-                    </mat-menu> -->
                 </div>
             </div>
             <div class="log-table-column num-info"></div>
@@ -36,12 +20,7 @@
         </div>
 
     </div>
-
-
     <app-log-item *ngFor="let log of task.subtasks" [log]=log (allComplete)="updateAllComplete($event)"></app-log-item>
-
-
-
     <mat-paginator (page)="pageChange($event)" [length]="length" [pageSize]="pageSize"
         [pageSizeOptions]="pageSizeOptions">
     </mat-paginator>

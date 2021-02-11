@@ -11,6 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LogItemDetailComponent } from './components/log/log-item-detail/log-item-detail.component';
 import {WatermarkComponent} from './components/watermark/watermark.component';
 import { FormsModule } from '@angular/forms';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 
 
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     LogsRoutingModule,
     SharedModule,
     FormsModule,
+    NgxJsonViewerModule
   ]
 })
 export class LogsModule { }

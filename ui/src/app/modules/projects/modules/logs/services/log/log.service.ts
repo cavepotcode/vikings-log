@@ -39,6 +39,7 @@ export class LogService {
             .get(url, { params })
             .pipe(map((res: any) => {
                 if (res.meta.code === 0) {
+                    
                     return res.data;
                 }
                 throw (new Error());

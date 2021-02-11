@@ -9,7 +9,7 @@
     .item-left-expand{
         max-height: 900px;
     }
-    .stack, .info{
+    .stack, .info, .history{
         padding-left: 20px;
         display: flex;
         b{
@@ -22,8 +22,21 @@
     .expand_more-collapsed {
          transform: rotate(180deg);
     }
-    
+
     .transition{
         transition: ease all 0.3s;
+    }
+    .history-content{
+        max-height: 80px;
+        overflow-y: auto;
+    }
+    .chip-label{
+        padding: 1px 7px;
+        margin:5px;
+        border-radius: 8px;
+        &.info{
+            color: #00529B;
+            background-color: #BDE5F8;
+        }
     }
 }

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IException } from 'src/app/shared/interfaces/ILogs';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { IException, IHistoryLog } from 'src/app/shared/interfaces/ILogs';
+
 
 @Component({
     selector: 'app-log-item-detail',
@@ -10,12 +11,18 @@ import { IException } from 'src/app/shared/interfaces/ILogs';
 export class LogItemDetailComponent implements OnInit {
     @Input() public stack: IException;
     @Input() public info: any;
+    @Input() public history: Array<IHistoryLog>;
+    @Input() public collapsed :boolean;
+    @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter();
     
-    public collapsed =false;
-
     constructor() { }
 
     ngOnInit(): void {
     }
 
+    changeCollapsed(){
+        this.collapsed = this.collapsed? false:true;
+        this.collapsedChange.emit(this.collapsed)
+    }
+    
 }
