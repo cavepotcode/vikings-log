@@ -14,8 +14,7 @@
             <mat-form-field class="example-chip-list">
                 <mat-label>Status Log</mat-label>
                 <mat-chip-list #chipList aria-label="Status Log">
-                    <mat-chip *ngFor="let item of statusLog" [selectable]="selectable" [removable]="removable"
-                        (removed)="remove(item)">
+                    <mat-chip *ngFor="let item of statusLog" [removable]="removable" (removed)="remove(item)">
                         {{item|titlecase}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>
@@ -28,17 +27,22 @@
             <mat-divider></mat-divider>
 
 
-            <mat-form-field appearance="fill">
-                <mat-label>Url</mat-label>
-                <input matInput formControlName="url" (keydown.enter)="addUrl()" #urlInput autocomplete="off">
-                <!-- <mat-error *ngIf="f.url.errors.pattern">error</mat-error> -->
-            </mat-form-field>
-            <mat-selection-list #shoes [multiple]="false" style="max-height: 120px; overflow-y: auto;">
-                <mat-list-option *ngFor="let item of urlsSelected" [value]="item">
-                    <mat-icon mat-list-icon (click)="removeUrl(item)">delete</mat-icon>
-                    {{item}}
-                </mat-list-option>
-            </mat-selection-list>
+            <button mat-raised-button type="button" class="button" (click)="addUrl()">Add new Url</button>
+
+            <div class="url-content">
+                <div class="url-list" *ngFor="let url of urlListArray.controls; index as i">
+                    <ng-container [formGroup]="url" >
+                        <mat-form-field appearance="fill">
+                            <mat-label>Url {{i+1}}</mat-label>
+                            <input formControlName="urlItem" matInput autocomplete="off">
+                            <mat-icon *ngIf="urlListArray.controls.length>1" mat-list-icon (click)="removeUrl(i)">delete</mat-icon>
+                            <mat-error *ngIf="url.invalid">This field is required</mat-error>
+                            
+                        </mat-form-field>
+                    </ng-container>
+                </div>
+            </div>
+            <mat-error *ngIf="f.urlList.errors">The list cannot contain duplicate URLs</mat-error>
 
             <mat-divider></mat-divider>
 
@@ -55,6 +59,8 @@
             <div class="form-element">
                 <button tabindex="0" mat-raised-button color="primary" type="submit" class="button"
                     [disabled]="!projectForm.valid" [mat-dialog-close]="true">Create</button>
+                <button tabindex="0" mat-raised-button type="button" class="button"
+                    [mat-dialog-close]="false">Cancel</button>
             </div>
 
 

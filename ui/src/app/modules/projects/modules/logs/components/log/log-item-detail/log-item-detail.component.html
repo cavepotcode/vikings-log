@@ -1,5 +1,5 @@
 <div class="card-items-detail">
-    <div [ngClass]="{'item-left-noexpand transition': !collapsed, 'item-left-expand transition': collapsed}">
+    <div id="log-content"  [ngClass]="{'item-left-noexpand transition': !collapsed, 'item-left-expand transition': collapsed}">
         <mat-divider></mat-divider>
         <div style="display: flex; flex-direction: column;" *ngIf="stack?.stack" (click)="changeCollapsed()">
             <b>Stack:</b>

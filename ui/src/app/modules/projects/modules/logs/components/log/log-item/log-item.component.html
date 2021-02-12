@@ -1,7 +1,7 @@
 <div class="card-items" *ngIf="log">
-    <div class="item actions info">
+    <div class="item actions info " [ngClass]="{'even': even}">
 
-        <div class="select-item">
+        <div class="select-item ">
             <div class="select-item-info level-indicator"
                 [ngClass]="{'error': log.log.level === 'error','info': log.log.level === 'info'}">
             </div>

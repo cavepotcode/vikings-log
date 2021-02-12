@@ -20,4 +20,7 @@ export class Project {
 
     @Column()
     typeLogStatus: Array<string>;
+
+    @Column()
+    crossDomain:Array<string>
 }
