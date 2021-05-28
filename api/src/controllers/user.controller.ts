@@ -85,7 +85,7 @@ export class UserController {
             projectModel.status = StatusProject.ENABLED;
             body.typeLogStatus.push(StatusLog.ACTIVE);
             projectModel.typeLogStatus = body.typeLogStatus
-            projectModel.crossDomain = body.crossDomain;
+            projectModel.urls = body.urls;
             let user = this.authService.decode(token);
 
             const project = await this.projectService.add(projectModel)

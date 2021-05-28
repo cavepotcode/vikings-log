@@ -35,9 +35,10 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Url {{i+1}}</mat-label>
                             <input formControlName="urlItem" matInput autocomplete="off">
-                            <mat-icon *ngIf="urlListArray.controls.length>1" mat-list-icon (click)="removeUrl(i)">delete</mat-icon>
+                            <button mat-button *ngIf="urlListArray.controls.length > 1" matSuffix mat-icon-button aria-label="Clear" (click)="removeUrl(i)">
+                                <mat-icon mat-list-icon >delete</mat-icon>
+                              </button>
                             <mat-error *ngIf="url.invalid">This field is required</mat-error>
-                            
                         </mat-form-field>
                     </ng-container>
                 </div>
@@ -48,12 +49,23 @@
 
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label> Select an type</mat-label>
+                <!--
                 <mat-select [(value)]="selectedtype" formControlName="type">
                     <mat-option *ngFor="let item of typeProject" [value]="item">{{item.name |uppercase}}</mat-option>
                 </mat-select>
                 <mat-error>
                     <span *ngIf="projectForm.controls.type.errors">This field is mandatory.</span>
-                </mat-error>
+                </mat-error>    
+                -->
+                <mat-chip-list #chipList aria-label="Status Log">
+                    <mat-chip *ngFor="let item of typeProject" [removable]="removable" (removed)="remove(item)">
+                        {{item.name | titlecase}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New Status... Press Enter" #statusInput formControlName="statusLog"
+                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        autocomplete="off" (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
             </mat-form-field>
 
             <div class="form-element">

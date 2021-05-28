@@ -13,7 +13,6 @@ export class LogService {
         log.level = level;
         log.message = body.message.toLowerCase();
         log.project = project_id;
-        log.type = body.type;
         log.info = body.info;
         log.exception = body.exception;
         log.status = StatusLog.ACTIVE;
@@ -25,7 +24,6 @@ export class LogService {
     async list(body: LogListIn, project_id: string) {
         const projRepository = await getRepository(Log);
         const offset = (parseInt(body.page) - 1) * parseInt(body.size);
-
 
         var myDate = new Date();
         myDate.setDate(myDate.getDate() - 20);

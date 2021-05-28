@@ -42,6 +42,11 @@ export class LogController {
                 return new Response(ResponseCode.ERROR, `Project ${project_id} doesnt exists`);
             }
             const logs = await this.logSvc.list(body, project_id);
+
+            logs.items = logs.items.map(log => {
+                log.type = project.type;
+                return log;
+            })
             return new Response(ResponseCode.OK, '', logs);
         } catch (err) {
             Log.error(`log/project/${project_id}`, err);

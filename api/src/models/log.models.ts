@@ -5,7 +5,6 @@ import { Log } from '../datastore/entities';
 //TODO:: fix exception object. @IsObject...
 export class LogIn {
     @IsString() message: string;
-    @IsString() type: string;
     @IsDate() date: Date;
     exception: Exception;
     @IsString() info: any;

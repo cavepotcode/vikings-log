@@ -45,6 +45,7 @@ export class ProjectController {
             projectModel.name = request.project.title;
             projectModel.type = request.project.type;
             projectModel.apiKey = request.project.apikey;
+            projectModel.urls = request.project.urls;
             request.project.typeLogStatus.push(StatusLog.ACTIVE);
             projectModel.typeLogStatus = request.project.typeLogStatus
             

@@ -13,7 +13,7 @@ export class Project {
     apiKey: string;
 
     @Column()
-    type: string;
+    type: any;
 
     @Column()
     status: string;
@@ -22,5 +22,5 @@ export class Project {
     typeLogStatus: Array<string>;
 
     @Column()
-    crossDomain:Array<string>
+    urls:Array<string>
 }

@@ -72,7 +72,8 @@ export class NewProjectModalComponent implements OnInit {
             apiKey: this.projectForm.value.apikey,
             title: this.projectForm.value.name,
             type: this.projectForm.value.type,
-            typeLogStatus: this.statusLog
+            typeLogStatus: this.statusLog,
+            urls: this.urlListArray.value.map(x => x.urlItem)
         }).subscribe((data) => {
             this.router.navigate([`/private/projects/project/${data.data.identifiers[0].id}/logs`]);
         });
@@ -99,10 +100,10 @@ export class NewProjectModalComponent implements OnInit {
             this.statusLog = status.filter(status => status != 'active');
         });
     }
-    remove(fruit: string): void {
-        if (this.statusLog.length > 2) {
-            const index = this.statusLog.indexOf(fruit);
 
+    remove(state: string): void {
+        if (this.statusLog.length > 2) {
+            const index = this.statusLog.indexOf(state);
             if (index >= 0) {
                 this.statusLog.splice(index, 1);
             }
@@ -110,6 +111,7 @@ export class NewProjectModalComponent implements OnInit {
             this.toast.warning('You must choose at least two states for the log')
         }
     }
+
     add(event: MatChipInputEvent): void {
         if (this.statusLog.includes(event.value.trim().toLowerCase())) {
             this.toast.warning(`Status ${event.value.toUpperCase()} already exist`)
@@ -145,6 +147,7 @@ export class NewProjectModalComponent implements OnInit {
 
         this.urlListArray.push(group);
     }
+
     removeUrl(index: number) {
         if (this.urlListArray.length > 1) {
             this.urlListArray.removeAt(index);
@@ -153,6 +156,7 @@ export class NewProjectModalComponent implements OnInit {
             this.toast.warning('The list must contain at least one URL')
         }
     }
+
     isNameDup() {
         const validator: ValidatorFn = (formArray: FormArray) => {
             if (formArray.controls.length >1) {

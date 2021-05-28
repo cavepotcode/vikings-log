@@ -6,6 +6,7 @@ export interface IProject {
     id?: string
     type?: string;
     countLogs?:number;
+    urls: Array<string>
     typeLogStatus:Array<String>;
 }
 export interface IProjectItem {
