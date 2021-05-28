@@ -1,15 +1,34 @@
-.form{
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 
-    .form-element{
-        display: flex;
-        justify-content: flex-end;
-    }
-}
-mat-divider{
+  mat-divider {
     margin-top: 15px;
     margin-bottom: 15px;
-}
+  }
 
+  .url-content {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 10px;
+    
+    .url-list {
+        
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+
+  .form-element {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+
+
+}

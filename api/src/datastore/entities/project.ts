@@ -13,11 +13,14 @@ export class Project {
     apiKey: string;
 
     @Column()
-    type: string;
+    type: any;
 
     @Column()
     status: string;
 
     @Column()
     typeLogStatus: Array<string>;
+
+    @Column()
+    urls:Array<string>
 }

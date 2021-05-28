@@ -5,6 +5,7 @@ import { ICheckItems } from 'src/app/shared/interfaces/ICheckItems';
 import { Constants } from "src/app/shared/consts/app-constants";
 import { LogService } from '../../../services/log/log.service';
 import { IProject } from 'src/app/shared/interfaces/IProject';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -21,7 +22,7 @@ export class LogTableComponent implements OnInit, OnChanges {
     @Input() public logs: Array<ILogs>;
     @Input() public pageSize;
     @Input() public length;
-    @Input() project :IProject
+    @Input() project: IProject
     @Output() paginatorChange = new EventEmitter();
     @Output() logsChange = new EventEmitter();
     public task: ICheckItems = {
@@ -31,7 +32,7 @@ export class LogTableComponent implements OnInit, OnChanges {
 
     }
 
-    constructor(private logService: LogService) { }
+    constructor(private logService: LogService, private toastService: ToastrService) { }
 
     ngOnInit(): void {
         this.loadsubtasks();
@@ -40,6 +41,9 @@ export class LogTableComponent implements OnInit, OnChanges {
         if (changes.hasOwnProperty('logs')) {
             this.task.subtasks = [];
             this.loadsubtasks();
+            if (this.allComplete) {
+                this.setAll(true);
+            }
         }
     }
 
@@ -94,14 +98,14 @@ export class LogTableComponent implements OnInit, OnChanges {
     }
 
 
-    setStatus(data:any) {
-        
+    setStatus(data: any) {
         let items = this.getCheckedElements();
         items.forEach(element => {
             element.status = data;
         });
         this.logService.changeStatus(items).subscribe(() => {
             this.logsChange.emit();
+            this.toastService.success('Status has been modified successfully')
         });
     }
 }

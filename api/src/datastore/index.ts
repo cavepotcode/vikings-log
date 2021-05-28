@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { createConnection, Connection, ConnectionOptions, getMongoRepository } from "typeorm";
+import { createConnection, Connection, ConnectionOptions } from "typeorm";
 import { Log, User, Project, ProjectType } from './entities/';
 require('dotenv').config();
 

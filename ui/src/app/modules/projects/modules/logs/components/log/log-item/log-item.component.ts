@@ -9,6 +9,7 @@ import { ICheckItems } from 'src/app/shared/interfaces/ICheckItems';
 export class LogItemComponent implements OnInit {
 
     @Input() public log: ICheckItems;
+    @Input() public even: boolean=false;
     @Output() public allComplete: EventEmitter<any> = new EventEmitter();
     public collapsed: boolean;
     constructor() { }

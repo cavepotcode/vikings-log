@@ -1,7 +1,7 @@
 <div class="card-items" *ngIf="log">
-    <div class="item actions info">
+    <div class="item actions info " [ngClass]="{'even': even}">
 
-        <div class="select-item">
+        <div class="select-item ">
             <div class="select-item-info level-indicator"
                 [ngClass]="{'error': log.log.level === 'error','info': log.log.level === 'info'}">
             </div>
@@ -21,7 +21,7 @@
             </div>
             <app-log-item-detail [stack]="log.log.exception" [info]="log.log.info" [history]="log.log.history" [collapsed]="collapsed" (collapsedChange)="changeCollapsed($event)"></app-log-item-detail>
             <div class="footer">
-                <img src="./../../../../../../../../assets/img/projects-type/{{log.log.type.toLowerCase()}}.png" />
+                <img *ngFor="let type of log.log.type" src="./../../../../../../../../assets/img/projects-type/{{type.name.toLowerCase()}}.png" />
                 <mat-icon aria-hidden="false" aria-label="watch">watch_later</mat-icon>
                 <span>{{log.log.date | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
             </div>
