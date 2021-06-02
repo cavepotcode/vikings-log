@@ -49,15 +49,15 @@
 
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label> Select an type</mat-label>
-                <!--
+                
                 <mat-select [(value)]="selectedtype" formControlName="type">
                     <mat-option *ngFor="let item of typeProject" [value]="item">{{item.name |uppercase}}</mat-option>
                 </mat-select>
                 <mat-error>
                     <span *ngIf="projectForm.controls.type.errors">This field is mandatory.</span>
                 </mat-error>    
-                -->
-                <mat-chip-list #chipList aria-label="Status Log">
+            
+                <!--<mat-chip-list #chipList aria-label="Status Log">
                     <mat-chip *ngFor="let item of typeProject" [removable]="removable" (removed)="remove(item)">
                         {{item.name | titlecase}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
@@ -65,7 +65,7 @@
                     <input placeholder="New Status... Press Enter" #statusInput formControlName="statusLog"
                         [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                         autocomplete="off" (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>
+                </mat-chip-list>-->
             </mat-form-field>
 
             <div class="form-element">
